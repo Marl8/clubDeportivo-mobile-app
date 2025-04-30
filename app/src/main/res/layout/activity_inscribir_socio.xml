@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/menu"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".activities.MenuActivity">
+
+    <!-- Barra Superior -->
+    <LinearLayout
+        android:id="@+id/header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#4400CA"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="16dp">
+
+        <!-- Menú de Perfil -->
+        <ImageButton
+            android:id="@+id/userMenu"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/circle_buttons"
+            android:contentDescription="user_icon"
+            android:padding="0dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_user_icon" />
+
+        <!-- Texto de Bienvenida -->
+        <TextView
+            android:id="@+id/txtWelcome"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginTop="5dp"
+            android:gravity="center_vertical"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:text="Bienvenido!"
+            android:textColor="@color/white"
+            android:textSize="16sp" />
+
+        <!-- Botón de Exit -->
+        <ImageButton
+            android:id="@+id/btnExit"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/circle_buttons"
+            android:contentDescription="user_icon"
+            android:padding="0dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_salir_icon" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/logo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="8dp">
+
+        <!-- Logo Principal -->
+        <ImageView
+            android:id="@+id/mainLogo"
+            android:layout_width="107dp"
+            android:layout_height="60dp"
+            android:layout_gravity="end"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="5dp"
+            android:contentDescription="Main Logo"
+            app:srcCompat="@drawable/ic_logo_principal" />
+
+        <LinearLayout
+            android:id="@+id/title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="5dp">
+
+            <TextView
+                android:id="@+id/title_socio"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginStart="16dp"
+                android:fontFamily="sans-serif-light"
+                android:padding="8dp"
+                android:text="Inscribir Socio"
+                android:textColor="#5500FF"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+
+            <ImageButton
+                android:id="@+id/clear"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginEnd="20dp"
+                android:background="@drawable/clear_button"
+                android:contentDescription="clear_icon"
+                android:padding="0dp"
+                android:scaleType="centerInside"
+                android:src="@drawable/ic_clear" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:id="@+id/body"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/container_gradient"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <EditText
+                android:id="@+id/name"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:autofillHints="name"
+                android:ems="10"
+                android:inputType="text"
+                android:textColor="@color/white"
+                android:fontFamily="sans-serif-light"
+                android:padding="10dp"
+                android:background="@drawable/form_input"
+                android:layout_marginTop="5dp"
+                android:hint="Name"
+                android:textColorHint="#80FFFFFF" />
+
+            <EditText
+                android:id="@+id/lastName"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginTop="12dp"
+                android:background="@drawable/form_input"
+                android:ems="10"
+                android:fontFamily="sans-serif-light"
+                android:inputType="text"
+                android:padding="10dp"
+                android:hint="Last Name"
+                android:textColorHint="#80FFFFFF"
+                android:textColor="@color/white" />
+
+            <EditText
+                android:id="@+id/dni"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginTop="12dp"
+                android:background="@drawable/form_input"
+                android:ems="10"
+                android:fontFamily="sans-serif-light"
+                android:inputType="text|number"
+                android:padding="10dp"
+                android:hint="DNI"
+                android:textColorHint="#80FFFFFF"
+                android:textColor="@color/white" />
+
+            <EditText
+                android:id="@+id/email"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginTop="12dp"
+                android:background="@drawable/form_input"
+                android:ems="10"
+                android:fontFamily="sans-serif-light"
+                android:inputType="textEmailAddress"
+                android:padding="10dp"
+                android:hint="Email"
+                android:textColorHint="#80FFFFFF"
+                android:textColor="@color/white" />
+
+            <EditText
+                android:id="@+id/phoneNumber"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginTop="12dp"
+                android:background="@drawable/form_input"
+                android:ems="10"
+                android:fontFamily="sans-serif-light"
+                android:inputType="phone"
+                android:padding="10dp"
+                android:hint="Phone Number"
+                android:textColorHint="#80FFFFFF"
+                android:textColor="@color/white" />
+
+            <EditText
+                android:id="@+id/state"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginTop="12dp"
+                android:background="@drawable/form_input"
+                android:ems="10"
+                android:fontFamily="sans-serif-light"
+                android:inputType="text"
+                android:padding="10dp"
+                android:hint="State"
+                android:textColorHint="#80FFFFFF"
+                android:textColor="@color/white" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/send"
+                android:layout_width="180dp"
+                android:layout_height="60dp"
+                android:background="@drawable/button_form"
+                app:backgroundTint="@null"
+                android:text="Enviar"
+                android:includeFontPadding="false"
+                android:layout_marginTop="24dp"
+                android:layout_marginBottom="16dp"
+                style="@style/Widget.AppCompat.Button"/>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

@@ -1,0 +1,330 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/menu"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".activities.MenuActivity">
+
+    <!-- Barra Superior -->
+    <LinearLayout
+        android:id="@+id/header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#4400CA"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="20dp">
+
+        <!-- Menú de Perfil -->
+        <ImageButton
+            android:id="@+id/userMenu"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/circle_buttons"
+            android:layout_marginTop="10dp"
+            android:contentDescription="user_icon"
+            android:padding="0dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_user_icon" />
+
+        <!-- Texto de Bienvenida -->
+        <TextView
+            android:id="@+id/txtWelcome"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginTop="10dp"
+            android:gravity="center_vertical"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:text="Bienvenido!"
+            android:textColor="@color/white"
+            android:textSize="16dp" />
+
+        <!-- Espaciador Invisible con layout_width-->
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+        <!-- Botón de Exit -->
+        <ImageButton
+            android:id="@+id/btnExit"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/circle_buttons"
+            android:contentDescription="user_icon"
+            android:layout_marginTop="10dp"
+            android:padding="0dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_salir_icon" />
+    </LinearLayout>
+
+    <!-- Logo Principal -->
+    <ImageView
+        android:id="@+id/mainLogo"
+        android:layout_width="wrap_content"
+        android:layout_height="136dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="35dp"
+        android:layout_marginBottom="15dp"
+        android:contentDescription="Main Logo"
+        app:srcCompat="@drawable/ic_logo_principal" />
+
+    <!-- Contenedor de Botones -->
+    <LinearLayout
+        android:id="@+id/body"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="@drawable/container_gradient"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:padding="10dp">
+
+        <LinearLayout
+            android:id="@+id/socios"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal"
+            android:layout_marginTop="10dp"
+            android:padding="5dp">
+
+            <ImageButton
+                android:id="@+id/btnSocio"
+                android:layout_width="65dp"
+                android:layout_height="65dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="70dp"
+                android:background="@drawable/circle_buttons_with_border"
+                android:contentDescription="btn_socio"
+                android:padding="0dp"
+                android:scaleType="centerInside"
+                android:src="@drawable/ic_socio"
+                tools:src="@drawable/ic_socio" />
+
+            <ImageButton
+                android:id="@+id/btnNoSocio"
+                android:layout_width="65dp"
+                android:layout_height="65dp"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/circle_buttons_with_border"
+                android:contentDescription="btn_noSocio"
+                android:padding="8dp"
+                android:scaleType="centerInside"
+                android:src="@drawable/ic_no_socio"
+                tools:src="@drawable/ic_no_socio" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/container_titles_socios"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:layout_marginBottom="5dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/lblSocio"
+                android:layout_width="148dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0"
+                android:text="Inscribir Socio"
+                android:textAlignment="center"
+                android:textColor="@color/white" />
+
+            <TextView
+                android:id="@+id/lblNoSocio"
+                android:layout_width="148dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0"
+                android:text="Inscribir No Socio"
+                android:textAlignment="center"
+                android:textColor="@color/white" />
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/carnet_actividad"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal"
+            android:padding="5dp">
+
+            <ImageButton
+                android:id="@+id/btnCarnet"
+                android:layout_width="65dp"
+                android:layout_height="65dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="70dp"
+                android:background="@drawable/circle_buttons_with_border"
+                android:contentDescription="btn_carnet"
+                android:padding="0dp"
+                android:scaleType="centerInside"
+                android:src="@drawable/ic_carnet_icon"
+                tools:src="@drawable/ic_carnet_icon" />
+
+            <ImageButton
+                android:id="@+id/btnActividad"
+                android:layout_width="65dp"
+                android:layout_height="65dp"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/circle_buttons_with_border"
+                android:contentDescription="btn_actividad"
+                android:padding="8dp"
+                android:scaleType="centerInside"
+                android:src="@drawable/ic_actividad_icon"
+                tools:src="@drawable/ic_actividad_icon" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/container_titles_carnet_actividad"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:layout_marginBottom="5dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/lblCarnet"
+                android:layout_width="140dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0"
+                android:text="Emitir Carnet"
+                android:textAlignment="center"
+                android:textColor="@color/white" />
+
+            <TextView
+                android:id="@+id/lblActividad"
+                android:layout_width="140dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0"
+                android:text="Inscribir Actividad"
+                android:textAlignment="center"
+                android:textColor="@color/white" />
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/titles_pago"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal"
+            android:padding="5dp">
+
+            <ImageButton
+                android:id="@+id/btnPagoCuota"
+                android:layout_width="65dp"
+                android:layout_height="65dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="70dp"
+                android:background="@drawable/circle_buttons_with_border"
+                android:contentDescription="btnPagarCuota"
+                android:padding="0dp"
+                android:scaleType="centerInside"
+                android:src="@drawable/ic_pago_cuota"
+                tools:src="@drawable/ic_pago_cuota" />
+
+            <ImageButton
+                android:id="@+id/btnPagoDiario"
+                android:layout_width="65dp"
+                android:layout_height="65dp"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/circle_buttons_with_border"
+                android:contentDescription="btnPagoDiario"
+                android:padding="8dp"
+                android:scaleType="centerInside"
+                android:src="@drawable/ic_pago_diario"
+                tools:src="@drawable/ic_pago_diario" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/container_titles_pagos"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:layout_marginBottom="5dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/lblPagoCuota"
+                android:layout_width="135dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0"
+                android:text="Pago Cuota"
+                android:textAlignment="center"
+                android:textColor="@color/white" />
+
+            <TextView
+                android:id="@+id/lblPagoDiario"
+                android:layout_width="135dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0"
+                android:text="Pago Diario"
+                android:textAlignment="center"
+                android:textColor="@color/white" />
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/titles_lists"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal"
+            android:padding="5dp">
+
+            <ImageButton
+                android:id="@+id/btnListaMorosos"
+                android:layout_width="65dp"
+                android:layout_height="65dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="70dp"
+                android:background="@drawable/circle_buttons_with_border"
+                android:contentDescription="btn_listaMorosos"
+                android:padding="5dp"
+                android:scaleType="centerInside"
+                android:src="@drawable/ic_lista_morosos"
+                tools:src="@drawable/ic_lista_morosos" />
+
+            <ImageButton
+                android:id="@+id/btnListaVencimientos"
+                android:layout_width="65dp"
+                android:layout_height="65dp"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/circle_buttons_with_border"
+                android:contentDescription="btnListaVencimientos"
+                android:padding="10dp"
+                android:scaleType="centerInside"
+                android:src="@drawable/ic_lista_vencimientos"
+                tools:src="@drawable/ic_lista_vencimientos" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/container_listaVencimientos"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/lblListaMorosos"
+                android:layout_width="135dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0"
+                android:text="Lista Morosos"
+                android:textAlignment="center"
+                android:textColor="@color/white" />
+
+            <TextView
+                android:id="@+id/lblListaVencimientos"
+                android:layout_width="135dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0"
+                android:text="Lista Vencimientos"
+                android:textAlignment="center"
+                android:textColor="@color/white" />
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>
