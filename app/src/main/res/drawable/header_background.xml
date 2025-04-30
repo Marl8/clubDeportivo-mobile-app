@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Fondo: Gradiente radial -->
+    <item>
+        <shape android:shape="rectangle">
+            <gradient
+                android:type="radial"
+                android:gradientRadius="50%"
+                android:startColor="#5D21D3"
+                android:endColor="#5D21D3" />
+        </shape>
+    </item>
+
+    <!-- Capa superior: Gradiente lineal con transparencia opcional -->
+    <item>
+        <shape android:shape="rectangle">
+            <gradient
+                android:type="linear"
+                android:angle="90"
+                android:startColor="#8C52FF"
+                android:endColor="#543199" />
+        </shape>
+    </item>
+</layer-list>

@@ -91,7 +91,7 @@
                 android:layout_marginStart="16dp"
                 android:fontFamily="sans-serif-light"
                 android:padding="8dp"
-                android:text="Inscribir Socio"
+                android:text="Inscribir No Socio"
                 android:textColor="#5500FF"
                 android:textSize="24sp"
                 android:textStyle="bold" />
@@ -202,22 +202,6 @@
                 android:inputType="phone"
                 android:padding="10dp"
                 android:hint="Phone Number"
-                android:textColorHint="#80FFFFFF"
-                android:textColor="@color/white" />
-
-            <EditText
-                android:id="@+id/state"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginEnd="16dp"
-                android:layout_marginTop="12dp"
-                android:background="@drawable/form_input"
-                android:ems="10"
-                android:fontFamily="sans-serif-light"
-                android:inputType="text"
-                android:padding="10dp"
-                android:hint="State"
                 android:textColorHint="#80FFFFFF"
                 android:textColor="@color/white" />
 

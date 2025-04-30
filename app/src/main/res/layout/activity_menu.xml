@@ -14,7 +14,7 @@
         android:id="@+id/header"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#4400CA"
+        android:background="@drawable/header_background"
         android:gravity="center_vertical"
         android:orientation="horizontal"
         android:padding="20dp">

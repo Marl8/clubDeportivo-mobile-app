@@ -13,10 +13,16 @@ class MenuActivity : AppCompatActivity() {
         enableEdgeToEdge()
         setContentView(R.layout.activity_menu)
 
-        val socio: ImageButton = findViewById(R.id.btnSocio)
+        val btnSocio: ImageButton = findViewById(R.id.btnSocio)
+        val btnNoSocio: ImageButton = findViewById(R.id.btnNoSocio)
 
-        socio.setOnClickListener{
+        btnSocio.setOnClickListener{
             val intent = Intent(this, InscribirSocioActivity::class.java)
+            startActivity(intent)
+        }
+
+        btnNoSocio.setOnClickListener{
+            val intent = Intent(this, InscribirNoSocioActivity::class.java)
             startActivity(intent)
         }
     }
