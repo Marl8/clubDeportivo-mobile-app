@@ -2,10 +2,12 @@ package com.example.clubdeportivo.activities
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.Button
 import android.widget.ImageButton
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import com.example.clubdeportivo.R
+import com.google.android.material.button.MaterialButton
 
 class MenuActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -15,6 +17,7 @@ class MenuActivity : AppCompatActivity() {
 
         val btnSocio: ImageButton = findViewById(R.id.btnSocio)
         val btnNoSocio: ImageButton = findViewById(R.id.btnNoSocio)
+        val btnCarnet: ImageButton = findViewById(R.id.btnCarnet)
 
         btnSocio.setOnClickListener{
             val intent = Intent(this, InscribirSocioActivity::class.java)
@@ -23,6 +26,11 @@ class MenuActivity : AppCompatActivity() {
 
         btnNoSocio.setOnClickListener{
             val intent = Intent(this, InscribirNoSocioActivity::class.java)
+            startActivity(intent)
+        }
+
+        btnCarnet.setOnClickListener {
+            val intent = Intent(this, CarnetActivity::class.java)
             startActivity(intent)
         }
     }

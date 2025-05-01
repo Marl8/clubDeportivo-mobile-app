@@ -1,0 +1,311 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/menu"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".activities.CarnetActivity">
+
+    <!-- Barra Superior -->
+    <LinearLayout
+        android:id="@+id/header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/header_background"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="16dp">
+
+        <!-- Menú de Perfil -->
+        <ImageButton
+            android:id="@+id/userMenu"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/circle_buttons"
+            android:contentDescription="user_icon"
+            android:padding="0dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_user_icon" />
+
+        <!-- Texto de Bienvenida -->
+        <TextView
+            android:id="@+id/txtWelcome"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginTop="5dp"
+            android:gravity="center_vertical"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:text="Bienvenido!"
+            android:textColor="@color/white"
+            android:textSize="16sp" />
+
+        <!-- Botón de Exit -->
+        <ImageButton
+            android:id="@+id/btnExit"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/circle_buttons"
+            android:contentDescription="user_icon"
+            android:padding="0dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_salir_icon" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/logo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="8dp">
+
+        <!-- Logo Principal -->
+        <ImageView
+            android:id="@+id/mainLogo"
+            android:layout_width="107dp"
+            android:layout_height="60dp"
+            android:layout_gravity="end"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="5dp"
+            android:contentDescription="Main Logo"
+            app:srcCompat="@drawable/ic_logo_principal" />
+
+        <LinearLayout
+            android:id="@+id/title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:padding="5dp">
+
+            <TextView
+                android:id="@+id/title_socio"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="sans-serif-light"
+                android:padding="8dp"
+                android:text="Carnet de Socio"
+                android:textAlignment="center"
+                android:textColor="#5500FF"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:id="@+id/body"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:background="@drawable/container_gradient"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <EditText
+                android:id="@+id/name"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:autofillHints="name"
+                android:ems="10"
+                android:inputType="text"
+                android:textColor="@color/white"
+                android:fontFamily="sans-serif-light"
+                android:padding="10dp"
+                android:background="@drawable/form_input"
+                android:layout_marginTop="5dp"
+                android:hint="Dni Cliente"
+                android:drawableEnd="@drawable/ic_search"
+                android:drawableTint="#DADADA"
+                android:textColorHint="#80FFFFFF" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/search"
+                style="@style/Widget.AppCompat.Button"
+                android:layout_width="350dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginBottom="16dp"
+                android:background="@drawable/button_form"
+                android:includeFontPadding="false"
+                android:text="Buscar"
+                android:textSize="18sp"
+                app:backgroundTint="@null" />
+
+            <LinearLayout
+                android:id="@+id/body_carnet"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/carnet_container"
+                android:gravity="center_horizontal"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/carnet"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:cardElevation="4dp"
+                    android:layout_margin="8dp">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/carnet"
+                        android:padding="10dp">
+
+                        <!-- Imagen fija arriba a la derecha -->
+                        <ImageView
+                            android:id="@+id/logo_carnet"
+                            android:layout_width="70dp"
+                            android:layout_height="50dp"
+                            android:layout_alignParentEnd="true"
+                            android:layout_alignParentTop="true"
+                            android:adjustViewBounds="true"
+                            android:scaleType="fitEnd"
+                            app:srcCompat="@drawable/ic_logo_blanco" />
+
+                        <!-- Contenedor de textos, empieza debajo de la imagen -->
+                        <LinearLayout
+                            android:id="@+id/text_container"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/logo_carnet"
+                            android:layout_toStartOf="@id/logo_carnet"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginBottom="10dp"
+                            android:orientation="vertical">
+
+                            <!-- Fila 1: Número de socio -->
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:id="@+id/lblNumSocio"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Nº de socio:"
+                                    android:textColor="@color/white" />
+
+                                <TextView
+                                    android:id="@+id/num_socio"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="8dp"
+                                    android:text=""
+                                    android:textColor="@color/white" />
+
+                                <TextView
+                                    android:id="@+id/lblEstado"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="40dp"
+                                    android:text="Estado:"
+                                    android:textColor="@color/white" />
+
+                                <TextView
+                                    android:id="@+id/estado"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="8dp"
+                                    android:text=""
+                                    android:textColor="@color/white" />
+                            </LinearLayout>
+
+                            <!-- Fila 2: Nombre de socio -->
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="8dp"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:id="@+id/lblNombre"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Nombre:"
+                                    android:textColor="@color/white" />
+
+                                <TextView
+                                    android:id="@+id/nombre_socio"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="8dp"
+                                    android:text=""
+                                    android:textColor="@color/white" />
+
+                                <TextView
+                                    android:id="@+id/lblApellido"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="60dp"
+                                    android:text="Apellido:"
+                                    android:textColor="@color/white" />
+
+                                <TextView
+                                    android:id="@+id/apellido"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="8dp"
+                                    android:text=""
+                                    android:textColor="@color/white" />
+                            </LinearLayout>
+
+                            <!-- Fila 3: DNI -->
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="8dp"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:id="@+id/lblDni"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="DNI:"
+                                    android:textColor="@color/white" />
+
+                                <TextView
+                                    android:id="@+id/dni"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="8dp"
+                                    android:text=""
+                                    android:textColor="@color/white" />
+                            </LinearLayout>
+                        </LinearLayout>
+                    </RelativeLayout>
+
+                </androidx.cardview.widget.CardView>
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnCarnet"
+                    android:layout_width="207dp"
+                    android:layout_height="58dp"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginBottom="16dp"
+                    android:background="@drawable/button_carnet"
+                    android:includeFontPadding="false"
+                    android:text="Generar Carnet"
+                    android:textSize="18sp"
+                    app:backgroundTint="@null" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>
