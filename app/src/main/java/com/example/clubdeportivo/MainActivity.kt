@@ -18,7 +18,8 @@ class MainActivity : AppCompatActivity() {
         Handler(Looper.getMainLooper()).postDelayed({
             val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
-            finish() // Cierra el Splash para que no vuelva al apretar atrás
+            // Cierra el Splash para que no vuelva al apretar atrás
+            finish()
         }, 2000) // 2000 milisegundos = 2 segundos
     }
 }
