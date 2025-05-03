@@ -19,6 +19,6 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
             finish() // Cierra el Splash para que no vuelva al apretar atrás
-        }, 2000) // 2000 milisegundos = 2 segundos
+        }, 2000) // 2000 milisegundos
     }
 }
