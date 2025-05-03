@@ -1,3 +1,17 @@
 <resources>
     <string name="app_name">clubDeportivo</string>
+
+    <string-array name="payment_methods">
+        <item>Elija forma de pago</item>
+        <item>Tarjeta de Crédito</item>
+        <item>Tarjeta de Débito</item>
+        <item>Transferencia/Efectivo</item>
+    </string-array>
+
+    <string-array name="installments">
+        <item>Elija cantidad de cuotas</item>
+        <item>1 Cuota</item>
+        <item>3 Cuotas</item>
+        <item>6 Cuotas</item>
+    </string-array>
 </resources>

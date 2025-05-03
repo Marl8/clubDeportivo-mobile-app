@@ -21,6 +21,7 @@ class MenuActivity : AppCompatActivity() {
         val btnSocio: ImageButton = findViewById(R.id.btnSocio)
         val btnNoSocio: ImageButton = findViewById(R.id.btnNoSocio)
         val btnCarnet: ImageButton = findViewById(R.id.btnCarnet)
+        val btnCuota: ImageButton = findViewById(R.id.btnPagoCuota)
 
         btnSocio.setOnClickListener{
             val intent = Intent(this, InscribirSocioActivity::class.java)
@@ -34,6 +35,11 @@ class MenuActivity : AppCompatActivity() {
 
         btnCarnet.setOnClickListener {
             val intent = Intent(this, CarnetActivity::class.java)
+            startActivity(intent)
+        }
+
+        btnCuota.setOnClickListener{
+            val intent = Intent(this, PagarCuotaActivity::class.java)
             startActivity(intent)
         }
     }

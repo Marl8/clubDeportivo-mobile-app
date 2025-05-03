@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<merge xmlns:android="http://schemas.android.com/apk/res/android">
+
+<!-- Barra Superior -->
+    <LinearLayout
+    android:id="@+id/header"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/header_background"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:padding="16dp">
+
+    <!-- Menú de Perfil -->
+    <ImageButton
+        android:id="@+id/userMenu"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/circle_buttons"
+        android:contentDescription="user_icon"
+        android:padding="0dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/ic_user_icon" />
+
+    <!-- Texto de Bienvenida -->
+    <TextView
+        android:id="@+id/txtWelcome"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:layout_marginTop="5dp"
+        android:gravity="center_vertical"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:text="Bienvenido!"
+        android:textColor="@color/white"
+        android:textSize="16sp" />
+
+    <!-- Botón de Exit -->
+    <ImageButton
+        android:id="@+id/btnExit"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/circle_buttons"
+        android:contentDescription="user_icon"
+        android:padding="0dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/ic_salir_icon" />
+</LinearLayout>
+
+
+
+</merge>
