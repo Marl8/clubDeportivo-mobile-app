@@ -1,3 +1,23 @@
 <resources>
     <string name="app_name">clubDeportivo</string>
+    <string name="metodo_de_pago">Método de pago</string>
+    <string name="cantidad_de_cuotas">Cantidad de cuotas</string>
+    <string name="valor_cuota">Valor Cuota</string>
+    <string name="pagar">Pagar</string>
+    <string name="dni">DNI</string>
+    <string name="description_cant_cuotas">Campo para seleccionar la cantidad de cuotas</string>
+    <string name="description_payment_method">Campo para seleccionar la forma de pago</string>
+
+    <!--    Dropdown items  -->
+    <string-array name="payment_methods">
+        <item>Tarjeta de Crédito</item>
+        <item>Tarjeta de Débito</item>
+        <item>Transferencia/Efectivo</item>
+    </string-array>
+
+    <string-array name="installments">
+        <item>1 Cuota</item>
+        <item>3 Cuotas</item>
+        <item>6 Cuotas</item>
+    </string-array>
 </resources>
