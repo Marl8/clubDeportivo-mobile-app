@@ -12,6 +12,28 @@
     <include layout="@layout/component_header_layout" />
     <include layout="@layout/component_logo_layout" />
 
+    <LinearLayout
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:padding="5dp">
+
+        <TextView
+            android:id="@+id/title_socio"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:layout_weight="1"
+            android:fontFamily="sans-serif-light"
+            android:padding="8dp"
+            android:text="Pago de Cuota"
+            android:textAlignment="center"
+            android:textColor="#5500FF"
+            android:textSize="28sp"
+            android:textStyle="bold" />
+    </LinearLayout>
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -41,40 +63,43 @@
                 android:inputType="text|number"
                 android:padding="10dp"
                 android:hint="@string/dni"
-                android:textColorHint="#80FFFFFF"
+                android:textColorHint="@color/white"
                 android:textColor="@color/white" />
 
             <com.google.android.material.textfield.TextInputLayout
-                style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.ExposedDropdownMenu"
-                android:id="@+id/paymentMethodLayout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginEnd="16dp"
-                android:layout_marginTop="12dp"
-                app:boxBackgroundMode="filled"
-                app:boxBackgroundColor="@android:color/transparent"
-                app:boxStrokeColor="@android:color/white"
-                app:hintTextColor="@color/white"
-                app:boxCornerRadiusTopStart="8dp"
-                app:boxCornerRadiusTopEnd="8dp"
-                app:boxCornerRadiusBottomStart="8dp"
-                app:boxCornerRadiusBottomEnd="8dp">
-
+            style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.ExposedDropdownMenu"
+            android:id="@+id/paymentMethodLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginTop="12dp"
+            android:textColorHint="@color/white"
+            app:boxBackgroundMode="filled"
+            app:boxStrokeColor="@android:color/transparent"
+            app:boxStrokeWidth="0dp"
+            app:boxStrokeWidthFocused="0dp"
+            app:hintTextColor="@color/white"
+            app:boxCornerRadiusTopStart="8dp"
+            app:boxCornerRadiusTopEnd="8dp"
+            app:boxCornerRadiusBottomStart="8dp"
+            app:boxCornerRadiusBottomEnd="8dp"
+            app:endIconMode="dropdown_menu"
+            app:endIconTint="@android:color/white">
 
                 <AutoCompleteTextView
                     android:id="@+id/paymentMethodDropdown"
                     android:layout_width="match_parent"
-                    android:layout_height="50dp"
+                    android:layout_height="70dp"
+                    android:popupBackground="@drawable/form_input"
                     android:background="@drawable/form_input"
+                    android:contentDescription="@string/description_cant_cuotas"
+                    android:fontFamily="sans-serif-light"
+                    android:hint="@string/metodo_de_pago"
+                    android:inputType="none"
                     android:padding="10dp"
                     android:textColor="@color/white"
-                    android:textColorHint="#80FFFFFF"
-                    android:fontFamily="sans-serif-light"
-                    android:inputType="none"
-                    android:hint="@string/metodo_de_pago"
-                    android:contentDescription="@string/description_payment_method"/>
-
+                    android:textColorHint="@color/white" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -86,21 +111,25 @@
                 android:layout_marginEnd="16dp"
                 android:layout_marginTop="12dp"
                 app:boxBackgroundMode="filled"
-                app:boxBackgroundColor="@android:color/transparent"
-                app:boxStrokeColor="@android:color/white"
+                app:boxStrokeColor="@android:color/transparent"
+                app:boxStrokeWidth="0dp"
+                app:boxStrokeWidthFocused="0dp"
                 app:hintTextColor="@color/white"
+                android:textColorHint="@color/white"
                 app:boxCornerRadiusTopStart="8dp"
                 app:boxCornerRadiusTopEnd="8dp"
                 app:boxCornerRadiusBottomStart="8dp"
-                app:boxCornerRadiusBottomEnd="8dp">
+                app:boxCornerRadiusBottomEnd="8dp"
+                app:endIconMode="dropdown_menu"
+                app:endIconTint="@android:color/white">
 
                 <AutoCompleteTextView
                     android:id="@+id/installmentsDropdown"
                     android:layout_width="match_parent"
-                    android:layout_height="50dp"
+                    android:layout_height="70dp"
+                    android:popupBackground="@drawable/form_input"
                     android:background="@drawable/form_input"
                     android:contentDescription="@string/description_cant_cuotas"
-                    android:editable="false"
                     android:fontFamily="sans-serif-light"
                     android:hint="@string/cantidad_de_cuotas"
                     android:inputType="none"
@@ -123,7 +152,7 @@
                 android:inputType="text|number"
                 android:padding="10dp"
                 android:hint="@string/valor_cuota"
-                android:textColorHint="#80FFFFFF"
+                android:textColorHint="@color/white"
                 android:textColor="@color/white" />
 
             <com.google.android.material.button.MaterialButton
@@ -138,8 +167,6 @@
                 android:text="@string/pagar"
                 android:textSize="18sp"
                 app:backgroundTint="@null" />
-
-
         </LinearLayout>
     </ScrollView>
 </LinearLayout>
