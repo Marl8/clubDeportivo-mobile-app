@@ -29,9 +29,7 @@
             android:contentDescription="user_icon"
             android:padding="0dp"
             android:scaleType="centerCrop"
-            android:src="@drawable/ic_user_icon"
-            android:visibility="visible"
-            tools:visibility="visible" />
+            android:src="@drawable/ic_user_icon" />
 
         <!-- Texto de Bienvenida -->
         <TextView
