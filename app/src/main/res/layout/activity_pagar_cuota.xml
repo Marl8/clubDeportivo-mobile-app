@@ -93,7 +93,7 @@
                     android:layout_height="70dp"
                     android:popupBackground="@drawable/form_input"
                     android:background="@drawable/form_input"
-                    android:contentDescription="@string/description_cant_cuotas"
+                    android:contentDescription="@string/description_payment_method"
                     android:fontFamily="sans-serif-light"
                     android:hint="@string/metodo_de_pago"
                     android:inputType="none"

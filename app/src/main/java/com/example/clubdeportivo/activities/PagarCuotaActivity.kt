@@ -31,6 +31,5 @@ class PagarCuotaActivity : AppCompatActivity() {
 
         val installmentsAdapter = ArrayAdapter(this, R.layout.component_list_item, installments)
         installmentsDropdown.setAdapter(installmentsAdapter)
-
     }
 }
