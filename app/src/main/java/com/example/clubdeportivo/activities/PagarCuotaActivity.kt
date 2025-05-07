@@ -3,9 +3,12 @@ package com.example.clubdeportivo.activities
 import android.os.Bundle
 import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
+import android.widget.ImageButton
+import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import com.example.clubdeportivo.R
+import com.example.clubdeportivo.utils.setupLogoutButton
 
 class PagarCuotaActivity : AppCompatActivity() {
 
@@ -17,13 +20,14 @@ class PagarCuotaActivity : AppCompatActivity() {
         enableEdgeToEdge()
         setContentView(R.layout.activity_pagar_cuota)
 
-        // Asocio las vistas con findViewById
-        paymentMethodDropdown = findViewById(R.id.paymentMethodDropdown)
-        installmentsDropdown = findViewById(R.id.installmentsDropdown)
+        setupUI()
+        setupDropdwons()
+    }
 
+    private fun setupDropdwons(){
         // Listas dinámicas
-        val paymentMethods = listOf("Efectivo", "Crédito")
-        val installments = listOf("1 cuota", "3 cuotas", "6 cuotas")
+        val paymentMethods = resources.getStringArray(R.array.payment_methods)
+        val installments = resources.getStringArray(R.array.installments)
 
         // Seteo los adapters dinámicamente
         val paymentAdapter = ArrayAdapter(this, R.layout.component_list_item, paymentMethods)
@@ -31,5 +35,20 @@ class PagarCuotaActivity : AppCompatActivity() {
 
         val installmentsAdapter = ArrayAdapter(this, R.layout.component_list_item, installments)
         installmentsDropdown.setAdapter(installmentsAdapter)
+    }
+
+    private fun setupUI(){
+
+        // Asocio las vistas con findViewById
+        paymentMethodDropdown = findViewById(R.id.paymentMethodDropdown)
+        installmentsDropdown = findViewById(R.id.installmentsDropdown)
+
+        //Asigno el Título de la pantalla. Solo es visible al correr la app
+        val title = findViewById<TextView>(R.id.title_socio)
+        title.text = "Pago de Cuota"
+
+        // Funcionalidad del botón Exit
+        val btnExit: ImageButton = findViewById(R.id.btnExit)
+        setupLogoutButton(this, btnExit)
     }
 }
