@@ -61,6 +61,7 @@
         android:layout_height="50dp"
         android:layout_gravity="center"
         android:layout_marginTop="60dp"
+        android:padding="5dp"
         android:background="@drawable/button_login_radius"
         android:text="Ingresar"
         android:textSize="24dp" />
