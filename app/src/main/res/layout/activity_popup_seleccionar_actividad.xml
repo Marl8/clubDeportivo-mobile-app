@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activities.PopupSeleccionarActividad">
+
+    <LinearLayout
+        android:id="@+id/body"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/popup_actividad"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/title_select_activity"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:fontFamily="sans-serif-light"
+            android:padding="8dp"
+            android:text="@string/seleccionar_actividad"
+            android:textAlignment="center"
+            android:textColor="#5500FF"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+
+        <RadioGroup
+            android:id="@+id/radioGroupActivities"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="30dp"
+            android:layout_marginTop="16dp">
+
+            <RadioButton
+                android:id="@+id/radio_natacion"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="16dp"
+                android:text="Natación" />
+
+            <RadioButton
+                android:id="@+id/radio_pilates"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="16dp"
+                android:text="Pilates" />
+
+            <RadioButton
+                android:id="@+id/radio_zumba"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="16dp"
+                android:text="Zumba" />
+        </RadioGroup>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+        <Button
+            android:id="@+id/btnSelectActivity"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginHorizontal="30dp"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/button_form"
+            android:text="@string/confirmar_seleccion"
+            android:textColorHint="@color/white"
+            android:textColor="@color/white"
+            app:backgroundTint="@null"
+            android:layout_gravity="bottom"
+            android:layout_marginBottom="30dp"/>
+
+    </LinearLayout>
+</LinearLayout>
