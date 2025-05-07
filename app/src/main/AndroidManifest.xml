@@ -13,9 +13,11 @@
         android:theme="@style/Theme.ClubDeportivo"
         tools:targetApi="31">
         <activity
+            android:name=".activities.ListaMorososActivity"
+            android:exported="false" />
+        <activity
             android:name=".activities.PagarCuotaActivity"
             android:exported="false" />
-
         <activity
             android:name=".activities.CarnetActivity"
             android:exported="false" />
