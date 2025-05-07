@@ -12,28 +12,6 @@
     <include layout="@layout/component_header_layout" />
     <include layout="@layout/component_logo_layout" />
 
-    <LinearLayout
-        android:id="@+id/title"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center"
-        android:padding="5dp">
-
-        <TextView
-            android:id="@+id/title_socio"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            android:layout_weight="1"
-            android:fontFamily="sans-serif-light"
-            android:padding="8dp"
-            android:text="Pago de Cuota"
-            android:textAlignment="center"
-            android:textColor="#5500FF"
-            android:textSize="28sp"
-            android:textStyle="bold" />
-    </LinearLayout>
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
