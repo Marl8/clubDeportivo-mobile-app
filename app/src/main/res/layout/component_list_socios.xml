@@ -55,13 +55,13 @@
                 android:textSize="13sp" />
 
             <TextView
-                android:id="@+id/txtFech_nacimiento"
+                android:id="@+id/txtFech_vencimiento"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="#FFFFFF"
                 android:ems="10"
                 android:inputType="text"
-                android:text="Fecha de nacimiento"
+                android:text="Fecha de vencimiento"
                 android:textSize="13sp" />
         </LinearLayout>
 
