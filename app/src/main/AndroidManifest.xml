@@ -20,6 +20,12 @@
             android:name=".activities.PagarActividadDiariaActivity"
             android:exported="false" />
         <activity
+            android:name=".activities.ListaVencimientosActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.ListaMorososActivity"
+            android:exported="false" />
+        <activity
             android:name=".activities.PagarCuotaActivity"
             android:exported="false" />
         <activity

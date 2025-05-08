@@ -112,22 +112,22 @@
             android:background="@drawable/container_gradient"
             android:gravity="center_horizontal"
             android:orientation="vertical"
-            android:padding="16dp">
+            android:padding="2dp">
 
             <EditText
-                android:id="@+id/name"
+                android:id="@+id/dniCliente"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_marginStart="16dp"
                 android:layout_marginEnd="16dp"
-                android:autofillHints="name"
+                android:autofillHints="dni"
                 android:ems="10"
                 android:inputType="text"
                 android:textColor="@color/white"
                 android:fontFamily="sans-serif-light"
                 android:padding="10dp"
                 android:background="@drawable/form_input"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="15dp"
                 android:hint="Dni Cliente"
                 android:drawableEnd="@drawable/ic_search"
                 android:drawableTint="#DADADA"
@@ -139,7 +139,7 @@
                 android:layout_width="350dp"
                 android:layout_height="50dp"
                 android:layout_marginTop="24dp"
-                android:layout_marginBottom="16dp"
+                android:layout_marginBottom="20dp"
                 android:background="@drawable/button_form"
                 android:includeFontPadding="false"
                 android:text="Buscar"
@@ -148,8 +148,8 @@
 
             <LinearLayout
                 android:id="@+id/body_carnet"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_width="396dp"
+                android:layout_height="340dp"
                 android:background="@drawable/carnet_container"
                 android:gravity="center_horizontal"
                 android:orientation="vertical"
@@ -159,23 +159,23 @@
                     android:id="@+id/carnet"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:cardElevation="4dp"
-                    android:layout_margin="8dp">
+                    android:layout_margin="8dp"
+                    app:cardElevation="4dp">
 
                     <RelativeLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
+                        android:layout_height="193dp"
+
                         android:background="@drawable/carnet"
                         android:padding="10dp">
 
                         <!-- Imagen fija arriba a la derecha -->
                         <ImageView
                             android:id="@+id/logo_carnet"
-                            android:layout_width="70dp"
-                            android:layout_height="50dp"
-                            android:layout_alignParentEnd="true"
+                            android:layout_width="100dp"
+                            android:layout_height="59dp"
                             android:layout_alignParentTop="true"
+                            android:layout_alignParentEnd="true"
                             android:adjustViewBounds="true"
                             android:scaleType="fitEnd"
                             app:srcCompat="@drawable/ic_logo_blanco" />
@@ -186,9 +186,10 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_below="@id/logo_carnet"
-                            android:layout_toStartOf="@id/logo_carnet"
                             android:layout_marginStart="10dp"
+                            android:layout_marginTop="15dp"
                             android:layout_marginBottom="10dp"
+                            android:layout_toStartOf="@id/logo_carnet"
                             android:orientation="vertical">
 
                             <!-- Fila 1: Número de socio -->
@@ -294,6 +295,7 @@
                     </RelativeLayout>
 
                 </androidx.cardview.widget.CardView>
+
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btnCarnet"
                     android:layout_width="207dp"
