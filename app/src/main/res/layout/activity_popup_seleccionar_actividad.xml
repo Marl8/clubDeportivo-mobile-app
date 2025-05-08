@@ -34,26 +34,7 @@
             android:layout_marginHorizontal="30dp"
             android:layout_marginTop="16dp">
 
-            <RadioButton
-                android:id="@+id/radio_natacion"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="16dp"
-                android:text="Natación" />
 
-            <RadioButton
-                android:id="@+id/radio_pilates"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="16dp"
-                android:text="Pilates" />
-
-            <RadioButton
-                android:id="@+id/radio_zumba"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="16dp"
-                android:text="Zumba" />
         </RadioGroup>
 
         <View

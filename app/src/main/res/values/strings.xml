@@ -24,4 +24,12 @@
         <item>3 Cuotas</item>
         <item>6 Cuotas</item>
     </string-array>
+
+    <!--   Lista de Actividades -->
+    <string-array name="activities">
+        <item>Yoga</item>
+        <item>Pilates</item>
+        <item>Tonificación</item>
+        <item>Defensa Personal</item>
+    </string-array>
 </resources>
