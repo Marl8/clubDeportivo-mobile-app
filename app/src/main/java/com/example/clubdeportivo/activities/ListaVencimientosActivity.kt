@@ -1,6 +1,5 @@
 package com.example.clubdeportivo.activities
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.ViewGroup
 import android.widget.ImageButton
@@ -19,10 +18,6 @@ class ListaVencimientosActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_lista_vencimientos)
-
-        // Boton para volver al menu principal
-        val btnBack : ImageButton = findViewById(R.id.back)
-        backRedirect(btnBack)
 
         // Funcionalidad del botón Exit
         val btnExit: ImageButton = findViewById(R.id.btnExit)
@@ -75,18 +70,6 @@ class ListaVencimientosActivity : AppCompatActivity() {
                 }
             }
             override fun getItemCount(): Int = socios.size
-        }
-    }
-
-    private fun backRedirect(btnBack:ImageButton){
-        btnBack.setOnClickListener {
-            val intent = Intent(this, MenuActivity::class.java)
-
-            // Limpiar la pila de actividades
-            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK
-
-            startActivity(intent)
-            finish() // cierra la actividad actual
         }
     }
 }

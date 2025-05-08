@@ -39,7 +39,6 @@
                 android:layout_height="wrap_content"
                 android:background="#FFFFFF"
                 android:ems="10"
-                android:inputType="text"
                 android:text="Nombre"
                 android:textSize="13sp"
                 android:textStyle="bold" />
@@ -50,7 +49,6 @@
                 android:layout_height="wrap_content"
                 android:background="#FFFFFF"
                 android:ems="10"
-                android:inputType="text"
                 android:text="Dni"
                 android:textSize="13sp" />
 
@@ -60,7 +58,6 @@
                 android:layout_height="wrap_content"
                 android:background="#FFFFFF"
                 android:ems="10"
-                android:inputType="text"
                 android:text="Fecha de vencimiento"
                 android:textSize="13sp" />
         </LinearLayout>
