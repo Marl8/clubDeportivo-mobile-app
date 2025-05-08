@@ -7,6 +7,7 @@ android {
     namespace = "com.example.clubdeportivo"
     compileSdk = 35
 
+    buildFeatures{viewBinding = true}
     defaultConfig {
         applicationId = "com.example.clubdeportivo"
         minSdk = 24
@@ -26,6 +27,12 @@ android {
             )
         }
     }
+
+    // Configuración de View Binding (¡Aquí va!)
+    buildFeatures {
+        viewBinding = true
+    }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11

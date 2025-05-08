@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <LinearLayout
+        android:id="@+id/logo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="8dp">
+
+        <LinearLayout
+            android:id="@+id/logo_container"
+            android:layout_width="match_parent"
+            android:layout_height="65dp"
+            android:orientation="horizontal"
+            android:padding="5dp">
+
+            <ImageButton
+                android:id="@+id/back"
+                android:layout_width="wrap_content"
+                android:layout_height="61dp"
+                android:layout_marginEnd="20dp"
+                android:background="@color/white"
+                android:contentDescription="clear_icon"
+                android:padding="0dp"
+                android:scaleType="centerInside"
+                android:src="@drawable/ic_back"
+                app:tint="#5500FF" />
+
+            <!-- Logo Principal -->
+            <ImageView
+                android:id="@+id/mainLogo"
+                android:layout_width="107dp"
+                android:layout_height="60dp"
+                android:layout_gravity="end"
+                android:layout_marginStart="215dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="5dp"
+                android:contentDescription="Main Logo"
+                app:srcCompat="@drawable/ic_logo_principal" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:padding="5dp">
+
+            <TextView
+                android:id="@+id/title_socio"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="sans-serif-light"
+                android:padding="8dp"
+                android:text=""
+                android:textAlignment="center"
+                android:textColor="#5500FF"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+    </LinearLayout>
+</merge>

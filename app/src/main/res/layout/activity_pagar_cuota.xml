@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/menu"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".activities.PagarCuotaActivity">
+
+    <include layout="@layout/component_header_layout" />
+    <include layout="@layout/component_logo_layout" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:id="@+id/body"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/container_gradient"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <EditText
+                android:id="@+id/dniInput"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginTop="12dp"
+                android:autofillHints=""
+                android:background="@drawable/form_input"
+                android:ems="10"
+                android:fontFamily="sans-serif-light"
+                android:inputType="text|number"
+                android:padding="10dp"
+                android:hint="@string/dni"
+                android:textColorHint="@color/white"
+                android:textColor="@color/white" />
+
+            <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.ExposedDropdownMenu"
+            android:id="@+id/paymentMethodLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginTop="12dp"
+            android:textColorHint="@color/white"
+            app:boxBackgroundMode="filled"
+            app:boxStrokeColor="@android:color/transparent"
+            app:boxStrokeWidth="0dp"
+            app:boxStrokeWidthFocused="0dp"
+            app:hintTextColor="@color/white"
+            app:boxCornerRadiusTopStart="8dp"
+            app:boxCornerRadiusTopEnd="8dp"
+            app:boxCornerRadiusBottomStart="8dp"
+            app:boxCornerRadiusBottomEnd="8dp"
+            app:endIconMode="dropdown_menu"
+            app:endIconTint="@android:color/white">
+
+                <AutoCompleteTextView
+                    android:id="@+id/paymentMethodDropdown"
+                    android:layout_width="match_parent"
+                    android:layout_height="70dp"
+                    android:popupBackground="@drawable/form_input"
+                    android:background="@drawable/form_input"
+                    android:contentDescription="@string/description_payment_method"
+                    android:fontFamily="sans-serif-light"
+                    android:hint="@string/metodo_de_pago"
+                    android:inputType="none"
+                    android:padding="10dp"
+                    android:textColor="@color/white"
+                    android:textColorHint="@color/white" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.ExposedDropdownMenu"
+                android:id="@+id/installmentsLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginTop="12dp"
+                app:boxBackgroundMode="filled"
+                app:boxStrokeColor="@android:color/transparent"
+                app:boxStrokeWidth="0dp"
+                app:boxStrokeWidthFocused="0dp"
+                app:hintTextColor="@color/white"
+                android:textColorHint="@color/white"
+                app:boxCornerRadiusTopStart="8dp"
+                app:boxCornerRadiusTopEnd="8dp"
+                app:boxCornerRadiusBottomStart="8dp"
+                app:boxCornerRadiusBottomEnd="8dp"
+                app:endIconMode="dropdown_menu"
+                app:endIconTint="@android:color/white">
+
+                <AutoCompleteTextView
+                    android:id="@+id/installmentsDropdown"
+                    android:layout_width="match_parent"
+                    android:layout_height="70dp"
+                    android:popupBackground="@drawable/form_input"
+                    android:background="@drawable/form_input"
+                    android:contentDescription="@string/description_cant_cuotas"
+                    android:fontFamily="sans-serif-light"
+                    android:hint="@string/cantidad_de_cuotas"
+                    android:inputType="none"
+                    android:padding="10dp"
+                    android:textColor="@color/white"
+                    android:textColorHint="#80FFFFFF" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <EditText
+                android:id="@+id/amount"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginTop="12dp"
+                android:autofillHints=""
+                android:background="@drawable/form_input"
+                android:ems="10"
+                android:fontFamily="sans-serif-light"
+                android:inputType="text|number"
+                android:padding="10dp"
+                android:hint="@string/valor_cuota"
+                android:textColorHint="@color/white"
+                android:textColor="@color/white" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/send"
+                style="@style/Widget.AppCompat.Button"
+                android:layout_width="180dp"
+                android:layout_height="60dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginBottom="16dp"
+                android:background="@drawable/button_form"
+                android:includeFontPadding="false"
+                android:text="@string/pagar"
+                android:textSize="18sp"
+                app:backgroundTint="@null" />
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>
