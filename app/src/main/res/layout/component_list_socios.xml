@@ -73,6 +73,7 @@
             android:background="@color/white"
             android:layout_gravity="center"
             app:srcCompat="@drawable/ic_arrow_button"
+            app:tint="#5500FF"
             android:contentDescription="User imagine"/>
     </LinearLayout>
 </androidx.cardview.widget.CardView>
