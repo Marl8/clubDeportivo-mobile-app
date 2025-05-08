@@ -58,23 +58,6 @@
                 android:textColor="@color/white"
                 app:backgroundTint="@null"/>
 
-            <EditText
-                android:id="@+id/amount"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginEnd="16dp"
-                android:layout_marginTop="30dp"
-                android:autofillHints=""
-                android:background="@drawable/form_input"
-                android:ems="10"
-                android:fontFamily="sans-serif-light"
-                android:inputType="text|number"
-                android:padding="10dp"
-                android:hint="@string/monto_a_pagar"
-                android:textColorHint="@color/white"
-                android:textColor="@color/white" />
-
             <View
                 android:layout_width="match_parent"
                 android:layout_height="2dp"

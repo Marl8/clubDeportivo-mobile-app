@@ -12,6 +12,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ClubDeportivo"
         tools:targetApi="31">
+        <activity android:name=".activities.InscribirActividadActivity"
+            android:exported="false"/>
         <activity
             android:name=".activities.PopupSeleccionarActividad"
             android:exported="false"

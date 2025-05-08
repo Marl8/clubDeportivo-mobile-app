@@ -6,6 +6,7 @@ import android.widget.ImageButton
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import com.example.clubdeportivo.R
+import com.example.clubdeportivo.utils.backRedirect
 import com.example.clubdeportivo.utils.setupLogoutButton
 
 class InscribirNoSocioActivity : AppCompatActivity() {
@@ -16,22 +17,10 @@ class InscribirNoSocioActivity : AppCompatActivity() {
 
         // Boton para volver al menu principal
         val btnBack : ImageButton = findViewById(R.id.back)
-        backRedirect(btnBack)
+        backRedirect(this, btnBack)
 
         //Botón para cerrar sesión
         val btnExit: ImageButton = findViewById(R.id.btnExit)
         setupLogoutButton(this, btnExit)
-    }
-
-    private fun backRedirect(btnBack:ImageButton){
-        btnBack.setOnClickListener {
-            val intent = Intent(this, MenuActivity::class.java)
-
-            // Limpiar la pila de actividades
-            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK
-
-            startActivity(intent)
-            finish() // cierra la actividad actual
-        }
     }
 }
