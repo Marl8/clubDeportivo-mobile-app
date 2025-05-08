@@ -28,6 +28,7 @@
             android:clipToPadding="false"
             android:layout_margin="0dp"
             android:paddingBottom="70dp"
+            android:paddingTop="10dp"
             tools:listitem="@layout/component_list_socios" />
     </LinearLayout>
 </LinearLayout>

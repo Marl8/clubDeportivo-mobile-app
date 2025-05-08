@@ -75,7 +75,7 @@ class ListaMorososActivity : AppCompatActivity() {
                 val (nombre, dni, fechaVenc) = socios[position]
 
                 holder.itemView.apply {
-                    findViewById<TextView>(R.id.editTextText).text = nombre
+                    findViewById<TextView>(R.id.txtNombre).text = nombre
                     findViewById<TextView>(R.id.txtDni).text = "DNI: $dni"
                     findViewById<TextView>(R.id.txtFech_vencimiento).text = "Vencimiento: $fechaVenc"
                 }
