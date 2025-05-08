@@ -25,6 +25,10 @@ class PagarActividadDiariaActivity: AppCompatActivity() {
         val title = findViewById<TextView>(R.id.title_socio)
         title.text = "Pago Actividad Diaria"
 
+        // Boton para volver al menu principal
+        val btnBack : ImageButton = findViewById(R.id.back)
+        backRedirect(btnBack)
+
         // Funcionalidad del botón Exit
         val btnExit: ImageButton = findViewById(R.id.btnExit)
         setupLogoutButton(this, btnExit)
@@ -35,6 +39,18 @@ class PagarActividadDiariaActivity: AppCompatActivity() {
         button.setOnClickListener{
             val intent = Intent(this, PopupSeleccionarActividad::class.java)
             startActivity(intent)
+        }
+    }
+
+    private fun backRedirect(btnBack:ImageButton){
+        btnBack.setOnClickListener {
+            val intent = Intent(this, MenuActivity::class.java)
+
+            // Limpiar la pila de actividades
+            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK
+
+            startActivity(intent)
+            finish() // cierra la actividad actual
         }
     }
 }
