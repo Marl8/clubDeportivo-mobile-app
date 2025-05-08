@@ -10,11 +10,11 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.clubdeportivo.R
 import com.example.clubdeportivo.utils.*
 
-class PagarActividadDiariaActivity: AppCompatActivity() {
+class InscribirActividadActivity: AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        setContentView(R.layout.activity_pagar_actividad_diaria)
+        setContentView(R.layout.activity_inscribir_actividad)
 
         setupUI()
         btnSelectActivityOnClick()
@@ -23,7 +23,7 @@ class PagarActividadDiariaActivity: AppCompatActivity() {
     private fun setupUI(){
         //Asigno el Título de la pantalla. Solo es visible al correr la app
         val title = findViewById<TextView>(R.id.title_socio)
-        title.text = "Pago Actividad Diaria"
+        title.text = "Inscribir Actividad"
 
         // Boton para volver al menu principal
         val btnBack : ImageButton = findViewById(R.id.back)

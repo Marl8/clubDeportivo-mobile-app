@@ -9,6 +9,7 @@ import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import com.example.clubdeportivo.R
+import com.example.clubdeportivo.utils.backRedirect
 import com.example.clubdeportivo.utils.setupLogoutButton
 
 class PagarCuotaActivity : AppCompatActivity() {
@@ -46,7 +47,7 @@ class PagarCuotaActivity : AppCompatActivity() {
 
         // Boton para volver al menu principal
         val btnBack : ImageButton = findViewById(R.id.back)
-        backRedirect(btnBack)
+        backRedirect(this,btnBack)
 
         //Asigno el Título de la pantalla. Solo es visible al correr la app
         val title = findViewById<TextView>(R.id.title_socio)
@@ -57,15 +58,5 @@ class PagarCuotaActivity : AppCompatActivity() {
         setupLogoutButton(this, btnExit)
     }
 
-    private fun backRedirect(btnBack:ImageButton){
-        btnBack.setOnClickListener {
-            val intent = Intent(this, MenuActivity::class.java)
 
-            // Limpiar la pila de actividades
-            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK
-
-            startActivity(intent)
-            finish() // cierra la actividad actual
-        }
-    }
 }

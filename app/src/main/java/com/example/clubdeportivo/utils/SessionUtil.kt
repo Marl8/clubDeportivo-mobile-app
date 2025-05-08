@@ -6,9 +6,11 @@ import android.app.AlertDialog;
 import android.content.Intent
 import android.widget.ImageButton;
 import com.example.clubdeportivo.activities.LoginActivity
+import com.example.clubdeportivo.activities.MenuActivity
 
 fun setupLogoutButton(activity: Activity, button: ImageButton){
     button.setOnClickListener {
+        //showAlert
         AlertDialog.Builder(activity)
             .setTitle("Cerrar sesión")
             .setMessage("¿Estás seguro de que deseas salir?")
@@ -24,5 +26,16 @@ fun setupLogoutButton(activity: Activity, button: ImageButton){
             }
             .setNegativeButton("Cancelar", null)
             .show()
+    }
+}
+fun backRedirect(activity: Activity, btnBack:ImageButton){
+    btnBack.setOnClickListener {
+        val intent = Intent(activity, MenuActivity::class.java)
+
+        // Limpiar la pila de actividades
+        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK
+
+        activity.startActivity(intent)
+        activity.finish() // cierra la actividad actual
     }
 }
