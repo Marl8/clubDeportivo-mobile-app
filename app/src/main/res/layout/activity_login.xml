@@ -36,24 +36,42 @@
         android:ems="10"
         android:inputType="text"
         android:paddingStart="15dp"
-        android:text="Username"
+        android:hint="Username"
+        android:textColorHint="@color/white"
         android:textColor="@color/white" />
 
-    <EditText
-        android:id="@+id/txtPassword"
+    <RelativeLayout
         android:layout_width="346dp"
-        android:layout_height="42dp"
+        android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="50dp"
-        android:background="@drawable/radius_input"
-        android:ems="10"
-        android:inputType="textPassword"
-        android:paddingStart="15dp"
-        android:text="Password"
-        android:drawableEnd="@drawable/ic_txt_password_icon"
-        android:drawableTint="#FFFF"
-        android:paddingEnd="12dp"
-        android:textColor="@color/white" />
+        android:layout_marginTop="50dp">
+
+        <EditText
+            android:id="@+id/txtPassword"
+            android:layout_width="match_parent"
+            android:layout_height="42dp"
+            android:layout_alignParentStart="true"
+            android:background="@drawable/radius_input"
+            android:ems="10"
+            android:hint="Password"
+            android:inputType="textPassword"
+            android:paddingStart="15dp"
+            android:paddingEnd="45dp"
+            android:textColor="@color/white"
+            android:textColorHint="@color/white" />
+
+        <ImageButton
+            android:id="@+id/btnTogglePassword"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="12dp"
+            android:background="@android:color/transparent"
+            android:src="@drawable/ic_close_eye"
+            app:tint="#FFFF"
+            android:contentDescription="Mostrar contraseña" />
+    </RelativeLayout>
 
     <Button
         android:id="@+id/btnLogin"
@@ -65,6 +83,4 @@
         android:background="@drawable/button_login_radius"
         android:text="Ingresar"
         android:textSize="24dp" />
-
-
 </LinearLayout>
