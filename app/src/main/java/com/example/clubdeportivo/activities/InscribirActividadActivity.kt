@@ -25,6 +25,12 @@ class InscribirActividadActivity: AppCompatActivity() {
         val title = findViewById<TextView>(R.id.title_socio)
         title.text = "Inscribir Actividad"
 
+        // Personalizamos el header con el nombre del usuario
+        val username = UserSessionUtil.getUserSession(this)
+        val role = UserSessionUtil.getUserRole(this)
+        val txtWelcome: TextView = findViewById(R.id.txtWelcome)
+        txtWelcome.text = "Bienvenido! $username"
+
         // Boton para volver al menu principal
         val btnBack : ImageButton = findViewById(R.id.back)
         backRedirect(this, btnBack)

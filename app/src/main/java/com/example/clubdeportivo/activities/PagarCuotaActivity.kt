@@ -9,6 +9,7 @@ import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import com.example.clubdeportivo.R
+import com.example.clubdeportivo.utils.UserSessionUtil
 import com.example.clubdeportivo.utils.backRedirect
 import com.example.clubdeportivo.utils.setupLogoutButton
 
@@ -45,6 +46,12 @@ class PagarCuotaActivity : AppCompatActivity() {
         paymentMethodDropdown = findViewById(R.id.paymentMethodDropdown)
         installmentsDropdown = findViewById(R.id.installmentsDropdown)
 
+        // Personalizamos el header con el nombre del usuario
+        val username = UserSessionUtil.getUserSession(this)
+        val role = UserSessionUtil.getUserRole(this)
+        val txtWelcome: TextView = findViewById(R.id.txtWelcome)
+        txtWelcome.text = "Bienvenido! $username"
+
         // Boton para volver al menu principal
         val btnBack : ImageButton = findViewById(R.id.back)
         backRedirect(this,btnBack)
@@ -57,6 +64,4 @@ class PagarCuotaActivity : AppCompatActivity() {
         val btnExit: ImageButton = findViewById(R.id.btnExit)
         setupLogoutButton(this, btnExit)
     }
-
-
 }

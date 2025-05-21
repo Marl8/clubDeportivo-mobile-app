@@ -7,6 +7,7 @@ import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import com.example.clubdeportivo.R
+import com.example.clubdeportivo.utils.UserSessionUtil
 import com.example.clubdeportivo.utils.backRedirect
 import com.example.clubdeportivo.utils.setupLogoutButton
 
@@ -15,6 +16,12 @@ class CarnetActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_carnet)
+
+        // Personalizamos el header con el nombre del usuario
+        val username = UserSessionUtil.getUserSession(this)
+        val role = UserSessionUtil.getUserRole(this)
+        val txtWelcome: TextView = findViewById(R.id.txtWelcome)
+        txtWelcome.text = "Bienvenido! $username"
 
         //Botón para cerrar sesión
         val btnExit: ImageButton = findViewById(R.id.btnExit)

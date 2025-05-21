@@ -3,6 +3,7 @@ package com.example.clubdeportivo.activities
 import android.content.Intent
 import android.os.Bundle
 import android.widget.ImageButton
+import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import com.example.clubdeportivo.R
@@ -14,10 +15,6 @@ class MenuActivity : AppCompatActivity() {
         enableEdgeToEdge()
         setContentView(R.layout.activity_menu)
 
-        //Botón para cerrar sesión -
-        val btnExit: ImageButton = findViewById(R.id.btnExit)
-        setupLogoutButton(this, btnExit)
-
         val btnSocio: ImageButton = findViewById(R.id.btnSocio)
         val btnNoSocio: ImageButton = findViewById(R.id.btnNoSocio)
         val btnCarnet: ImageButton = findViewById(R.id.btnCarnet)
@@ -26,6 +23,17 @@ class MenuActivity : AppCompatActivity() {
         val btnListaMorosos: ImageButton = findViewById(R.id.btnListaMorosos)
         val btnListaVencimientos: ImageButton = findViewById(R.id.btnListaVencimientos)
         val btnActividad: ImageButton = findViewById(R.id.btnActividad)
+
+        val txtWelcome: TextView = findViewById(R.id.txtWelcome)
+
+        // Personalizamos el header con el nombre del usuario
+        val username = UserSessionUtil.getUserSession(this)
+        val role = UserSessionUtil.getUserRole(this)
+        txtWelcome.text = "Bienvenido! $username"
+
+        //Botón para cerrar sesión
+        val btnExit: ImageButton = findViewById(R.id.btnExit)
+        setupLogoutButton(this, btnExit)
 
         btnActividad.setOnClickListener{
             val intent = Intent(this, InscribirActividadActivity::class.java)

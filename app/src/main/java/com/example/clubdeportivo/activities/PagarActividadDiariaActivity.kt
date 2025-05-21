@@ -21,6 +21,12 @@ class PagarActividadDiariaActivity: AppCompatActivity() {
     }
 
     private fun setupUI(){
+        // Personalizamos el header con el nombre del usuario
+        val username = UserSessionUtil.getUserSession(this)
+        val role = UserSessionUtil.getUserRole(this)
+        val txtWelcome: TextView = findViewById(R.id.txtWelcome)
+        txtWelcome.text = "Bienvenido! $username"
+
         //Asigno el Título de la pantalla. Solo es visible al correr la app
         val title = findViewById<TextView>(R.id.title_socio)
         title.text = "Pago Actividad Diaria"

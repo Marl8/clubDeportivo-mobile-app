@@ -16,7 +16,7 @@ fun setupLogoutButton(activity: Activity, button: ImageButton){
             .setMessage("¿Estás seguro de que deseas salir?")
             .setPositiveButton("Sí") { _, _ ->
             // Borrar sesión
-            val prefs = activity.getSharedPreferences("MyPrefs", Activity.MODE_PRIVATE)
+            val prefs = activity.getSharedPreferences("user_prefs", Activity.MODE_PRIVATE)
             prefs.edit().clear().apply()
 
             // Redirigir al login

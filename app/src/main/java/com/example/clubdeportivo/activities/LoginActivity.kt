@@ -1,5 +1,6 @@
 package com.example.clubdeportivo.activities
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
@@ -20,6 +21,13 @@ class LoginActivity : AppCompatActivity() {
         enableEdgeToEdge()
         setContentView(R.layout.activity_login)
 
+        // Validamos si hay sesión activa y redirigimos directamente al MainActivity
+        val sharedPref = getSharedPreferences("user_prefs", Context.MODE_PRIVATE)
+        if (sharedPref.getBoolean("isLogged", false)) {
+            startActivity(Intent(this, MenuActivity::class.java))
+            finish()
+        }
+
         val btnLogin: Button = findViewById(R.id.btnLogin)
         val txtUsername: EditText = findViewById(R.id.txtUsername)
         val txtPassword: EditText = findViewById(R.id.txtPassword)
@@ -38,6 +46,15 @@ class LoginActivity : AppCompatActivity() {
                 val loginSuccess = usuarioRepository.login(username, password)
 
                 if (loginSuccess) {
+                    val sharedPreferences = getSharedPreferences("user_prefs", Context.MODE_PRIVATE)
+                    with(sharedPreferences.edit()) {
+                        // Guardamos el nombre de usuario
+                        putString("username", username)
+                        // Bandera para saber si hay sesión activa
+                        putBoolean("isLogged", true)
+                        apply()
+                    }
+
                     Toast.makeText(this, "Login exitoso", Toast.LENGTH_SHORT).show()
                     val intent = Intent(this, MenuActivity::class.java)
                     startActivity(intent)
