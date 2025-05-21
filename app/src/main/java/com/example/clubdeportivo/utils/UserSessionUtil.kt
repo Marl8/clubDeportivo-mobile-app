@@ -13,5 +13,4 @@ object UserSessionUtil {
         return context.getSharedPreferences("user_prefs", Context.MODE_PRIVATE)
             .getString("role", "Empleado") ?: "Empleado"
     }
-
 }

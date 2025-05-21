@@ -7,23 +7,19 @@ import com.example.clubdeportivo.R
 object PasswordUtils {
 
     // Configura el toggle para cualquier EditText e ImageButton
-    fun setupPasswordToggle(editText: EditText, toggleButton: ImageButton) {
+    fun setupPasswordHandle(editText: EditText, eyeButton: ImageButton) {
         var isPasswordVisible = false
 
         // Listener para el botón
-        toggleButton.setOnClickListener {
+        eyeButton.setOnClickListener {
             isPasswordVisible = !isPasswordVisible
-            togglePasswordVisibility(editText, toggleButton, isPasswordVisible)
+            passwordVisibility(editText, eyeButton, isPasswordVisible)
         }
         // Estado inicial
-        updateToggleIcon(toggleButton, isPasswordVisible)
+        updateEyeIcon(eyeButton, isPasswordVisible)
     }
 
-    private fun togglePasswordVisibility(
-        editText: EditText,
-        button: ImageButton,
-        isVisible: Boolean
-    ) {
+    private fun passwordVisibility(editText: EditText, button: ImageButton, isVisible: Boolean) {
         if (isVisible) {
             editText.inputType = InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD
         } else {
@@ -33,10 +29,10 @@ object PasswordUtils {
         editText.typeface = Typeface.DEFAULT
 
         editText.setSelection(editText.text.length) // Mueve el cursor al final
-        updateToggleIcon(button, isVisible)
+        updateEyeIcon(button, isVisible)
     }
 
-    private fun updateToggleIcon(button: ImageButton, isVisible: Boolean) {
+    private fun updateEyeIcon(button: ImageButton, isVisible: Boolean) {
         val iconRes = if (isVisible) {
             R.drawable.ic_open_eye
         } else {
