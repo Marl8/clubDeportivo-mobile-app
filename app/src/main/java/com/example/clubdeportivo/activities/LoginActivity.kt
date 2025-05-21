@@ -39,7 +39,8 @@ class LoginActivity : AppCompatActivity() {
             if (username.isEmpty() || password.isEmpty()) {
                 Toast.makeText(this, "Por favor complete todos los campos", Toast.LENGTH_SHORT).show()
             } else {
-                if(loginController.loginIn(username, password)){
+                val isLogin = loginController.loginIn(username, password)
+                if(isLogin){
                     Toast.makeText(this, "Login exitoso", Toast.LENGTH_SHORT).show()
                     val intent = Intent(this, MenuActivity::class.java)
                     startActivity(intent)
