@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<paths>
+    <files-path name="internal_files" path="."/>
+    <!-- Para Android 10+ también puedes agregar: -->
+    <cache-path name="internal_cache" path="."/>
+</paths>

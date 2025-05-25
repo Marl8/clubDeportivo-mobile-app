@@ -1,10 +1,9 @@
 package com.example.clubdeportivo.entities
 
-data class Usuario(
-    val idUsuario: Int,
-    val username: String,
-    val password: String,
-    val rol: String,
+data class Socio(
+    val idSocio: Int? = null,
+    val stateSocio: Boolean,
+    val aptoFisico: Boolean,
     override val name: String,
     override val lastName: String,
     override val dni: String,
@@ -14,12 +13,11 @@ data class Usuario(
 
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
-        if (other !is Usuario) return false
+        if (other !is Socio) return false
 
-        return idUsuario == other.idUsuario &&
-                username == other.username &&
-                password == other.password &&
-                rol == other.rol &&
+        return idSocio == other.idSocio &&
+                stateSocio == other.stateSocio &&
+                aptoFisico == other.aptoFisico &&
                 name == other.name &&
                 lastName == other.lastName &&
                 dni == other.dni &&
@@ -28,7 +26,7 @@ data class Usuario(
     }
 
     override fun hashCode(): Int {
-        return listOf(idUsuario, username, password, rol, name, lastName,
-        dni, email, phone).hashCode()
+        return listOf(idSocio, stateSocio, aptoFisico, name, lastName,
+            dni, email, phone).hashCode()
     }
 }

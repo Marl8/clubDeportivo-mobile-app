@@ -2,6 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <!-- Permiso solo para versiones antiguas -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+        android:maxSdkVersion="28" />
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -12,12 +16,16 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ClubDeportivo"
         tools:targetApi="31">
-        <activity android:name=".activities.InscribirActividadActivity"
-            android:exported="false"/>
+        <activity
+            android:name=".activities.PopupAptoFisicoActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.InscribirActividadActivity"
+            android:exported="false" />
         <activity
             android:name=".activities.PopupSeleccionarActividad"
             android:exported="false"
-            android:theme="@style/PopupTheme"/>
+            android:theme="@style/PopupTheme" />
         <activity
             android:name=".activities.PagarActividadDiariaActivity"
             android:exported="false" />
@@ -54,6 +62,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="${applicationId}.provider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths"/>
+        </provider>
     </application>
-
 </manifest>

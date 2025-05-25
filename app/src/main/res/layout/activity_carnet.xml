@@ -96,11 +96,12 @@
                         <!-- Contenedor de textos, empieza debajo de la imagen -->
                         <LinearLayout
                             android:id="@+id/text_container"
-                            android:layout_width="match_parent"
+                            android:layout_width="310dp"
                             android:layout_height="wrap_content"
                             android:layout_below="@id/logo_carnet"
                             android:layout_marginStart="10dp"
                             android:layout_marginTop="15dp"
+                            android:layout_marginEnd="-91dp"
                             android:layout_marginBottom="10dp"
                             android:layout_toStartOf="@id/logo_carnet"
                             android:orientation="vertical">
@@ -169,7 +170,7 @@
                                     android:id="@+id/lblApellido"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:layout_marginLeft="60dp"
+                                    android:layout_marginLeft="40dp"
                                     android:text="Apellido:"
                                     android:textColor="@color/white" />
 

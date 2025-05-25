@@ -35,13 +35,8 @@ class MenuActivity : AppCompatActivity() {
         val btnExit: ImageButton = findViewById(R.id.btnExit)
         setupLogoutButton(this, btnExit)
 
-        btnActividad.setOnClickListener{
-            val intent = Intent(this, InscribirActividadActivity::class.java)
-            startActivity(intent)
-        }
-
         btnSocio.setOnClickListener{
-            val intent = Intent(this, InscribirSocioActivity::class.java)
+            val intent = Intent(this, PopupAptoFisicoActivity::class.java)
             startActivity(intent)
         }
 
@@ -52,6 +47,11 @@ class MenuActivity : AppCompatActivity() {
 
         btnCarnet.setOnClickListener {
             val intent = Intent(this, CarnetActivity::class.java)
+            startActivity(intent)
+        }
+
+        btnActividad.setOnClickListener{
+            val intent = Intent(this, InscribirActividadActivity::class.java)
             startActivity(intent)
         }
 

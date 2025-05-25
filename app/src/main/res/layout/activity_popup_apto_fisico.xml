@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activities.PopupAptoFisicoActivity">
+
+    <LinearLayout
+        android:id="@+id/body"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal"
+        android:background="@drawable/popup_actividad"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/warningImage"
+            android:layout_width="115dp"
+            android:layout_height="115dp"
+            android:layout_marginTop="50dp"
+            android:layout_marginBottom="10dp"
+            app:srcCompat="@drawable/ic_warning_icon" />
+
+        <TextView
+            android:id="@+id/textAlert"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:text="Se requiere la presentación del apto físico para\nla práctica deportiva para poder proseguir con el trámite.\n¿Desea Continuar?"
+            android:gravity="center"
+            android:textAlignment="center"
+            android:lineSpacingExtra="8dp"
+            android:textSize="16sp"
+            android:padding="25dp"
+            />
+        <LinearLayout
+            android:id="@+id/btnContainer"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/cancel"
+                style="@style/Widget.AppCompat.Button"
+                android:layout_width="130dp"
+                android:layout_height="60dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginBottom="16dp"
+                android:layout_marginRight="25dp"
+                android:background="@drawable/button_form"
+                android:includeFontPadding="false"
+                android:text="Cancelar"
+                android:textSize="14sp"
+                app:backgroundTint="@null" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/confirm"
+                style="@style/Widget.AppCompat.Button"
+                android:layout_width="130dp"
+                android:layout_height="60dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginBottom="16dp"
+                android:background="@drawable/button_form"
+                android:includeFontPadding="false"
+                android:text="Confirmar"
+                android:textSize="14sp"
+                app:backgroundTint="@null" />
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

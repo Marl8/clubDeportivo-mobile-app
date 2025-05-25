@@ -1,4 +1,9 @@
 package com.example.clubdeportivo.entities
 
-data class Persona(val name: String, val lastName: String, val dni: String,
-    val email: String, val phone: String)
+abstract class Persona(
+    open val name: String,
+    open val lastName: String,
+    open val dni: String,
+    open val email: String,
+    open val phone: String
+)
