@@ -76,23 +76,29 @@ class CarnetActivity : AppCompatActivity() {
     private fun generateCarnet() {
         val pdfDocument = PdfDocument()
         try {
+            // Creamos el archivo donde vamos a guardar el carnet
             val file = File(filesDir, "carnet_${System.currentTimeMillis()}.pdf")
 
             val carnet: CardView = findViewById(R.id.carnet)
+
+            // Creamos una representación de la imagen del carnet en pixeles y lo dibujamos
             val bitmap = createBitmap(carnet.width, carnet.height)
             carnet.draw(Canvas(bitmap))
 
+            // Guarda la imagen creada en un pdf
             val pageInfo = PdfDocument.PageInfo.Builder(bitmap.width, bitmap.height, 1).create()
             val page = pdfDocument.startPage(pageInfo)
             page.canvas.drawBitmap(bitmap, 0f, 0f, null)
             pdfDocument.finishPage(page)
 
+            // Escribe el contenido del PDF en el archivo
             FileOutputStream(file).use { fos -> // fos = FileOutputStream
                 pdfDocument.writeTo(fos)
             }
+            // Liberamos la memoria del Bitmap
             bitmap.recycle()
 
-            // Verifica que se guardó
+            // Verifica que se guardó y lo comparte
             if (file.exists()) {
                 Toast.makeText(this, "PDF guardado", Toast.LENGTH_LONG).show()
                 shareFile(file)
@@ -107,7 +113,12 @@ class CarnetActivity : AppCompatActivity() {
         }
     }
 
+    /**
+     *  Este metodo permite compartir el archivo PDF generado a través de otras aplicaciones.
+     * */
     private fun shareFile(file: File) {
+
+        // Invocamos el provider previamante creado en el AndroidManifest.xml
         val uri = FileProvider.getUriForFile(this, "$packageName.provider", file)
         val intent = Intent.createChooser(
             Intent(Intent.ACTION_SEND).apply {
