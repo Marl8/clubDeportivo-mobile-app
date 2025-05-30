@@ -7,6 +7,7 @@ import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import com.example.clubdeportivo.R
+import com.example.clubdeportivo.fragments.AptoFisicoDialogFragment
 import com.example.clubdeportivo.utils.*
 
 class MenuActivity : AppCompatActivity() {
@@ -36,8 +37,7 @@ class MenuActivity : AppCompatActivity() {
         setupLogoutButton(this, btnExit)
 
         btnSocio.setOnClickListener{
-            val intent = Intent(this, PopupAptoFisicoActivity::class.java)
-            startActivity(intent)
+            showAptoFisicoPopup()
         }
 
         btnNoSocio.setOnClickListener{
@@ -74,5 +74,10 @@ class MenuActivity : AppCompatActivity() {
             val intent = Intent(this, ListaVencimientosActivity::class.java)
             startActivity(intent)
         }
+    }
+
+    private fun showAptoFisicoPopup() {
+        val dialog = AptoFisicoDialogFragment.newInstance()
+        dialog.show(supportFragmentManager, "AptoFisicoDialog")
     }
 }

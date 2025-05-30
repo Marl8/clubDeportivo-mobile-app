@@ -59,6 +59,19 @@ class DataBaseHelper(context: Context)
                 "apto_fisico tinyint," +
                 "estado tinyint);")
 
+        db.execSQL("create table cuotas (" +
+                "idCuota Integer PRIMARY KEY AUTOINCREMENT," +
+                "valor_cuota double," +
+                "fecha_pago date," +
+                "fecha_vencimiento date," +
+                "fecha_prox_vencimiento date," +
+                "forma_pago Varchar (20)," +
+                "cantidad_cuotas int," +
+                "estado tinyint," +
+                "fk_socio int," +
+                " constraint fk_socio_cuota foreign key(fk_socio) references socios(id_socio)" +
+                ");")
+
         // Datos de prueba
         db.execSQL("insert into roles values" +
                 "(1,'Administrador')," +
@@ -94,12 +107,44 @@ class DataBaseHelper(context: Context)
                 "(23,'Sonia','Lemos','36574198','sonialemos@gma.com','2263633188',1,1)," +
                 "(24,'Mariana','Esteche','40230156','marianeste@gmail.com','1123005403',1,1)," +
                 "(25,'Fabiana','Nandes','38717119','fabinandes@gmail.com','116990807',1,1);")
+
+
+        db.execSQL("INSERT INTO cuotas (idCuota, valor_cuota, fecha_pago, fecha_vencimiento, " +
+                "fecha_prox_vencimiento, forma_pago, cantidad_cuotas , estado , fk_socio) VALUES" +
+                "(1,12500,'2025-05-14','2025-05-15','2025-06-15','Efectivo',1,1,1)," +
+                "(2,12500,'2025-05-09','2025-05-10','2025-06-10','Efectivo',1,1,2)," +
+                "(3,12500,'2025-05-12','2025-05-13','2025-06-13','Efectivo',1,1,3)," +
+                "(4,12500,'2025-05-13','2025-05-14','2025-06-14','Efectivo',1,1,4)," +
+                "(5,12500,'2025-05-12','2025-05-14','2025-06-14','Tarjeta de Crédito',6,1,5)," +
+                "(6,12500,'2025-05-28','2025-05-29','2025-06-29','Efectivo',1,1,6)," +
+                "(7,12500,'2025-05-14','2025-05-15','2025-06-15','Efectivo',1,1,7)," +
+                "(8,12500,'2025-05-13','2025-05-14','2025-06-14','Tarjeta de Crédito',3,1,8)," +
+                "(9,12500,'2025-05-11','2025-05-12','2025-06-12','Efectivo',1,1,9)," +
+                "(10,12500,'2025-05-08','2025-05-09','2025-06-09','Efectivo',1,1,10)," +
+                "(11,12500,'2025-05-10','2025-05-12','2025-06-12','Efectivo',1,1,11)," +
+                "(12,12500, '2025-05-18','2025-05-19','2025-06-19','Efectivo',1,1,12)," +
+                "(13,12500,'2025-05-20','2025-05-21','2025-06-21','Efectivo',1,1,13)," +
+                "(14,12500,'2025-05-21','2025-05-22','2025-06-22','Efectivo',1,1,14)," +
+                "(15,12500,'2025-05-12','2025-05-22','2025-06-22','Efectivo',1,1,14)," +
+                "(16,12500,'2025-05-12','2025-05-12','2025-06-12','Efectivo',1,1,15)," +
+                "(17,12500,'2025-05-22','2025-05-23','2025-06-23','Efectivo',1,1,16)," +
+                "(18,12500,'2025-05-23','2025-05-24','2025-06-24','Efectivo',1,1,17)," +
+                "(19,12500,'2025-05-24','2025-05-25','2025-06-25','Efectivo',1,1,18)," +
+                "(20,12500,'2025-05-25','2025-05-26','2025-06-26','Tarjeta de Crédito',6,1,1)," +
+                "(21,12500,'2025-05-12','2025-05-04','2025-06-04','Tarjeta de Crédito',3,1,19)," +
+                "(22,12500,'2025-05-13','2025-05-13','2025-06-13','Efectivo',1,1,20)," +
+                "(23,12500,'2025-05-13','2025-05-13','2025-06-13','Efectivo',1,1,21)," +
+                "(24,12500,'2025-05-13','2025-05-13','2025-06-13','Efectivo',1,1,22)," +
+                "(25,12500,'2025-05-14','2025-05-04','2025-06-04','Tarjeta de Crédito',6,1,23)," +
+                "(26,12500,'2025-05-22','2025-05-23','2025-06-23','Efectivo',1,1,24)," +
+                "(27,12500,'2025-05-23','2025-05-24','2025-06-24','Efectivo',1,1,25);")
     }
 
     override fun onUpgrade(db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
         db.execSQL("DROP TABLE IF EXISTS roles")
         db.execSQL("DROP TABLE IF EXISTS usuarios")
         db.execSQL("DROP TABLE IF EXISTS socios")
+        db.execSQL("DROP TABLE IF EXISTS cuotas")
         onCreate(db)
     }
 
@@ -108,6 +153,7 @@ class DataBaseHelper(context: Context)
         db.execSQL("DROP TABLE IF EXISTS usuarios")
         db.execSQL("DROP TABLE IF EXISTS roles")
         db.execSQL("DROP TABLE IF EXISTS socios")
+        db.execSQL("DROP TABLE IF EXISTS cuotas")
         onCreate(db)
     }
 }

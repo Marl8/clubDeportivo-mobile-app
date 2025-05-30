@@ -52,4 +52,7 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+
+    //  Librería ThreeTenABP para compatibilidad de la API LocalDate con versiones anteriores a la 26
+    implementation(libs.threetenabp)
 }

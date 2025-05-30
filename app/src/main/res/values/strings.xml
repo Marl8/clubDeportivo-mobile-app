@@ -15,8 +15,7 @@
     <!--    Dropdown items  -->
     <string-array name="payment_methods">
         <item>Tarjeta de Crédito</item>
-        <item>Tarjeta de Débito</item>
-        <item>Transferencia/Efectivo</item>
+        <item>Efectivo</item>
     </string-array>
 
     <string-array name="installments">

@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.view.setPadding
 import com.example.clubdeportivo.R
+import com.example.clubdeportivo.utils.ModalStyleUtils
 
 class PopupSeleccionarActividad : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -17,25 +18,8 @@ class PopupSeleccionarActividad : AppCompatActivity() {
         enableEdgeToEdge()
         setContentView(R.layout.activity_popup_seleccionar_actividad)
 
-        setupUI()
+        ModalStyleUtils.setUI(this)
         setupActivitiesRadioGroup()
-    }
-
-    private fun setupUI(){
-        supportActionBar?.hide()
-
-        val displayMetrics = DisplayMetrics()
-        /* Deprecado a partir de Android 11 (API30).
-            Recomendado usar WindowMetric. Pero nosotros usamos API24.
-          -----------------  Ignorar del deprecado. --------------*/
-        windowManager.defaultDisplay.getMetrics(displayMetrics)
-
-        val withDisplay = displayMetrics.widthPixels
-        val heightDisplay = displayMetrics.heightPixels
-
-        window.setLayout((withDisplay * 0.8).toInt(), (heightDisplay * 0.6).toInt())
-
-        this.setFinishOnTouchOutside(true)
     }
 
     private fun setupActivitiesRadioGroup(){
