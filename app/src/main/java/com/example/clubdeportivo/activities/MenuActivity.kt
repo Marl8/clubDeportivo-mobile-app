@@ -36,13 +36,16 @@ class MenuActivity : AppCompatActivity() {
         val btnExit: ImageButton = findViewById(R.id.btnExit)
         setupLogoutButton(this, btnExit)
 
+        var isSocio: Boolean
+
         btnSocio.setOnClickListener{
-            showAptoFisicoPopup()
+            isSocio = true
+            showAptoFisicoPopup(isSocio)
         }
 
         btnNoSocio.setOnClickListener{
-            val intent = Intent(this, InscribirNoSocioActivity::class.java)
-            startActivity(intent)
+            isSocio = false
+            showAptoFisicoPopup(isSocio)
         }
 
         btnCarnet.setOnClickListener {
@@ -76,8 +79,8 @@ class MenuActivity : AppCompatActivity() {
         }
     }
 
-    private fun showAptoFisicoPopup() {
-        val dialog = AptoFisicoDialogFragment.newInstance()
+    private fun showAptoFisicoPopup(isSocio: Boolean) {
+        val dialog = AptoFisicoDialogFragment.newInstance(isSocio)
         dialog.show(supportFragmentManager, "AptoFisicoDialog")
     }
 }

@@ -2,15 +2,40 @@ package com.example.clubdeportivo.activities
 
 import android.content.Intent
 import android.os.Bundle
+import android.os.Message
 import android.widget.Button
+import android.widget.EditText
 import android.widget.ImageButton
+import android.widget.RadioButton
+import android.widget.RadioGroup
 import android.widget.TextView
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import com.example.clubdeportivo.R
+import com.example.clubdeportivo.controllers.ActividadController
+import com.example.clubdeportivo.fragments.CheckEnrollActividadFragment
+import com.example.clubdeportivo.fragments.CheckPaymentDialogFragment
+import com.example.clubdeportivo.repositories.ActividadRepository
+import com.example.clubdeportivo.repositories.SocioRepository
 import com.example.clubdeportivo.utils.*
+import com.google.android.material.button.MaterialButton
 
 class InscribirActividadActivity: AppCompatActivity() {
+
+    private var optionSelect: String = ""
+    private var client: String = ""
+    private lateinit var actividadController: ActividadController
+
+    private val activityResultLauncher = registerForActivityResult(
+        ActivityResultContracts.StartActivityForResult()
+    ) { result ->
+        if (result.resultCode == RESULT_OK) {
+            optionSelect = result.data?.getStringExtra("selected_activity") ?: ""
+        }
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -18,6 +43,54 @@ class InscribirActividadActivity: AppCompatActivity() {
 
         setupUI()
         btnSelectActivityOnClick()
+
+        actividadController = ActividadController(ActividadRepository(this), SocioRepository(this))
+        val txtDni: EditText = findViewById(R.id.dniInput)
+        val btnSelectActividad: Button = findViewById(R.id.btnSelectActivity)
+        val radioGroup: RadioGroup = findViewById(R.id.radioGroupClient)
+        val btnSend: MaterialButton = findViewById(R.id.send)
+
+        var success = false
+        var message = ""
+
+        radioGroup.setOnCheckedChangeListener { group, radioGroupClient ->
+            val selectedRadioButton: RadioButton = findViewById(radioGroupClient)
+            client = selectedRadioButton.text.toString().trim()
+        }
+
+        // Leer valor inicial por defecto
+        val checkedRadioButtonId = radioGroup.checkedRadioButtonId
+        if (checkedRadioButtonId != -1) {
+            val selectedRadioButton: RadioButton = findViewById(checkedRadioButtonId)
+            client = selectedRadioButton.text.toString().trim()
+        }
+
+        btnSelectActividad.setOnClickListener {
+            val intent = Intent(this, PopupSeleccionarActividad::class.java)
+            activityResultLauncher.launch(intent) // Usar el launcher
+        }
+
+        btnSend.setOnClickListener {
+            val dni = txtDni.text.toString().trim()
+            if(optionSelect.isNotEmpty() && dni.isNotEmpty()) {
+                if (client == "Socio") {
+                    val (successEnroll, messageEnroll) = actividadController.enrollSocioActividad(optionSelect.lowercase(), dni)
+                    message = messageEnroll
+                    success = successEnroll
+                }
+                showEnrollDialog(message, success)
+            } else{
+                Toast.makeText(this, "Faltan completar datos", Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
+
+    private fun btnSelectActivityOnClick(){
+        val button: Button = findViewById(R.id.btnSelectActivity)
+        button.setOnClickListener{
+            val intent = Intent(this, PopupSeleccionarActividad::class.java)
+            activityResultLauncher.launch(intent) // Usar el launcher
+        }
     }
 
     private fun setupUI(){
@@ -40,11 +113,8 @@ class InscribirActividadActivity: AppCompatActivity() {
         setupLogoutButton(this, btnExit)
     }
 
-    private fun btnSelectActivityOnClick(){
-        val button = findViewById<Button>(R.id.btnSelectActivity)
-        button.setOnClickListener{
-            val intent = Intent(this, PopupSeleccionarActividad::class.java)
-            startActivity(intent)
-        }
+    private fun showEnrollDialog(message: String, success: Boolean) {
+        val dialog = CheckEnrollActividadFragment.newInstance(message, success)
+        dialog.show(supportFragmentManager, "CheckPaymentDialog")
     }
 }

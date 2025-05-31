@@ -33,8 +33,6 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="30dp"
             android:layout_marginTop="16dp">
-
-
         </RadioGroup>
 
         <View

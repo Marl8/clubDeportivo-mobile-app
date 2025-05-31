@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
 import com.example.clubdeportivo.R
+import com.example.clubdeportivo.activities.InscribirNoSocioActivity
 import com.example.clubdeportivo.activities.InscribirSocioActivity
 import com.example.clubdeportivo.activities.MenuActivity
 import com.google.android.material.button.MaterialButton
@@ -14,9 +15,18 @@ import com.example.clubdeportivo.utils.ModalStyleUtils
 
 class AptoFisicoDialogFragment : DialogFragment() {
 
+    private var isSocio: Boolean = false
+
     companion object {
-        fun newInstance(): AptoFisicoDialogFragment {
-            return AptoFisicoDialogFragment()
+
+        private const val IS_SOCIO = "statePayment"
+
+        fun newInstance(isSocio: Boolean): AptoFisicoDialogFragment {
+            val fragment = AptoFisicoDialogFragment()
+            val args = Bundle()
+            args.putBoolean(IS_SOCIO, isSocio)
+            fragment.arguments = args
+            return fragment
         }
     }
 
@@ -25,11 +35,14 @@ class AptoFisicoDialogFragment : DialogFragment() {
 
         // Hacer el diálogo con fondo transparente
         setStyle(STYLE_NO_TITLE, android.R.style.Theme_Dialog)
+        arguments?.let {
+            isSocio = it.getBoolean(IS_SOCIO, false)
+        }
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.activity_popup_apto_fisico, container, false)
+        return inflater.inflate(R.layout.fragment_popup_apto_fisico, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -45,9 +58,15 @@ class AptoFisicoDialogFragment : DialogFragment() {
 
         btnConfirm.setOnClickListener {
             dismiss() // Cerrar el diálogo
-            val intent = Intent(requireContext(), InscribirSocioActivity::class.java)
-            intent.putExtra("aptoFisico", true)
-            startActivity(intent)
+            if (isSocio) {
+                val intent = Intent(requireContext(), InscribirSocioActivity::class.java)
+                intent.putExtra("aptoFisico", true)
+                startActivity(intent)
+            }else{
+                val intent = Intent(requireContext(), InscribirNoSocioActivity::class.java)
+                intent.putExtra("aptoFisico", true)
+                startActivity(intent)
+            }
         }
 
         btnCancel.setOnClickListener {

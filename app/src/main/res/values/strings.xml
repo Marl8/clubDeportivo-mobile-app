@@ -14,7 +14,7 @@
 
     <!--    Dropdown items  -->
     <string-array name="payment_methods">
-        <item>Tarjeta de Crédito</item>
+        <item>Tarjeta de Credito</item>
         <item>Efectivo</item>
     </string-array>
 
@@ -28,7 +28,7 @@
     <string-array name="activities">
         <item>Yoga</item>
         <item>Pilates</item>
-        <item>Tonificación</item>
+        <item>Tonificacion</item>
         <item>Defensa Personal</item>
     </string-array>
 </resources>

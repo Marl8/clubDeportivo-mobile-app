@@ -59,6 +59,7 @@ class DataBaseHelper(context: Context)
                 "apto_fisico tinyint," +
                 "estado tinyint);")
 
+        // Tabla Cuotas
         db.execSQL("create table cuotas (" +
                 "idCuota Integer PRIMARY KEY AUTOINCREMENT," +
                 "valor_cuota double," +
@@ -70,6 +71,26 @@ class DataBaseHelper(context: Context)
                 "estado tinyint," +
                 "fk_socio int," +
                 " constraint fk_socio_cuota foreign key(fk_socio) references socios(id_socio)" +
+                ");")
+
+        // Tabla Actividades
+        db.execSQL("create table actividades (" +
+                "id_actividad Integer PRIMARY KEY AUTOINCREMENT," +
+                "nombre Varchar (55)," +
+                "valor double," +
+                "max_cupo_socio int," +
+                "max_cupo_no_socio int," +
+                "cupo_socio_disponible int," +
+                "cupo_no_socio_disponible int);")
+
+        // Tabla ActSocios
+        db.execSQL("create table act_socios(" +
+                "id_act int," +
+                "id_socio int," +
+                "estado," +
+                "constraint pk_act_Socio primary key (id_act, id_Socio)," +
+                "constraint fk_act_socios_act foreign key (id_act) references actividades (id_actividad)," +
+                "constraint fk_act_socios foreign key (id_socio) references socios (id_socio)" +
                 ");")
 
         // Datos de prueba
@@ -138,6 +159,12 @@ class DataBaseHelper(context: Context)
                 "(25,12500,'2025-05-14','2025-05-04','2025-06-04','Tarjeta de Crédito',6,1,23)," +
                 "(26,12500,'2025-05-22','2025-05-23','2025-06-23','Efectivo',1,1,24)," +
                 "(27,12500,'2025-05-23','2025-05-24','2025-06-24','Efectivo',1,1,25);")
+
+        db.execSQL("insert into actividades values" +
+                "(1, 'yoga', 5500.0, 100, 50, 100, 50)," +
+                "(2, 'pilates', 4850.0, 100, 50, 100, 50)," +
+                "(3, 'tonificacion', 5500, 100, 50, 100, 50)," +
+                "(4, 'defensa personal', 7000.0, 100, 50, 100, 50);")
     }
 
     override fun onUpgrade(db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
@@ -145,6 +172,7 @@ class DataBaseHelper(context: Context)
         db.execSQL("DROP TABLE IF EXISTS usuarios")
         db.execSQL("DROP TABLE IF EXISTS socios")
         db.execSQL("DROP TABLE IF EXISTS cuotas")
+        db.execSQL("DROP TABLE IF EXISTS actividades")
         onCreate(db)
     }
 
@@ -154,6 +182,7 @@ class DataBaseHelper(context: Context)
         db.execSQL("DROP TABLE IF EXISTS roles")
         db.execSQL("DROP TABLE IF EXISTS socios")
         db.execSQL("DROP TABLE IF EXISTS cuotas")
+        db.execSQL("DROP TABLE IF EXISTS actividades")
         onCreate(db)
     }
 }

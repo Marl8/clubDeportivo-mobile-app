@@ -10,17 +10,20 @@ import androidx.fragment.app.DialogFragment
 import com.example.clubdeportivo.R
 import com.google.android.material.button.MaterialButton
 
-class CheckPaymentDialogFragment : DialogFragment() {
+class CheckEnrollActividadFragment: DialogFragment() {
 
-    private var statePayment: Boolean = false
+    private var enrollMessage: String = ""
+    private var enrollSuccess: Boolean = false
 
     companion object {
-        private const val STATE_PAYMENT = "statePayment"
+        private const val ENROLL_MESSAGE = "message"
+        private const val ENROLL_SUCCESS = "success"
 
-        fun newInstance(statePayment: Boolean): CheckPaymentDialogFragment {
-            val fragment = CheckPaymentDialogFragment()
+        fun newInstance(message: String, success: Boolean): CheckEnrollActividadFragment {
+            val fragment = CheckEnrollActividadFragment()
             val args = Bundle()
-            args.putBoolean(STATE_PAYMENT, statePayment)
+            args.putString(ENROLL_MESSAGE, message)
+            args.putBoolean(ENROLL_SUCCESS,success)
             fragment.arguments = args
             return fragment
         }
@@ -29,7 +32,8 @@ class CheckPaymentDialogFragment : DialogFragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
-            statePayment = it.getBoolean(STATE_PAYMENT, false)
+            enrollMessage = it.getString(ENROLL_MESSAGE, "")
+            enrollSuccess = it.getBoolean(ENROLL_SUCCESS, false)
         }
 
         // Hacer el diálogo en pantalla completa
@@ -45,17 +49,17 @@ class CheckPaymentDialogFragment : DialogFragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val checkImg: ImageView = view.findViewById(R.id.payment_icon)
-        val message: TextView = view.findViewById(R.id.txtMessage)
+        val txtView: TextView = view.findViewById(R.id.txtMessage)
         val btnOk: MaterialButton = view.findViewById(R.id.btnOk)
 
-        if (statePayment) {
+        if (enrollMessage == "Inscripción realizada con éxito." && enrollSuccess) {
             // Mostrar imagen de check y mensaje de éxito
             checkImg.setImageResource(R.drawable.ic_check_ok_icon)
-            message.text = "Operación completada con éxito"
+            txtView.text = enrollMessage
         } else {
             // Mostrar imagen de error y mensaje de fallo
             checkImg.setImageResource(R.drawable.ic_error_icon)
-            message.text = "Error en la operación"
+            txtView.text = enrollMessage
         }
         btnOk.setOnClickListener {
             requireActivity().finish()
