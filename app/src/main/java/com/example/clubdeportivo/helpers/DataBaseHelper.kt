@@ -59,6 +59,16 @@ class DataBaseHelper(context: Context)
                 "apto_fisico tinyint," +
                 "estado tinyint);")
 
+        // Tabla No Socio
+        db.execSQL("create table noSocios (" +
+                "id_noSocio Integer PRIMARY KEY AUTOINCREMENT," +
+                "nombre Varchar (45)," +
+                "apellido Varchar (55)," +
+                "dni Varchar (8)," +
+                "email Varchar (45)," +
+                "telefono Varchar (15)," +
+                "apto_fisico tinyint);")
+
         // Tabla Cuotas
         db.execSQL("create table cuotas (" +
                 "idCuota Integer PRIMARY KEY AUTOINCREMENT," +
@@ -130,6 +140,21 @@ class DataBaseHelper(context: Context)
                 "(25,'Fabiana','Nandes','38717119','fabinandes@gmail.com','116990807',1,1);")
 
 
+        db.execSQL("INSERT INTO noSocios (id_noSocio, nombre, apellido, dni, email, telefono, apto_fisico) VALUES" +
+                "(1,'Marina','Wolf','39005853','marinawolf@gmail.com','115448527',1)," +
+                "(2,'Gergina','Viola','39885141','georviola@gmail.com','113558963',1)," +
+                "(3,'Amanda','Corso','37455621','amandacor@gmail.com','114774123',1)," +
+                "(4,'Luna','Hoz','32565908','luna.hoz@gmail.com','2215444781',1)," +
+                "(5,'Paolo','Roca','15205665','paoloroca@gmail.com','1155560632',1)," +
+                "(6,'Zaira','Lemos','39711145','zairalemos@gmail.com','113665220',1)," +
+                "(7,'Jose','Durant','18202514','josedurant@gmail.com','113669951',1)," +
+                "(8,'Marcelo','Woss','39045899','marcewoss@gmail.com','1154120063',1)," +
+                "(9,'Gabriel','Klopp','22310025','gabriel.kloss@gmail.com','112365855',1)," +
+                "(10,'Fausto','Vera','38502301','favera@gmail.com','113226599',1)," +
+                "(11,'Norberto','Art','22101102','roberArt@gmail.com','1123599811',1)," +
+                "(12,'Silvia','Riquelme','24154447','silRiquelme@gmail.com','221422303',1)," +
+                "(13,'Mia','Ordoñez','31006517','miaorde@gmail.com','2246987124',1);")
+
         db.execSQL("INSERT INTO cuotas (idCuota, valor_cuota, fecha_pago, fecha_vencimiento, " +
                 "fecha_prox_vencimiento, forma_pago, cantidad_cuotas , estado , fk_socio) VALUES" +
                 "(1,12500,'2025-05-14','2025-05-15','2025-06-15','Efectivo',1,1,1)," +
@@ -171,6 +196,7 @@ class DataBaseHelper(context: Context)
         db.execSQL("DROP TABLE IF EXISTS roles")
         db.execSQL("DROP TABLE IF EXISTS usuarios")
         db.execSQL("DROP TABLE IF EXISTS socios")
+        db.execSQL("DROP TABLE IF EXISTS noSocios")
         db.execSQL("DROP TABLE IF EXISTS cuotas")
         db.execSQL("DROP TABLE IF EXISTS actividades")
         onCreate(db)
@@ -181,6 +207,7 @@ class DataBaseHelper(context: Context)
         db.execSQL("DROP TABLE IF EXISTS usuarios")
         db.execSQL("DROP TABLE IF EXISTS roles")
         db.execSQL("DROP TABLE IF EXISTS socios")
+        db.execSQL("DROP TABLE IF EXISTS noSocios")
         db.execSQL("DROP TABLE IF EXISTS cuotas")
         db.execSQL("DROP TABLE IF EXISTS actividades")
         onCreate(db)
