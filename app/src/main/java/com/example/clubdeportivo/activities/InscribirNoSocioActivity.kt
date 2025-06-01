@@ -1,6 +1,5 @@
 package com.example.clubdeportivo.activities
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.ViewGroup
 import android.widget.EditText
@@ -12,7 +11,6 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.clubdeportivo.R
 import com.example.clubdeportivo.controllers.NoSocioController
 import com.example.clubdeportivo.entities.NoSocio
-import com.example.clubdeportivo.entities.Socio
 import com.example.clubdeportivo.repositories.NoSocioRepository
 import com.example.clubdeportivo.utils.ClearFormUtils
 import com.example.clubdeportivo.utils.UserSessionUtil

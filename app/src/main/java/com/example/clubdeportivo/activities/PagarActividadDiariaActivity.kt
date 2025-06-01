@@ -5,8 +5,6 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageButton
-import android.widget.RadioButton
-import android.widget.RadioGroup
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
@@ -24,7 +22,6 @@ import com.google.android.material.button.MaterialButton
 class PagarActividadDiariaActivity: AppCompatActivity() {
 
     private var optionSelect: String = ""
-    private var client: String = ""
     private lateinit var actividadController: ActividadController
 
     /**
