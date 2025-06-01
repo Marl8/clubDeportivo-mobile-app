@@ -49,16 +49,19 @@ class InscribirSocioActivity : AppCompatActivity() {
         val isAptoFisico = intent.getBooleanExtra("aptoFisico", false)
 
         btnSend.setOnClickListener {
-            val name = txtName.text.toString()
-            val lastName = txtLastName.text.toString()
-            val dni = txtDni.text.toString()
-            val email = txtEmail.text.toString()
-            val phone = txtPhone.text.toString()
+            val name = txtName.text.toString().trim()
+            val lastName = txtLastName.text.toString().trim()
+            val dni = txtDni.text.toString().trim()
+            val email = txtEmail.text.toString().trim()
+            val phone = txtPhone.text.toString().trim()
+            val stateSocio = txtState.text.toString().trim()
 
             if (name.isEmpty() || lastName.isEmpty() || dni.isEmpty() || email.isEmpty() || phone.isEmpty()) {
                 Toast.makeText(this, "Por favor complete todos los campos", Toast.LENGTH_SHORT).show()
             } else {
-                val state = true
+                var state = false
+                if(stateSocio == "Activo") state = true
+
                 val socio = Socio(null, state, isAptoFisico, name, lastName, dni, email, phone)
                     val success = socioController.enrollSocio(socio)
                 if (success) {

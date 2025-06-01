@@ -52,7 +52,7 @@ class CheckEnrollActividadFragment: DialogFragment() {
         val txtView: TextView = view.findViewById(R.id.txtMessage)
         val btnOk: MaterialButton = view.findViewById(R.id.btnOk)
 
-        if (enrollMessage == "Inscripción realizada con éxito." && enrollSuccess) {
+        if (enrollSuccess) {
             // Mostrar imagen de check y mensaje de éxito
             checkImg.setImageResource(R.drawable.ic_check_ok_icon)
             txtView.text = enrollMessage

@@ -90,10 +90,39 @@ class ActividadRepository(context: Context) {
 
     fun isNoSocioAlreadyEnrolled(actividadId: Int?, idNoSocio: Int?): Boolean {
         val db = dbHelper.readableDatabase
-        val query = "SELECT * FROM act_nosocios WHERE id_act = ? AND id_nosocio = ?"
+        val query = "SELECT * FROM act_nosocios WHERE id_act = ? AND id_noSocio = ?"
         val cursor = db.rawQuery(query, arrayOf(actividadId.toString(), idNoSocio.toString()))
         val exists = cursor.moveToFirst()
         cursor.close()
         return exists
+    }
+
+    fun paymentDairy(actividadId: Int, noSocioId: Int?, date: LocalDate, amount: Double): Boolean {
+        val db: SQLiteDatabase = dbHelper.writableDatabase
+
+        val contentValues = ContentValues().apply {
+            put("id_act", actividadId)
+            put("id_noSocio", noSocioId)
+            put("dia_habilitado", date.toString())
+            put("monto_pagado", amount)
+        }
+        val whereClause = "id_act = ? and id_noSocio = ?"
+        val args = arrayOf(actividadId.toString(), noSocioId.toString())
+
+        val rowsAffected = db.update("act_nosocios", contentValues, whereClause, args)
+        db.close()
+        return rowsAffected > 0  // Si se actualizó al menos una fila, retorna true
+    }
+
+    fun findNoSocioQuotaAvailable(actividadId: Int, date: LocalDate): Int{
+        val db = dbHelper.readableDatabase
+        val query = "SELECT count(*) FROM act_nosocios WHERE id_act = ? AND dia_habilitado = ?"
+        val cursor = db.rawQuery(query, arrayOf(actividadId.toString(), date.toString()))
+        var count = 0
+        if (cursor.moveToFirst()) {
+            count = cursor.getInt(0)  // Devuelve el valor de la columna 0
+        }
+        cursor.close()
+        return count
     }
 }
