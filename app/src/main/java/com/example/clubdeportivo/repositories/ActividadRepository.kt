@@ -5,6 +5,7 @@ import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import com.example.clubdeportivo.entities.Actividad
 import com.example.clubdeportivo.helpers.DataBaseHelper
+import org.threeten.bp.LocalDate
 
 class ActividadRepository(context: Context) {
 
@@ -18,6 +19,19 @@ class ActividadRepository(context: Context) {
             put("estado", state)
         }
         val result = db.insert("act_socios", null, contentValues)
+        db.close()
+        return result != -1L
+    }
+
+    fun enrollNoSocioActividad(actividadId: Int?, date: LocalDate?, amount: Double?, idNoSocio: Int?): Boolean {
+        val db: SQLiteDatabase = dbHelper.writableDatabase
+        val contentValues = ContentValues().apply {
+            put("id_act", actividadId)
+            put("id_noSocio", idNoSocio)
+            put("dia_habilitado", date.toString())
+            put("monto_pagado", amount)
+        }
+        val result = db.insert("act_nosocios", null, contentValues)
         db.close()
         return result != -1L
     }
@@ -69,6 +83,15 @@ class ActividadRepository(context: Context) {
         val db = dbHelper.readableDatabase
         val query = "SELECT * FROM act_socios WHERE id_act = ? AND id_socio = ?"
         val cursor = db.rawQuery(query, arrayOf(actividadId.toString(), idSocio.toString()))
+        val exists = cursor.moveToFirst()
+        cursor.close()
+        return exists
+    }
+
+    fun isNoSocioAlreadyEnrolled(actividadId: Int?, idNoSocio: Int?): Boolean {
+        val db = dbHelper.readableDatabase
+        val query = "SELECT * FROM act_nosocios WHERE id_act = ? AND id_nosocio = ?"
+        val cursor = db.rawQuery(query, arrayOf(actividadId.toString(), idNoSocio.toString()))
         val exists = cursor.moveToFirst()
         cursor.close()
         return exists

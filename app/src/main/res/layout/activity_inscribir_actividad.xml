@@ -103,7 +103,7 @@
                 android:layout_marginBottom="16dp"
                 android:background="@drawable/button_form"
                 android:includeFontPadding="false"
-                android:text="@string/pagar"
+                android:text="@string/inscribir"
                 android:textSize="18sp"
                 app:backgroundTint="@null" />
         </LinearLayout>

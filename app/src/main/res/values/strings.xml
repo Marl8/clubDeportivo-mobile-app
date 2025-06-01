@@ -5,6 +5,8 @@
     <string name="valor_cuota">Valor Cuota</string>
     <string name="monto_a_pagar">Monto a Pagar</string>
     <string name="pagar">Pagar</string>
+    <string name="enviar">Enviar</string>
+    <string name="inscribir">Inscribir</string>
     <string name="dni">DNI</string>
     <string name="dni_cliente">DNI Cliente</string>
     <string name="description_cant_cuotas">Campo para seleccionar la cantidad de cuotas</string>

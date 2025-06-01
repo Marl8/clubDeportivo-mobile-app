@@ -18,6 +18,7 @@ import com.example.clubdeportivo.controllers.ActividadController
 import com.example.clubdeportivo.fragments.CheckEnrollActividadFragment
 import com.example.clubdeportivo.fragments.CheckPaymentDialogFragment
 import com.example.clubdeportivo.repositories.ActividadRepository
+import com.example.clubdeportivo.repositories.NoSocioRepository
 import com.example.clubdeportivo.repositories.SocioRepository
 import com.example.clubdeportivo.utils.*
 import com.google.android.material.button.MaterialButton
@@ -28,9 +29,13 @@ class InscribirActividadActivity: AppCompatActivity() {
     private var client: String = ""
     private lateinit var actividadController: ActividadController
 
+    /**
+     * Registra un lanzador de resultados y utiliza un contrato que te permite iniciar
+     * una nueva actividad y esperar un resultado como retorno el cual queda guardado
+     * en la variable optionSelect.
+     * */
     private val activityResultLauncher = registerForActivityResult(
-        ActivityResultContracts.StartActivityForResult()
-    ) { result ->
+        ActivityResultContracts.StartActivityForResult()) { result ->
         if (result.resultCode == RESULT_OK) {
             optionSelect = result.data?.getStringExtra("selected_activity") ?: ""
         }
@@ -44,7 +49,8 @@ class InscribirActividadActivity: AppCompatActivity() {
         setupUI()
         btnSelectActivityOnClick()
 
-        actividadController = ActividadController(ActividadRepository(this), SocioRepository(this))
+        actividadController = ActividadController(ActividadRepository(this),
+            SocioRepository(this), NoSocioRepository(this))
         val txtDni: EditText = findViewById(R.id.dniInput)
         val btnSelectActividad: Button = findViewById(R.id.btnSelectActivity)
         val radioGroup: RadioGroup = findViewById(R.id.radioGroupClient)
@@ -67,7 +73,7 @@ class InscribirActividadActivity: AppCompatActivity() {
 
         btnSelectActividad.setOnClickListener {
             val intent = Intent(this, PopupSeleccionarActividad::class.java)
-            activityResultLauncher.launch(intent) // Usar el launcher
+            activityResultLauncher.launch(intent) // Utilizamos el activityResultLauncher para lanzar ee popup
         }
 
         btnSend.setOnClickListener {
@@ -75,6 +81,10 @@ class InscribirActividadActivity: AppCompatActivity() {
             if(optionSelect.isNotEmpty() && dni.isNotEmpty()) {
                 if (client == "Socio") {
                     val (successEnroll, messageEnroll) = actividadController.enrollSocioActividad(optionSelect.lowercase(), dni)
+                    message = messageEnroll
+                    success = successEnroll
+                } else if(client == "No Socio"){
+                    val (successEnroll, messageEnroll) = actividadController.enrollNoSocioActividad(optionSelect.lowercase(), dni)
                     message = messageEnroll
                     success = successEnroll
                 }
@@ -89,7 +99,7 @@ class InscribirActividadActivity: AppCompatActivity() {
         val button: Button = findViewById(R.id.btnSelectActivity)
         button.setOnClickListener{
             val intent = Intent(this, PopupSeleccionarActividad::class.java)
-            activityResultLauncher.launch(intent) // Usar el launcher
+            activityResultLauncher.launch(intent)
         }
     }
 
