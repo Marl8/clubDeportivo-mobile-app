@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.TextView
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -12,7 +13,7 @@ import com.example.clubdeportivo.R
 import com.example.clubdeportivo.controllers.SocioController
 import com.example.clubdeportivo.entities.dto.SocioExpirationDayDto
 import com.example.clubdeportivo.repositories.SocioRepository
-import com.example.clubdeportivo.utils.SuspendSocioUtils
+import com.example.clubdeportivo.utils.StateSocioDialogUtils
 import com.example.clubdeportivo.utils.UserSessionUtil
 import com.example.clubdeportivo.utils.backRedirect
 import com.example.clubdeportivo.utils.setupLogoutButton
@@ -34,7 +35,10 @@ class ListaVencimientosActivity : AppCompatActivity() {
         setupUI()
 
         socioController = SocioController(SocioRepository(this))
-        socios = socioController.listSociosByExpiationDay(LocalDate.now(ZoneId.of("America/Argentina/Buenos_Aires")))
+        socios = socioController.listSociosByExpiationDay(
+            LocalDate.now(
+                ZoneId.of(
+            "America/Argentina/Buenos_Aires")))
 
         // Configurar RecyclerView
         val rvMorosos: RecyclerView = findViewById(R.id.rvMorosos)
@@ -59,23 +63,26 @@ class ListaVencimientosActivity : AppCompatActivity() {
             // 2. onBindViewHolder - Asigna los datos a las vistas
             override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
 
-                val socio = socios[position]
+                if(socios.isNotEmpty()) {
+                    val socio = socios[position]
 
-                holder.itemView.apply {
-                    findViewById<TextView>(R.id.txtNombre).text = "${socio.name} ${socio.lastName}"
-                    findViewById<TextView>(R.id.txtDni).text = "DNI: ${socio.dni}"
-                    findViewById<TextView>(R.id.txtFech_vencimiento).text = "Vencimiento: ${socio.expirationDay}"
+                    holder.itemView.apply {
+                        findViewById<TextView>(R.id.txtNombre).text =
+                            "${socio.name} ${socio.lastName}"
+                        findViewById<TextView>(R.id.txtDni).text = "DNI: ${socio.dni}"
+                        findViewById<TextView>(R.id.txtFech_vencimiento).text =
+                            "Vencimiento: ${socio.expirationDay}"
 
-                    findViewById<ImageButton>(R.id.additionalInfo).setOnClickListener {
-                        SuspendSocioUtils.showDialogSocioState(
-                            context = context,
-                            socio = socio,
-                            position = position,
-                            socios = socios,
-                            notifyItemChanged = { pos -> notifyItemChanged(pos) },
-                            socioController = socioController
-                        )
+                        findViewById<ImageButton>(R.id.additionalInfo).setOnClickListener {
+                            StateSocioDialogUtils.showDialogSocioState(
+                                context = context,
+                                socio = socio
+                            )
+                        }
                     }
+                }else {
+                    Toast.makeText(holder.itemView.context, "No hay socio con vencimientos en el día",
+                        Toast.LENGTH_SHORT).show()
                 }
             }
             override fun getItemCount(): Int = socios.size

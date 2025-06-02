@@ -31,7 +31,17 @@ INSERT INTO socios (id_socio, nombre, apellido, dni, email, telefono, apto_fisic
 (22,'Vilma','Retegi','28498705','vilmarete@gmail.com','2216303324',1,1),
 (23,'Sonia','Lemos','36574198','sonialemos@gma.com','2263633188',1,1),
 (24,'Mariana','Esteche','40230156','marianeste@gmail.com','1123005403',1,1),
-(25,'Fabiana','Nandes','38717119','fabinandes@gmail.com','116990807',1,1);
+(25,'Fabiana','Nandes','38717119','fabinandes@gmail.com','116990807',1,1),
+(26,'Claudio','Martínez','32159874','claudiomartinez@gmail.com','1136587412',1,1),
+(27,'Luciana','Pérez','34896215','lucianaperez@gmail.com','1124587896',1,1),
+(28,'Tomás','Giménez','39012658','tomasgimenez@gmail.com','1169743025',1,1),
+(29,'Camila','Reinoso','40123876','camilareinoso@gmail.com','2214789652',1,1),
+(30,'Mateo','Quinteros','37014589','mateoquin@gmail.com','1132214785',1,1),
+(31,'Julieta','Salvatierra','38501245','julietasalva@gmail.com','1145569023',1,1),
+(32,'Nahuel','Vega','34219875','nahuelvega@gmail.com','2213658741',1,1),
+(33,'Valentina','Coronel','35987412','valencoronel@gmail.com','1163058741',1,1),
+(34,'Agustín','Moreira','33456890','agusmoreira@gmail.com','1124789651',1,1),
+(35,'Paula','Domínguez','28865473','pauladinguez@gmail.com','2214786302',1,1);
 
 
 INSERT INTO noSocios (id_noSocio, nombre, apellido, dni, email, telefono, apto_fisico) VALUES
@@ -60,7 +70,7 @@ INSERT INTO cuotas (idCuota, valor_cuota, fecha_pago, fecha_vencimiento, fecha_p
 (8,12500,'2025-05-21','2025-05-22','2025-06-22','Tarjeta de Crédito',3,1,8),
 (9,12500,'2025-05-23','2025-05-23','2025-06-23','Efectivo',1,1,9),
 (10,12500,'2025-05-24','2025-05-24','2025-06-24','Efectivo',1,1,10),
-(11,12500,'2025-05-01','2025-05-01','2025-06-01','Efectivo',1,1,11),
+(11,12500,'2025-05-05','2025-05-05','2025-06-05','Efectivo',1,1,11),
 (12,12500, '2025-05-18','2025-05-19','2025-06-19','Efectivo',1,1,12),
 (13,12500,'2025-05-20','2025-05-21','2025-06-21','Efectivo',1,1,13),
 (14,12500,'2025-05-21','2025-05-22','2025-06-22','Efectivo',1,1,14),
@@ -76,7 +86,17 @@ INSERT INTO cuotas (idCuota, valor_cuota, fecha_pago, fecha_vencimiento, fecha_p
 (24,12500,'2025-05-25','2025-05-25','2025-06-25','Efectivo',1,1,22),
 (25,12500,'2025-05-14','2025-05-04','2025-06-04','Tarjeta de Crédito',6,1,23),
 (26,12500,'2025-05-22','2025-05-23','2025-06-23','Efectivo',1,1,24),
-(27,12500,'2025-05-23','2025-05-24','2025-06-24','Efectivo',1,1,25);
+(27,12500,'2025-05-23','2025-05-24','2025-06-24','Efectivo',1,1,25),
+(28,12500,'2025-05-02','2025-05-02','2025-06-02','Efectivo',1,1,26),
+(29,12500,'2025-05-03','2025-05-03','2025-06-03','Efectivo',1,1,27),
+(30,12500,'2025-05-07','2025-05-07','2025-06-07','Efectivo',1,1,28),
+(31,12500,'2025-05-08','2025-05-08','2025-06-08','Efectivo',1,1,29),
+(32,12500,'2025-05-09','2025-05-09','2025-06-09','Efectivo',1,1,30),
+(33,12500,'2025-05-11','2025-05-11','2025-06-11','Efectivo',1,1,31),
+(34,12500,'2025-05-15','2025-05-12','2025-06-15','Efectivo',1,1,32),
+(35,12500,'2025-05-13','2025-05-13','2025-06-13','Efectivo',1,1,33),
+(36,12500,'2025-05-14','2025-05-14','2025-06-14','Efectivo',1,1,34),
+(37,12500,'2025-05-16','2025-05-16','2025-06-16','Efectivo',1,1,35);
 
 insert into actividades values
 (1, 'yoga', 5500.0, 100, 50, 100, 50),

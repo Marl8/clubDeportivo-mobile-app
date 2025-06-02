@@ -95,9 +95,44 @@ class SocioRepository(context: Context) {
 
         val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")
         val formattedDate = date.format(formatter)
-        Log.d("DEBUG", "Buscando socios con vencimiento: $formattedDate")
 
-        val cursor = db.rawQuery(query, arrayOf(date.toString()))
+        val cursor = db.rawQuery(query, arrayOf(formattedDate))
+
+        val socios = mutableListOf<SocioExpirationDayDto>()
+
+        if (cursor.moveToFirst()) {
+            do {
+                val id = cursor.getInt(cursor.getColumnIndexOrThrow("id_socio"))
+                val name = cursor.getString(cursor.getColumnIndexOrThrow("nombre"))
+                val lastName = cursor.getString(cursor.getColumnIndexOrThrow("apellido"))
+                val dniSocio = cursor.getString(cursor.getColumnIndexOrThrow("dni"))
+                val state = cursor.getInt(cursor.getColumnIndexOrThrow("estado")) != 0
+                val expirationDayStr = cursor.getString(cursor.getColumnIndexOrThrow("fecha_prox_vencimiento"))
+                val expirationDay = LocalDate.parse(expirationDayStr, formatter)
+
+                val socio = SocioExpirationDayDto(id, name, lastName, dniSocio, state, expirationDay)
+                socios.add(socio)
+            } while (cursor.moveToNext())
+        }
+        cursor.close()
+        return socios
+    }
+
+    fun listSociosMora(date: LocalDate): MutableList<SocioExpirationDayDto> {
+        val db: SQLiteDatabase = dbHelper.readableDatabase
+
+        val query: String = "SELECT s.id_socio, s.nombre, s.apellido, s.dni, c.fecha_prox_vencimiento, s.estado " +
+                "FROM socios AS s " +
+                "INNER JOIN cuotas c ON s.id_socio = c.fk_socio " +
+                "INNER JOIN (SELECT fk_socio, MAX(fecha_prox_vencimiento) AS max_fecha FROM cuotas GROUP BY fk_socio) AS px " +
+                "ON c.fk_socio = px.fk_socio AND c.fecha_prox_vencimiento = px.max_fecha " +
+                "WHERE date(c.fecha_prox_vencimiento) < ? " +
+                "ORDER BY c.fecha_prox_vencimiento DESC;";
+
+        val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")
+        val formattedDate = date.format(formatter)
+
+        val cursor = db.rawQuery(query, arrayOf(formattedDate))
 
         val socios = mutableListOf<SocioExpirationDayDto>()
 

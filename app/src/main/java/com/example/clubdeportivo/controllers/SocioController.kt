@@ -34,6 +34,10 @@ class SocioController(private val socioRepository: SocioRepository) {
         return socioRepository.listSocioByExpirationDay(date)
     }
 
+    fun listSociosMora(date: LocalDate): MutableList<SocioExpirationDayDto>{
+        return socioRepository.listSociosMora(date)
+    }
+
     fun updateState(idSocio: Int, newState: Boolean): Boolean {
         return socioRepository.updateState(idSocio, newState)
     }
