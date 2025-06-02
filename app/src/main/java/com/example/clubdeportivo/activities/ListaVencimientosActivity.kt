@@ -1,60 +1,44 @@
 package com.example.clubdeportivo.activities
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.clubdeportivo.R
+import com.example.clubdeportivo.controllers.SocioController
+import com.example.clubdeportivo.entities.dto.SocioExpirationDayDto
+import com.example.clubdeportivo.repositories.SocioRepository
+import com.example.clubdeportivo.utils.SuspendSocioUtils
 import com.example.clubdeportivo.utils.UserSessionUtil
 import com.example.clubdeportivo.utils.backRedirect
 import com.example.clubdeportivo.utils.setupLogoutButton
+import com.jakewharton.threetenabp.AndroidThreeTen
+import org.threeten.bp.LocalDate
+import org.threeten.bp.ZoneId
 
 class ListaVencimientosActivity : AppCompatActivity() {
+
+    private lateinit var socioController: SocioController
+    private lateinit var socios: MutableList<SocioExpirationDayDto>
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_lista_vencimientos)
 
-        // Personalizamos el header con el nombre del usuario
-        val username = UserSessionUtil.getUserSession(this)
-        val role = UserSessionUtil.getUserRole(this)
-        val txtWelcome: TextView = findViewById(R.id.txtWelcome)
-        txtWelcome.text = "Bienvenido! $username"
+        AndroidThreeTen.init(this)
+        setupUI()
 
-        // Boton para volver al menu principal
-        val btnBack : ImageButton = findViewById(R.id.back)
-        backRedirect(this, btnBack)
-
-        // Funcionalidad del botón Exit
-        val btnExit: ImageButton = findViewById(R.id.btnExit)
-        setupLogoutButton(this, btnExit)
-
-        // Setea el titulo dinámicamente
-        val title = findViewById<TextView>(R.id.title_socio)
-        title.text = "Lista de Vencimientos"
+        socioController = SocioController(SocioRepository(this))
+        socios = socioController.listSociosByExpiationDay(LocalDate.now(ZoneId.of("America/Argentina/Buenos_Aires")))
 
         // Configurar RecyclerView
         val rvMorosos: RecyclerView = findViewById(R.id.rvMorosos)
         rvMorosos.layoutManager = LinearLayoutManager(this)
-
-        // Datos de prueba (nombre, dni, fecha)
-        val socios = listOf(
-            Triple("Juan Pérez", "12345678", "15/05/2025"),
-            Triple("María Fernandez", "87654321", "20/03/2025"),
-            Triple("Carlos Martinez", "56781234", "10/04/2025"),
-            Triple("Ana Valdez", "43218765", "25/04/2025"),
-            Triple("Anibal Parra", "33698520", "30/04/2025"),
-            Triple("Segio Sosa", "54890365", "15/04/2025"),
-            Triple("Fabio Lamas", "29852047", "12/03/2025"),
-            Triple("Lorena Gonzalez", "40682127", "06/02/2025")
-        )
 
         /**
          * Adapter
@@ -74,15 +58,47 @@ class ListaVencimientosActivity : AppCompatActivity() {
 
             // 2. onBindViewHolder - Asigna los datos a las vistas
             override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-                val (nombre, dni, fechaVenc) = socios[position]
+
+                val socio = socios[position]
 
                 holder.itemView.apply {
-                    findViewById<TextView>(R.id.txtNombre).text = nombre
-                    findViewById<TextView>(R.id.txtDni).text = "DNI: $dni"
-                    findViewById<TextView>(R.id.txtFech_vencimiento).text = "Vencimiento: $fechaVenc"
+                    findViewById<TextView>(R.id.txtNombre).text = "${socio.name} ${socio.lastName}"
+                    findViewById<TextView>(R.id.txtDni).text = "DNI: ${socio.dni}"
+                    findViewById<TextView>(R.id.txtFech_vencimiento).text = "Vencimiento: ${socio.expirationDay}"
+
+                    findViewById<ImageButton>(R.id.additionalInfo).setOnClickListener {
+                        SuspendSocioUtils.showDialogSocioState(
+                            context = context,
+                            socio = socio,
+                            position = position,
+                            socios = socios,
+                            notifyItemChanged = { pos -> notifyItemChanged(pos) },
+                            socioController = socioController
+                        )
+                    }
                 }
             }
             override fun getItemCount(): Int = socios.size
         }
+    }
+
+    private fun setupUI(){
+        // Personalizamos el header con el nombre del usuario
+        val username = UserSessionUtil.getUserSession(this)
+        val role = UserSessionUtil.getUserRole(this)
+        val txtWelcome: TextView = findViewById(R.id.txtWelcome)
+        txtWelcome.text = "Bienvenido! $username"
+
+        // Boton para volver al menu principal
+        val btnBack : ImageButton = findViewById(R.id.back)
+        backRedirect(this, btnBack)
+
+        // Funcionalidad del botón Exit
+        val btnExit: ImageButton = findViewById(R.id.btnExit)
+        setupLogoutButton(this, btnExit)
+
+        // Setea el titulo dinámicamente
+        val title = findViewById<TextView>(R.id.title_socio)
+        title.text = "Lista de Vencimientos"
     }
 }

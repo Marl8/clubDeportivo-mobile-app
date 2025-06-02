@@ -53,7 +53,7 @@ class InscribirNoSocioActivity : AppCompatActivity() {
                 Toast.makeText(this, "Por favor complete todos los campos", Toast.LENGTH_SHORT).show()
             } else {
                 val noSocio = NoSocio(null, isAptoFisico, name, lastName, dni, email, phone)
-                val success = noSocioController.enrollSocio(noSocio)
+                val success = noSocioController.enrollNoSocio(noSocio)
                 if (success) {
                     ClearFormUtils.clearForm(formLayout)
                     Toast.makeText(this, "Inscripción exitosa", Toast.LENGTH_SHORT).show()

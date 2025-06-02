@@ -1,7 +1,9 @@
 package com.example.clubdeportivo.controllers
 
 import com.example.clubdeportivo.entities.Socio
+import com.example.clubdeportivo.entities.dto.SocioExpirationDayDto
 import com.example.clubdeportivo.repositories.SocioRepository
+import org.threeten.bp.LocalDate
 
 class SocioController(private val socioRepository: SocioRepository) {
 
@@ -22,5 +24,17 @@ class SocioController(private val socioRepository: SocioRepository) {
     fun getSocio(dni: String): Socio?{
         val socio: Socio? = socioRepository.findSocioByDni(dni)
         return socio
+    }
+
+    fun updateSocio(socio: Socio): Boolean{
+        return socioRepository.updateSocio(socio)
+    }
+
+    fun listSociosByExpiationDay(date: LocalDate): MutableList<SocioExpirationDayDto>{
+        return socioRepository.listSocioByExpirationDay(date)
+    }
+
+    fun updateState(idSocio: Int, newState: Boolean): Boolean {
+        return socioRepository.updateState(idSocio, newState)
     }
 }

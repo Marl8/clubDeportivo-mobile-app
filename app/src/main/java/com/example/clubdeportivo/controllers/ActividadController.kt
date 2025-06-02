@@ -14,32 +14,41 @@ class ActividadController(private val actividadRepository: ActividadRepository,
 
     fun enrollSocioActividad(nameActividad: String, dniSocio: String): Pair<Boolean, String> {
         var success = false
-        val message: String
+        var message: String
 
         val socio: Socio? = socioRepository.findSocioByDni(dniSocio)
         if (socio == null) {
             message = "El socio con DNI $dniSocio no existe."
         } else {
-            val actividad: Actividad? = actividadRepository.findActividadByName(nameActividad)
-            if (actividad == null) {
-                message = "La actividad '$nameActividad' no existe."
-            } else {
-                val isEnroll: Boolean = actividadRepository.isSocioAlreadyEnrolled(actividad.id, socio.idSocio)
-                if (isEnroll) {
-                    message = "El socio ya está inscripto en esta actividad."
-                } else if (actividad.quotaSocioAvailable <= 0) {
-                    message = "No hay cupo disponible para socios en esta actividad."
+            if(socio.stateSocio) {
+                val actividad: Actividad? = actividadRepository.findActividadByName(nameActividad)
+                if (actividad == null) {
+                    message = "La actividad '$nameActividad' no existe."
                 } else {
-                    val state = true
-                    success = actividadRepository.enrollSocioActividad(actividad.id, state, socio.idSocio)
-                     if (success) {
-                         actividad.quotaSocioAvailable -= 1
-                         actividadRepository.updateActividad(actividad)
-                         message = "Inscripción realizada con éxito."
+                    val isEnroll: Boolean =
+                        actividadRepository.isSocioAlreadyEnrolled(actividad.id, socio.idSocio)
+                    if (isEnroll) {
+                        message = "El socio ya está inscripto en esta actividad."
+                    } else if (actividad.quotaSocioAvailable <= 0) {
+                        message = "No hay cupo disponible para socios en esta actividad."
                     } else {
-                         message = "Error al actualizar la actividad."
+                        val state = true
+                        success = actividadRepository.enrollSocioActividad(
+                            actividad.id,
+                            state,
+                            socio.idSocio
+                        )
+                        if (success) {
+                            actividad.quotaSocioAvailable -= 1
+                            actividadRepository.updateActividad(actividad)
+                            message = "Inscripción realizada con éxito."
+                        } else {
+                            message = "Error al actualizar la actividad."
+                        }
                     }
                 }
+            } else{
+                message = "El socio esta suspendido por falta de pago."
             }
         }
         return Pair(success, message)

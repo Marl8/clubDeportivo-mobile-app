@@ -10,6 +10,7 @@ import androidx.core.graphics.drawable.toDrawable
 import com.example.clubdeportivo.R
 import com.example.clubdeportivo.controllers.CuotaController
 import com.example.clubdeportivo.controllers.SocioController
+import com.example.clubdeportivo.entities.Socio
 import com.example.clubdeportivo.fragments.CheckPaymentDialogFragment
 import com.example.clubdeportivo.repositories.CuotaRepository
 import com.example.clubdeportivo.repositories.SocioRepository
@@ -45,6 +46,10 @@ class PopupConfirmDataSocioActivity : AppCompatActivity() {
         val lastName = intent.getStringExtra("apellidoSocio")
         val id = intent.getStringExtra("idSocio")
         val dni = intent.getStringExtra("dniSocio")
+        val email = intent.getStringExtra("emailSocio")
+        val state = intent.getStringExtra("stateSocio")
+        val phone = intent.getStringExtra("dniPhone")
+        val apto = intent.getStringExtra("aptoFisico")
         val valueCuota = intent.getStringExtra("valueCuota")
         val payMethod = intent.getStringExtra("payMethod")
         val numCuotas = intent.getStringExtra("numberCuotas")
@@ -63,12 +68,23 @@ class PopupConfirmDataSocioActivity : AppCompatActivity() {
             else -> 1
         }
         btnConfirm.setOnClickListener {
-            var state = false
-            if (payMethod != null && valueCuota != null && dni != null) {
+
+            var dialogState = false
+            if (payMethod != null && valueCuota != null && nameSocio != null && lastName != null
+                && dni != null && email != null && phone != null) {
                 cuotaController.payCuota(payMethod, numberCuotas, valueCuota.toDouble(), dni)
-                state = true
+
+                dialogState = true
+                val aptoFisico = apto.toBoolean()
+                val stateString = intent.getStringExtra("stateSocio")
+                val stateBoolean = stateString?.toBoolean() ?: false  // Convertimos el String a Boolean
+                val newState = !stateBoolean
+                val socio = Socio(id?.toInt(), newState, aptoFisico, nameSocio, lastName, dni, email, phone)
+
+                // Rehabilitamos al socio en caso de ser necesario
+                socioController.updateSocio(socio)
             }
-            showCheckPaymentDialog(state)
+            showCheckPaymentDialog(dialogState)
         }
 
         btnCancel.setOnClickListener {

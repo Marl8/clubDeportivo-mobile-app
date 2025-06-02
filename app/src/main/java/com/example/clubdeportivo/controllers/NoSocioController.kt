@@ -5,7 +5,7 @@ import com.example.clubdeportivo.repositories.NoSocioRepository
 
 class NoSocioController(private val noSocioRepository: NoSocioRepository) {
 
-    fun enrollSocio(noSocio: NoSocio): Boolean{
+    fun enrollNoSocio(noSocio: NoSocio): Boolean{
         val exist = isExist(noSocio)
         var result = false
         if(!exist){
@@ -19,8 +19,8 @@ class NoSocioController(private val noSocioRepository: NoSocioRepository) {
         return noSocioRepository.existNoSocio(noSocio.dni)
     }
 
-    fun getSocio(dni: String): NoSocio?{
-        val socio: NoSocio? = noSocioRepository.findNoSocioByDni(dni)
-        return socio
+    fun getNoSocio(dni: String): NoSocio?{
+        val noSocio: NoSocio? = noSocioRepository.findNoSocioByDni(dni)
+        return noSocio
     }
 }

@@ -64,6 +64,10 @@ class PagarCuotaActivity : AppCompatActivity() {
                     intent.putExtra("nombreSocio", socio.name)
                     intent.putExtra("apellidoSocio", socio.lastName)
                     intent.putExtra("dniSocio", socio.dni)
+                    intent.putExtra("emailSocio", socio.email)
+                    intent.putExtra("stateSocio", socio.stateSocio)
+                    intent.putExtra("dniPhone", socio.phone)
+                    intent.putExtra("aptoFisico", socio.aptoFisico)
                     ClearFormUtils.clearForm(formLayout)
                     startActivity(intent)
                 }else{

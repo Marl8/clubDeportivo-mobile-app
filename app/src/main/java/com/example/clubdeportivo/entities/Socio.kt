@@ -2,7 +2,7 @@ package com.example.clubdeportivo.entities
 
 data class Socio(
     val idSocio: Int? = null,
-    val stateSocio: Boolean,
+    var stateSocio: Boolean,
     val aptoFisico: Boolean,
     override val name: String,
     override val lastName: String,
