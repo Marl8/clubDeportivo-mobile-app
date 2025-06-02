@@ -3,7 +3,6 @@ package com.example.clubdeportivo.repositories
 import android.content.ContentValues
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
-import android.util.Log
 import com.example.clubdeportivo.entities.Socio
 import com.example.clubdeportivo.entities.dto.SocioExpirationDayDto
 import com.example.clubdeportivo.helpers.DataBaseHelper
@@ -127,7 +126,7 @@ class SocioRepository(context: Context) {
                 "INNER JOIN (SELECT fk_socio, MAX(fecha_prox_vencimiento) AS max_fecha FROM cuotas GROUP BY fk_socio) AS px " +
                 "ON c.fk_socio = px.fk_socio AND c.fecha_prox_vencimiento = px.max_fecha " +
                 "WHERE date(c.fecha_prox_vencimiento) < ? " +
-                "ORDER BY c.fecha_prox_vencimiento DESC;";
+                "ORDER BY c.fecha_prox_vencimiento DESC;"
 
         val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")
         val formattedDate = date.format(formatter)
