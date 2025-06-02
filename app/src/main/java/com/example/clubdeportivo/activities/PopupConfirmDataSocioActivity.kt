@@ -1,6 +1,5 @@
 package com.example.clubdeportivo.activities
 
-import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.widget.TextView
@@ -14,7 +13,6 @@ import com.example.clubdeportivo.entities.Socio
 import com.example.clubdeportivo.fragments.CheckPaymentDialogFragment
 import com.example.clubdeportivo.repositories.CuotaRepository
 import com.example.clubdeportivo.repositories.SocioRepository
-import com.example.clubdeportivo.utils.ClearFormUtils
 import com.example.clubdeportivo.utils.ModalStyleUtils
 import com.google.android.material.button.MaterialButton
 

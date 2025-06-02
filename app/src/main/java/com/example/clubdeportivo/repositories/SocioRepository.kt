@@ -91,7 +91,7 @@ class SocioRepository(context: Context) {
 
         val query: String =  "SELECT s.id_socio, s.nombre, s.apellido, s.dni, c.fecha_prox_vencimiento, c.estado " +
                 "FROM socios AS s INNER JOIN cuotas AS c ON s.id_socio = c.fk_socio " +
-                "WHERE date(c.fecha_prox_vencimiento) = ?";
+                "WHERE date(c.fecha_prox_vencimiento) = ?"
 
         val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")
         val formattedDate = date.format(formatter)

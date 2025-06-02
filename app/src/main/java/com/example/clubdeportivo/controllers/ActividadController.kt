@@ -14,7 +14,7 @@ class ActividadController(private val actividadRepository: ActividadRepository,
 
     fun enrollSocioActividad(nameActividad: String, dniSocio: String): Pair<Boolean, String> {
         var success = false
-        var message: String
+        val message: String
 
         val socio: Socio? = socioRepository.findSocioByDni(dniSocio)
         if (socio == null) {

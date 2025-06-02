@@ -12,10 +12,8 @@ import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import com.example.clubdeportivo.R
-import com.example.clubdeportivo.controllers.CuotaController
 import com.example.clubdeportivo.controllers.SocioController
 import com.example.clubdeportivo.entities.Socio
-import com.example.clubdeportivo.repositories.CuotaRepository
 import com.example.clubdeportivo.repositories.SocioRepository
 import com.example.clubdeportivo.utils.ClearFormUtils
 import com.example.clubdeportivo.utils.UserSessionUtil
