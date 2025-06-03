@@ -2,7 +2,6 @@ package com.example.clubdeportivo.activities
 
 import android.content.Intent
 import android.os.Bundle
-import android.os.Message
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageButton
@@ -18,7 +17,6 @@ import com.example.clubdeportivo.controllers.ActividadController
 import com.example.clubdeportivo.controllers.NoSocioController
 import com.example.clubdeportivo.controllers.SocioController
 import com.example.clubdeportivo.fragments.CheckEnrollActividadFragment
-import com.example.clubdeportivo.fragments.CheckPaymentDialogFragment
 import com.example.clubdeportivo.repositories.ActividadRepository
 import com.example.clubdeportivo.repositories.NoSocioRepository
 import com.example.clubdeportivo.repositories.SocioRepository
