@@ -153,7 +153,7 @@ class SocioRepository(context: Context) {
         return socios
     }
 
-    fun updateState(idSocio: Int, newState: Boolean): Boolean {
+    fun updateState(idSocio: Int?, newState: Boolean): Boolean {
         val db = dbHelper.writableDatabase
         val values = ContentValues().apply {
             put("estado", if (newState) 1 else 0)

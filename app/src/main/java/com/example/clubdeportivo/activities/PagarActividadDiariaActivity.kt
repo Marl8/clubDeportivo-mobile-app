@@ -12,17 +12,21 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import com.example.clubdeportivo.R
 import com.example.clubdeportivo.controllers.ActividadController
+import com.example.clubdeportivo.controllers.NoSocioController
+import com.example.clubdeportivo.entities.NoSocio
 import com.example.clubdeportivo.fragments.CheckEnrollActividadFragment
 import com.example.clubdeportivo.repositories.ActividadRepository
 import com.example.clubdeportivo.repositories.NoSocioRepository
 import com.example.clubdeportivo.repositories.SocioRepository
 import com.example.clubdeportivo.utils.*
 import com.google.android.material.button.MaterialButton
+import com.jakewharton.threetenabp.AndroidThreeTen
 
 class PagarActividadDiariaActivity: AppCompatActivity() {
 
     private var optionSelect: String = ""
     private lateinit var actividadController: ActividadController
+    private lateinit var noSocioController: NoSocioController
 
     /**
      * Registra un lanzador de resultados y utiliza un contrato que te permite iniciar
@@ -43,11 +47,13 @@ class PagarActividadDiariaActivity: AppCompatActivity() {
 
         setupUI()
         btnSelectActivityOnClick()
+        AndroidThreeTen.init(this)
 
         actividadController = ActividadController(
             ActividadRepository(this),
             SocioRepository(this), NoSocioRepository(this)
         )
+        noSocioController = NoSocioController(NoSocioRepository(this))
         val txtDni: EditText = findViewById(R.id.dniInput)
         val btnSelectActividad: Button = findViewById(R.id.btnSelectActivity)
         val txtAmount: EditText = findViewById(R.id.amount)
@@ -62,8 +68,17 @@ class PagarActividadDiariaActivity: AppCompatActivity() {
             val dni = txtDni.text.toString().trim()
             val amount = txtAmount.text.toString().trim().toDouble()
             if(optionSelect.isNotEmpty() && dni.isNotEmpty()) {
-                val (successEnroll, messageEnroll) = actividadController.paymentDiaryActividad(optionSelect.lowercase(), dni, amount)
-                showEnrollDialog(messageEnroll, successEnroll)
+                val noSocio: NoSocio? = noSocioController.getNoSocio(dni)
+
+                ConfirmPaymentDialogUtils.showDairyPaymentDialog(this, noSocio, optionSelect, amount) { confirmed ->
+                    if (confirmed) {
+                        val (successEnroll, messageEnroll) = actividadController.paymentDiaryActividad(optionSelect.lowercase(), dni, amount)
+                        showEnrollDialog(messageEnroll, successEnroll)
+                    } else {
+                        // Acción si el usuario cancela
+                        Toast.makeText(this, "Operación cancelada", Toast.LENGTH_SHORT).show()
+                    }
+                }
             } else{
                 Toast.makeText(this, "Faltan completar datos", Toast.LENGTH_SHORT).show()
             }
@@ -91,7 +106,7 @@ class PagarActividadDiariaActivity: AppCompatActivity() {
     }
 
     private fun btnSelectActivityOnClick(){
-        val button = findViewById<Button>(R.id.btnSelectActivity)
+        val button: Button = findViewById(R.id.btnSelectActivity)
         button.setOnClickListener{
             val intent = Intent(this, PopupSeleccionarActividad::class.java)
             startActivity(intent)

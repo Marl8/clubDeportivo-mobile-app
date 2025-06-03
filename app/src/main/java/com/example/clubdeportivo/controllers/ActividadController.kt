@@ -7,6 +7,7 @@ import com.example.clubdeportivo.repositories.ActividadRepository
 import com.example.clubdeportivo.repositories.NoSocioRepository
 import com.example.clubdeportivo.repositories.SocioRepository
 import org.threeten.bp.LocalDate
+import org.threeten.bp.ZoneId
 
 class ActividadController(private val actividadRepository: ActividadRepository,
                           private val socioRepository: SocioRepository,
@@ -25,19 +26,14 @@ class ActividadController(private val actividadRepository: ActividadRepository,
                 if (actividad == null) {
                     message = "La actividad '$nameActividad' no existe."
                 } else {
-                    val isEnroll: Boolean =
-                        actividadRepository.isSocioAlreadyEnrolled(actividad.id, socio.idSocio)
+                    val isEnroll: Boolean = actividadRepository.isSocioAlreadyEnrolled(actividad.id, socio.idSocio)
                     if (isEnroll) {
                         message = "El socio ya está inscripto en esta actividad."
                     } else if (actividad.quotaSocioAvailable <= 0) {
                         message = "No hay cupo disponible para socios en esta actividad."
                     } else {
                         val state = true
-                        success = actividadRepository.enrollSocioActividad(
-                            actividad.id,
-                            state,
-                            socio.idSocio
-                        )
+                        success = actividadRepository.enrollSocioActividad(actividad.id, state, socio.idSocio)
                         if (success) {
                             actividad.quotaSocioAvailable -= 1
                             actividadRepository.updateActividad(actividad)
@@ -103,7 +99,9 @@ class ActividadController(private val actividadRepository: ActividadRepository,
                 } else if (actividad.quotaNoSocioAvailable <= 0) {
                     message = "No hay cupo disponible para no socios en esta actividad."
                 } else {
-                    val date = LocalDate.now()
+                    val date = LocalDate.now(
+                        ZoneId.of(
+                        "America/Argentina/Buenos_Aires"))
 
                     if(noSocio.idNoSocio != null){
                         count = actividadRepository.findNoSocioQuotaAvailable(actividad.id, LocalDate.now())

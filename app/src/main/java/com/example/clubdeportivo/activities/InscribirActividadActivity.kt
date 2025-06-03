@@ -15,6 +15,8 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import com.example.clubdeportivo.R
 import com.example.clubdeportivo.controllers.ActividadController
+import com.example.clubdeportivo.controllers.NoSocioController
+import com.example.clubdeportivo.controllers.SocioController
 import com.example.clubdeportivo.fragments.CheckEnrollActividadFragment
 import com.example.clubdeportivo.fragments.CheckPaymentDialogFragment
 import com.example.clubdeportivo.repositories.ActividadRepository
@@ -27,7 +29,11 @@ class InscribirActividadActivity: AppCompatActivity() {
 
     private var optionSelect: String = ""
     private var client: String = ""
+    private var name: String = ""
+    private var isConfirm: Boolean = false
     private lateinit var actividadController: ActividadController
+    private lateinit var socioController: SocioController
+    private lateinit var noSocioController: NoSocioController
 
     /**
      * Registra un lanzador de resultados y utiliza un contrato que te permite iniciar
@@ -51,13 +57,15 @@ class InscribirActividadActivity: AppCompatActivity() {
 
         actividadController = ActividadController(ActividadRepository(this),
             SocioRepository(this), NoSocioRepository(this))
+        socioController = SocioController(SocioRepository(this))
+        noSocioController = NoSocioController(NoSocioRepository(this))
         val txtDni: EditText = findViewById(R.id.dniInput)
         val btnSelectActividad: Button = findViewById(R.id.btnSelectActivity)
         val radioGroup: RadioGroup = findViewById(R.id.radioGroupClient)
         val btnSend: MaterialButton = findViewById(R.id.send)
 
-        var success = false
-        var message = ""
+        var success: Boolean
+        var message: String
 
         radioGroup.setOnCheckedChangeListener { group, radioGroupClient ->
             val selectedRadioButton: RadioButton = findViewById(radioGroupClient)
@@ -80,15 +88,32 @@ class InscribirActividadActivity: AppCompatActivity() {
             val dni = txtDni.text.toString().trim()
             if(optionSelect.isNotEmpty() && dni.isNotEmpty()) {
                 if (client == "Socio") {
-                    val (successEnroll, messageEnroll) = actividadController.enrollSocioActividad(optionSelect.lowercase(), dni)
-                    message = messageEnroll
-                    success = successEnroll
+                    val socio = socioController.getSocio(dni)
+                    if (socio != null) {
+                        name = socio.name
+                    }
+                    if(isConfirm){
+                        val (successEnroll, messageEnroll) = actividadController.enrollSocioActividad(optionSelect.lowercase(), dni)
+                        message = messageEnroll
+                        success = successEnroll
+                        showEnrollDialog(message, success)
+                    }else {
+                        showConfirmDialog()
+                    }
                 } else if(client == "No Socio"){
-                    val (successEnroll, messageEnroll) = actividadController.enrollNoSocioActividad(optionSelect.lowercase(), dni)
-                    message = messageEnroll
-                    success = successEnroll
+                    val noSocio = noSocioController.getNoSocio(dni)
+                    if(noSocio != null){
+                        name = noSocio.name
+                    }
+                    if(isConfirm){
+                        val (successEnroll, messageEnroll) = actividadController.enrollNoSocioActividad(optionSelect.lowercase(), dni)
+                        message = messageEnroll
+                        success = successEnroll
+                        showEnrollDialog(message, success)
+                    }else {
+                        showConfirmDialog()
+                    }
                 }
-                showEnrollDialog(message, success)
             } else{
                 Toast.makeText(this, "Faltan completar datos", Toast.LENGTH_SHORT).show()
             }
@@ -121,6 +146,18 @@ class InscribirActividadActivity: AppCompatActivity() {
         // Funcionalidad del botón Exit
         val btnExit: ImageButton = findViewById(R.id.btnExit)
         setupLogoutButton(this, btnExit)
+    }
+
+    private fun showConfirmDialog(){
+        ConfirmPaymentDialogUtils.showEnrollActividadDialog(this, name, optionSelect) { confirmed ->
+            if (confirmed) {
+                isConfirm = confirmed
+                Toast.makeText(this, "Datos confirmados.", Toast.LENGTH_SHORT).show()
+            } else {
+                // Acción si el usuario cancela
+                Toast.makeText(this, "Operación cancelada", Toast.LENGTH_SHORT).show()
+            }
+        }
     }
 
     private fun showEnrollDialog(message: String, success: Boolean) {

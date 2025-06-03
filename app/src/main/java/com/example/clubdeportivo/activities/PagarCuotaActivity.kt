@@ -1,6 +1,5 @@
 package com.example.clubdeportivo.activities
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
@@ -14,6 +13,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.clubdeportivo.R
 import com.example.clubdeportivo.controllers.SocioController
 import com.example.clubdeportivo.entities.Socio
+import com.example.clubdeportivo.fragments.PopupSocioDialogFragment
 import com.example.clubdeportivo.repositories.SocioRepository
 import com.example.clubdeportivo.utils.ClearFormUtils
 import com.example.clubdeportivo.utils.UserSessionUtil
@@ -54,20 +54,22 @@ class PagarCuotaActivity : AppCompatActivity() {
             }else {
                 val socio: Socio? = socioController.getSocio(dni)
                 if (socio != null) {
-                    val intent = Intent(this, PopupConfirmDataSocioActivity::class.java)
-                    intent.putExtra("valueCuota", amountCuota)
-                    intent.putExtra("payMethod", paymentMethod)
-                    intent.putExtra("numberCuotas", installment)
-                    intent.putExtra("idSocio", socio.idSocio.toString())
-                    intent.putExtra("nombreSocio", socio.name)
-                    intent.putExtra("apellidoSocio", socio.lastName)
-                    intent.putExtra("dniSocio", socio.dni)
-                    intent.putExtra("emailSocio", socio.email)
-                    intent.putExtra("stateSocio", socio.stateSocio)
-                    intent.putExtra("dniPhone", socio.phone)
-                    intent.putExtra("aptoFisico", socio.aptoFisico)
+                    val bundle = Bundle().apply {
+                        putString("valueCuota", amountCuota)
+                        putString("payMethod", paymentMethod)
+                        putString("numberCuotas", installment)
+                        putString("idSocio", socio.idSocio.toString())
+                        putString("nombreSocio", socio.name)
+                        putString("apellidoSocio", socio.lastName)
+                        putString("dniSocio", socio.dni)
+                        putString("emailSocio", socio.email)
+                        putString("stateSocio", socio.stateSocio.toString())
+                        putString("dniPhone", socio.phone)
+                        putString("aptoFisico", socio.aptoFisico.toString())
+                    }
+                    val dialog = PopupSocioDialogFragment.newInstance(bundle)
                     ClearFormUtils.clearForm(formLayout)
-                    startActivity(intent)
+                    dialog.show(supportFragmentManager, "PopupConfirmSocio")
                 }else{
                     Toast.makeText(this, "Error el socio no existe", Toast.LENGTH_SHORT).show()
                 }
