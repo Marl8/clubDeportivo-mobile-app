@@ -134,7 +134,6 @@ class InscribirActividadActivity: AppCompatActivity() {
 
         // Personalizamos el header con el nombre del usuario
         val username = UserSessionUtil.getUserSession(this)
-        val role = UserSessionUtil.getUserRole(this)
         val txtWelcome: TextView = findViewById(R.id.txtWelcome)
         txtWelcome.text = "Bienvenido! $username"
 
@@ -145,7 +144,6 @@ class InscribirActividadActivity: AppCompatActivity() {
         // Funcionalidad del botón Exit
         val btnExit: ImageButton = findViewById(R.id.btnExit)
         setupLogoutButton(this, btnExit)
-
     }
 
     private fun showConfirmDialog(){

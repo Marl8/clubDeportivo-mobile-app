@@ -128,7 +128,5 @@ class PagarCuotaActivity : AppCompatActivity() {
         // Funcionalidad del botón Exit
         val btnExit: ImageButton = findViewById(R.id.btnExit)
         setupLogoutButton(this, btnExit)
-
-        // Navigation Drawer
     }
 }

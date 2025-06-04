@@ -108,7 +108,5 @@ class ListaVencimientosActivity : AppCompatActivity() {
         // Setea el titulo dinámicamente
         val title = findViewById<TextView>(R.id.title_socio)
         title.text = "Lista de Vencimientos"
-
-        // Navigation Drawer
     }
 }

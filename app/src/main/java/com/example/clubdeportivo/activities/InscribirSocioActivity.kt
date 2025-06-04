@@ -88,7 +88,6 @@ class InscribirSocioActivity : AppCompatActivity() {
 
         // Personalizamos el header con el nombre del usuario
         val username = UserSessionUtil.getUserSession(this)
-        val role = UserSessionUtil.getUserRole(this)
         val txtWelcome: TextView = findViewById(R.id.txtWelcome)
         txtWelcome.text = "Bienvenido! $username"
 
@@ -99,7 +98,5 @@ class InscribirSocioActivity : AppCompatActivity() {
         //Botón para cerrar sesión
         val btnExit: ImageButton = findViewById(R.id.btnExit)
         setupLogoutButton(this, btnExit)
-
-        // Navigation Drawer
     }
 }

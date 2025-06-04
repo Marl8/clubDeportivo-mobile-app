@@ -4,7 +4,6 @@ import android.content.ContentValues
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import com.example.clubdeportivo.entities.Actividad
-import com.example.clubdeportivo.entities.dto.SocioExpirationDayDto
 import com.example.clubdeportivo.helpers.DataBaseHelper
 import org.threeten.bp.LocalDate
 

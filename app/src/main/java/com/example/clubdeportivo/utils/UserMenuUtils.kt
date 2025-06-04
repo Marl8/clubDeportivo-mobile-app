@@ -9,7 +9,6 @@ import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import com.example.clubdeportivo.R
 import com.example.clubdeportivo.activities.BuscarClienteActivity
-import com.example.clubdeportivo.activities.CarnetActivity
 import com.example.clubdeportivo.activities.ListaDiariaNoSociosHabilitadosActivity
 import com.example.clubdeportivo.activities.NuevaActividadActivity
 import com.google.android.material.navigation.NavigationView

@@ -57,7 +57,7 @@ class PopupSeleccionarActividad : AppCompatActivity() {
 
         // Crear RadioButtons con íds
         for (activity in activities) {
-            val activityId = activity.id ?: continue  // salta si es null
+            activity.id ?: continue  // salta si es null
             val radioButton = RadioButton(this).apply {
                 id = activity.id
                 text = activity.name

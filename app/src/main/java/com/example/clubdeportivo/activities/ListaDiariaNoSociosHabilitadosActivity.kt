@@ -71,12 +71,7 @@ class ListaDiariaNoSociosHabilitadosActivity : AppCompatActivity() {
                         findViewById<ImageButton>(R.id.additionalInfo).setOnClickListener {
                             StateSocioDialogUtils.showDialogNoSociosEnabled(
                                 context = context,
-                                noSocio = noSocio,
-                                position = position,
-                                socios = noSocios,
-                                notifyItemChanged = { pos -> notifyItemChanged(pos) },
-                                noSocioController = noSocioController
-                            )
+                                noSocio = noSocio)
                         }
                     }
                 }else {

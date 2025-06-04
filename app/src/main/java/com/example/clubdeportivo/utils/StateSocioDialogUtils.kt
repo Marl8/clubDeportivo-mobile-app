@@ -49,11 +49,7 @@ object StateSocioDialogUtils {
 
     fun showDialogNoSociosEnabled(
         context: Context,
-        noSocio: NoSocioEnabledDto,
-        position: Int,
-        socios: List<NoSocioEnabledDto>,
-        notifyItemChanged: (Int) -> Unit,
-        noSocioController: NoSocioController
+        noSocio: NoSocioEnabledDto
     ) {
         AlertDialog.Builder(context).apply {
             setTitle("Actividad Habilitada")

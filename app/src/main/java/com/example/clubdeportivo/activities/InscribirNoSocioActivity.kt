@@ -75,7 +75,6 @@ class InscribirNoSocioActivity : AppCompatActivity() {
     private fun setupUI(){
         // Personalizamos el header con el nombre del usuario
         val username = UserSessionUtil.getUserSession(this)
-        val role = UserSessionUtil.getUserRole(this)
         val txtWelcome: TextView = findViewById(R.id.txtWelcome)
         txtWelcome.text = "Bienvenido! $username"
 

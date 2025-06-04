@@ -26,9 +26,6 @@
             android:name=".activities.BuscarClienteActivity"
             android:exported="false" />
         <activity
-            android:name=".activities.PopupConfirmDataSocioActivity"
-            android:exported="false" />
-        <activity
             android:name=".activities.InscribirActividadActivity"
             android:exported="false" />
         <activity
