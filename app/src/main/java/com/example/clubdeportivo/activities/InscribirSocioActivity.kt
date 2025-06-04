@@ -13,10 +13,12 @@ import com.example.clubdeportivo.controllers.SocioController
 import com.example.clubdeportivo.entities.Socio
 import com.example.clubdeportivo.repositories.SocioRepository
 import com.example.clubdeportivo.utils.ClearFormUtils
+import com.example.clubdeportivo.utils.UserMenuUtils
 import com.example.clubdeportivo.utils.UserSessionUtil
 import com.example.clubdeportivo.utils.backRedirect
 import com.example.clubdeportivo.utils.setupLogoutButton
 import com.google.android.material.button.MaterialButton
+
 
 class InscribirSocioActivity : AppCompatActivity() {
 
@@ -25,8 +27,9 @@ class InscribirSocioActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        setContentView(R.layout.activity_inscribir_socio)
+        setContentView(R.layout.drawer_inscribir_socios)
 
+        UserMenuUtils.setupDrawer(this)
         setupUI()
 
         socioController = SocioController(SocioRepository(this))
@@ -81,7 +84,7 @@ class InscribirSocioActivity : AppCompatActivity() {
         }
     }
 
-    private fun setupUI(){
+    private fun setupUI() {
 
         // Personalizamos el header con el nombre del usuario
         val username = UserSessionUtil.getUserSession(this)
@@ -90,11 +93,13 @@ class InscribirSocioActivity : AppCompatActivity() {
         txtWelcome.text = "Bienvenido! $username"
 
         // Botón para volver al menu principal
-        val btnBack : ImageButton = findViewById(R.id.back)
-        backRedirect(this,btnBack)
+        val btnBack: ImageButton = findViewById(R.id.back)
+        backRedirect(this, btnBack)
 
         //Botón para cerrar sesión
         val btnExit: ImageButton = findViewById(R.id.btnExit)
         setupLogoutButton(this, btnExit)
+
+        // Navigation Drawer
     }
 }

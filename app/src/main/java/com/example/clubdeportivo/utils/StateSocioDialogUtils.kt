@@ -2,7 +2,9 @@ package com.example.clubdeportivo.utils
 
 import android.content.Context
 import androidx.appcompat.app.AlertDialog
+import com.example.clubdeportivo.controllers.NoSocioController
 import com.example.clubdeportivo.controllers.SocioController
+import com.example.clubdeportivo.entities.dto.NoSocioEnabledDto
 import com.example.clubdeportivo.entities.dto.SocioExpirationDayDto
 
 object StateSocioDialogUtils {
@@ -41,6 +43,23 @@ object StateSocioDialogUtils {
                 notifyItemChanged(position)
             }
             setNegativeButton("Cancelar", null)
+            show()
+        }
+    }
+
+    fun showDialogNoSociosEnabled(
+        context: Context,
+        noSocio: NoSocioEnabledDto,
+        position: Int,
+        socios: List<NoSocioEnabledDto>,
+        notifyItemChanged: (Int) -> Unit,
+        noSocioController: NoSocioController
+    ) {
+        AlertDialog.Builder(context).apply {
+            setTitle("Actividad Habilitada")
+            setMessage("Actividad: ${noSocio.nameAct}")
+
+            setNegativeButton("Aceptar", null)
             show()
         }
     }

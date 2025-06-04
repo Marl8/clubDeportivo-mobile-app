@@ -16,7 +16,7 @@ import com.example.clubdeportivo.R
 import com.example.clubdeportivo.controllers.ActividadController
 import com.example.clubdeportivo.controllers.NoSocioController
 import com.example.clubdeportivo.controllers.SocioController
-import com.example.clubdeportivo.fragments.CheckEnrollActividadFragment
+import com.example.clubdeportivo.fragments.CheckEnrollActividadDialogFragment
 import com.example.clubdeportivo.repositories.ActividadRepository
 import com.example.clubdeportivo.repositories.NoSocioRepository
 import com.example.clubdeportivo.repositories.SocioRepository
@@ -48,8 +48,9 @@ class InscribirActividadActivity: AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        setContentView(R.layout.activity_inscribir_actividad)
+        setContentView(R.layout.drawer_inscribir_actividad)
 
+        UserMenuUtils.setupDrawer(this)
         setupUI()
         btnSelectActivityOnClick()
 
@@ -88,7 +89,7 @@ class InscribirActividadActivity: AppCompatActivity() {
                 if (client == "Socio") {
                     val socio = socioController.getSocio(dni)
                     if (socio != null) {
-                        name = socio.name
+                        name = "${socio.name} ${socio.lastName}"
                     }
                     if(isConfirm){
                         val (successEnroll, messageEnroll) = actividadController.enrollSocioActividad(optionSelect.lowercase(), dni)
@@ -101,7 +102,7 @@ class InscribirActividadActivity: AppCompatActivity() {
                 } else if(client == "No Socio"){
                     val noSocio = noSocioController.getNoSocio(dni)
                     if(noSocio != null){
-                        name = noSocio.name
+                        name = "${noSocio.name} ${noSocio.lastName}"
                     }
                     if(isConfirm){
                         val (successEnroll, messageEnroll) = actividadController.enrollNoSocioActividad(optionSelect.lowercase(), dni)
@@ -144,6 +145,7 @@ class InscribirActividadActivity: AppCompatActivity() {
         // Funcionalidad del botón Exit
         val btnExit: ImageButton = findViewById(R.id.btnExit)
         setupLogoutButton(this, btnExit)
+
     }
 
     private fun showConfirmDialog(){
@@ -159,7 +161,7 @@ class InscribirActividadActivity: AppCompatActivity() {
     }
 
     private fun showEnrollDialog(message: String, success: Boolean) {
-        val dialog = CheckEnrollActividadFragment.newInstance(message, success)
+        val dialog = CheckEnrollActividadDialogFragment.newInstance(message, success)
         dialog.show(supportFragmentManager, "CheckPaymentDialog")
     }
 }

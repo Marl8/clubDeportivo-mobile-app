@@ -14,7 +14,7 @@ import com.example.clubdeportivo.R
 import com.example.clubdeportivo.controllers.ActividadController
 import com.example.clubdeportivo.controllers.NoSocioController
 import com.example.clubdeportivo.entities.NoSocio
-import com.example.clubdeportivo.fragments.CheckEnrollActividadFragment
+import com.example.clubdeportivo.fragments.CheckEnrollActividadDialogFragment
 import com.example.clubdeportivo.repositories.ActividadRepository
 import com.example.clubdeportivo.repositories.NoSocioRepository
 import com.example.clubdeportivo.repositories.SocioRepository
@@ -43,8 +43,9 @@ class PagarActividadDiariaActivity: AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        setContentView(R.layout.activity_pagar_actividad_diaria)
+        setContentView(R.layout.drawer_pagar_actividad_diaria)
 
+        UserMenuUtils.setupDrawer(this)
         setupUI()
         btnSelectActivityOnClick()
         AndroidThreeTen.init(this)
@@ -65,9 +66,13 @@ class PagarActividadDiariaActivity: AppCompatActivity() {
         }
 
         btnSend.setOnClickListener {
+            var amount = 0.0
             val dni = txtDni.text.toString().trim()
-            val amount = txtAmount.text.toString().trim().toDouble()
-            if(optionSelect.isNotEmpty() && dni.isNotEmpty()) {
+            val amountStr = txtAmount.text.toString().trim()
+            if(amountStr != ""){
+                amount = amountStr.toDouble()
+            }
+            if(optionSelect.isNotEmpty() && dni.isNotEmpty() && amount != 0.0) {
                 val noSocio: NoSocio? = noSocioController.getNoSocio(dni)
 
                 ConfirmPaymentDialogUtils.showDairyPaymentDialog(this, noSocio, optionSelect, amount) { confirmed ->
@@ -88,7 +93,6 @@ class PagarActividadDiariaActivity: AppCompatActivity() {
     private fun setupUI(){
         // Personalizamos el header con el nombre del usuario
         val username = UserSessionUtil.getUserSession(this)
-        val role = UserSessionUtil.getUserRole(this)
         val txtWelcome: TextView = findViewById(R.id.txtWelcome)
         txtWelcome.text = "Bienvenido! $username"
 
@@ -103,6 +107,8 @@ class PagarActividadDiariaActivity: AppCompatActivity() {
         // Funcionalidad del botón Exit
         val btnExit: ImageButton = findViewById(R.id.btnExit)
         setupLogoutButton(this, btnExit)
+
+        // Navigation Drawer
     }
 
     private fun btnSelectActivityOnClick(){
@@ -114,7 +120,7 @@ class PagarActividadDiariaActivity: AppCompatActivity() {
     }
 
     private fun showEnrollDialog(message: String, success: Boolean) {
-        val dialog = CheckEnrollActividadFragment.newInstance(message, success)
+        val dialog = CheckEnrollActividadDialogFragment.newInstance(message, success)
         dialog.show(supportFragmentManager, "CheckPaymentDialog")
     }
 }

@@ -10,7 +10,11 @@ object UserSessionUtil {
     }
 
     fun getUserRole(context: Context): String {
-        return context.getSharedPreferences("user_prefs", Context.MODE_PRIVATE)
-            .getString("role", "Empleado") ?: "Empleado"
+        var role = context.getSharedPreferences("user_prefs", Context.MODE_PRIVATE)
+            .getString("role", "1") ?: "Empleado"
+        if(role == "1") {
+            role = "Administrador"
+        }
+        return role
     }
 }

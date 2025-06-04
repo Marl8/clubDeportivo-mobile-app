@@ -1,7 +1,9 @@
 package com.example.clubdeportivo.controllers
 
 import com.example.clubdeportivo.entities.NoSocio
+import com.example.clubdeportivo.entities.dto.NoSocioEnabledDto
 import com.example.clubdeportivo.repositories.NoSocioRepository
+import org.threeten.bp.LocalDate
 
 class NoSocioController(private val noSocioRepository: NoSocioRepository) {
 
@@ -22,5 +24,9 @@ class NoSocioController(private val noSocioRepository: NoSocioRepository) {
     fun getNoSocio(dni: String): NoSocio?{
         val noSocio: NoSocio? = noSocioRepository.findNoSocioByDni(dni)
         return noSocio
+    }
+
+    fun getListNoSociosDayEnabled(date: LocalDate): List<NoSocioEnabledDto>{
+        return noSocioRepository.listNoSocioEnabled(date)
     }
 }

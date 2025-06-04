@@ -14,7 +14,9 @@ class MenuActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        setContentView(R.layout.activity_menu)
+        setContentView(R.layout.drawer_main_menu)
+
+        UserMenuUtils.setupDrawer(this)
 
         val btnSocio: ImageButton = findViewById(R.id.btnSocio)
         val btnNoSocio: ImageButton = findViewById(R.id.btnNoSocio)
@@ -29,7 +31,6 @@ class MenuActivity : AppCompatActivity() {
 
         // Personalizamos el header con el nombre del usuario
         val username = UserSessionUtil.getUserSession(this)
-        val role = UserSessionUtil.getUserRole(this)
         txtWelcome.text = "Bienvenido! $username"
 
         //Botón para cerrar sesión

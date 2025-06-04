@@ -6,7 +6,7 @@
     android:orientation="vertical"
     android:layout_height="match_parent"
     android:background="@color/white"
-    tools:context=".activities.ListaMorososActivity">
+    tools:context=".activities.ListaDiariaNoSociosHabilitadosActivity">
 
     <include layout="@layout/component_header_layout" />
     <include layout="@layout/component_logo_layout" />
@@ -22,7 +22,7 @@
         android:padding="16dp">
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rvMorosos"
+            android:id="@+id/rvNoSocios"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:clipToPadding="false"

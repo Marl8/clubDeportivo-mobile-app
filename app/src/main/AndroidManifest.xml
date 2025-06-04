@@ -16,11 +16,18 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ClubDeportivo"
         tools:targetApi="31">
-
+        <activity
+            android:name=".activities.ListaDiariaNoSociosHabilitadosActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.NuevaActividadActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.BuscarClienteActivity"
+            android:exported="false" />
         <activity
             android:name=".activities.PopupConfirmDataSocioActivity"
             android:exported="false" />
-
         <activity
             android:name=".activities.InscribirActividadActivity"
             android:exported="false" />
@@ -75,4 +82,5 @@
                 android:resource="@xml/file_paths" />
         </provider>
     </application>
+
 </manifest>

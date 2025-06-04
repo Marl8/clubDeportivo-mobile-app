@@ -16,6 +16,7 @@ import com.example.clubdeportivo.entities.Socio
 import com.example.clubdeportivo.fragments.PopupSocioDialogFragment
 import com.example.clubdeportivo.repositories.SocioRepository
 import com.example.clubdeportivo.utils.ClearFormUtils
+import com.example.clubdeportivo.utils.UserMenuUtils
 import com.example.clubdeportivo.utils.UserSessionUtil
 import com.example.clubdeportivo.utils.backRedirect
 import com.example.clubdeportivo.utils.setupLogoutButton
@@ -31,9 +32,10 @@ class PagarCuotaActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        setContentView(R.layout.activity_pagar_cuota)
+        setContentView(R.layout.drawer_pagar_cuota)
         AndroidThreeTen.init(this)
 
+        UserMenuUtils.setupDrawer(this)
         setupUI()
         setupDropdwons()
 
@@ -112,7 +114,6 @@ class PagarCuotaActivity : AppCompatActivity() {
 
         // Personalizamos el header con el nombre del usuario
         val username = UserSessionUtil.getUserSession(this)
-        val role = UserSessionUtil.getUserRole(this)
         val txtWelcome: TextView = findViewById(R.id.txtWelcome)
         txtWelcome.text = "Bienvenido! $username"
 
@@ -127,5 +128,7 @@ class PagarCuotaActivity : AppCompatActivity() {
         // Funcionalidad del botón Exit
         val btnExit: ImageButton = findViewById(R.id.btnExit)
         setupLogoutButton(this, btnExit)
+
+        // Navigation Drawer
     }
 }

@@ -22,6 +22,7 @@ import androidx.core.graphics.createBitmap
 import com.example.clubdeportivo.controllers.SocioController
 import com.example.clubdeportivo.entities.Socio
 import com.example.clubdeportivo.repositories.SocioRepository
+import com.example.clubdeportivo.utils.UserMenuUtils
 import java.io.File
 import java.io.FileOutputStream
 
@@ -32,8 +33,9 @@ class CarnetActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        setContentView(R.layout.activity_carnet)
+        setContentView(R.layout.drawer_carnet)
 
+        UserMenuUtils.setupDrawer(this)
         setUI()
 
         socioController = SocioController(SocioRepository(this))
@@ -41,7 +43,7 @@ class CarnetActivity : AppCompatActivity() {
         val btnSearch: MaterialButton = findViewById(R.id.search)
         val btnCarnet: MaterialButton = findViewById(R.id.btnCarnet)
 
-        var socio: Socio?
+        var socio: Socio? = null
         btnSearch.setOnClickListener {
             socio = socioController.getSocio(txtDniSocio.text.toString())
             txtDniSocio.text.clear()
@@ -68,7 +70,11 @@ class CarnetActivity : AppCompatActivity() {
         btnCarnet.setOnClickListener {
             val carnet: CardView = findViewById(R.id.carnet)
             carnet.post {
-                generateCarnet()
+                if(socio != null) {
+                    generateCarnet()
+                    }else {
+                    Toast.makeText(this, "No se ha cargado un Cliente", Toast.LENGTH_LONG).show()
+                    }
                 }
             }
         }

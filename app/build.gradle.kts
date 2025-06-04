@@ -49,10 +49,13 @@ dependencies {
     implementation(libs.material)
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
+    implementation(libs.filament.android)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
 
     //  Librería ThreeTenABP para compatibilidad de la API LocalDate con versiones anteriores a la 26
     implementation(libs.threetenabp)
+    implementation (libs.androidx.drawerlayout)
+    implementation (libs.material.v190)
 }

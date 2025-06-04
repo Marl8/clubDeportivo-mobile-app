@@ -14,6 +14,7 @@ import com.example.clubdeportivo.controllers.SocioController
 import com.example.clubdeportivo.entities.dto.SocioExpirationDayDto
 import com.example.clubdeportivo.repositories.SocioRepository
 import com.example.clubdeportivo.utils.StateSocioDialogUtils
+import com.example.clubdeportivo.utils.UserMenuUtils
 import com.example.clubdeportivo.utils.UserSessionUtil
 import com.example.clubdeportivo.utils.backRedirect
 import com.example.clubdeportivo.utils.setupLogoutButton
@@ -29,8 +30,9 @@ class ListaMorososActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        setContentView(R.layout.activity_lista_morosos)
+        setContentView(R.layout.drawer_list_morosos)
 
+        UserMenuUtils.setupDrawer(this)
         AndroidThreeTen.init(this)
         setupUI()
 
@@ -58,7 +60,7 @@ class ListaMorososActivity : AppCompatActivity() {
 
             // 1. onCreateViewHolder - Infla el layout de cada ítem
             override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-                val view = layoutInflater.inflate(R.layout.component_list_socios, parent, false)
+                val view = layoutInflater.inflate(R.layout.component_list_clientes, parent, false)
                 return object : RecyclerView.ViewHolder(view){}
             }
 
@@ -98,7 +100,6 @@ class ListaMorososActivity : AppCompatActivity() {
     private fun setupUI(){
         // Personalizamos el header con el nombre del usuario
         val username = UserSessionUtil.getUserSession(this)
-        val role = UserSessionUtil.getUserRole(this)
         val txtWelcome: TextView = findViewById(R.id.txtWelcome)
         txtWelcome.text = "Bienvenido! $username"
 

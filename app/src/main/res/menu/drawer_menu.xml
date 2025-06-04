@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_settings"
+            android:icon="@drawable/ic_user_icon"
+            android:title="Configuración"/>
+    </group>
+
+    <item android:title="Gestón de Clientes" >
+        <menu>
+            <group android:checkableBehavior="single">
+                <item
+                    android:id="@+id/nav_search"
+                    android:icon="@drawable/ic_search"
+                    android:title="Buscar Cliente"/>
+                <item
+                    android:id="@+id/nav_new_actividad"
+                    android:icon="@drawable/ic_nosocios_menu_icon"
+                    android:title="Agregar Nueva Actividad"/>
+                <item
+                    android:id="@+id/nav_day_enabled"
+                    android:icon="@drawable/ic_list_menu_icon"
+                    android:title="Lista Diaria No Socios Habilitados"/>
+            </group>
+        </menu>
+    </item>
+</menu>

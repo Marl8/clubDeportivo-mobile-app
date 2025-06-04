@@ -4,7 +4,10 @@ import android.content.ContentValues
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import com.example.clubdeportivo.entities.NoSocio
+import com.example.clubdeportivo.entities.dto.NoSocioEnabledDto
 import com.example.clubdeportivo.helpers.DataBaseHelper
+import org.threeten.bp.LocalDate
+import org.threeten.bp.format.DateTimeFormatter
 
 class NoSocioRepository(context: Context) {
 
@@ -58,5 +61,40 @@ class NoSocioRepository(context: Context) {
         }
         cursor.close()
         return noSocio
+    }
+
+    fun listNoSocioEnabled(date: LocalDate): MutableList<NoSocioEnabledDto> {
+        val db: SQLiteDatabase = dbHelper.readableDatabase
+
+        val query: String = "select NS.id_noSocio, NS.nombre As nombre_nosocio, NS.apellido, NS.dni, " +
+                "A.nombre As nombre_act, AN.dia_habilitado \n" +
+                "from noSocios AS NS \n" +
+                "inner join act_nosocios AS AN on NS.id_noSocio = AN.id_noSocio \n" +
+                "inner join actividades AS A on AN.id_act = A.id_actividad \n" +
+                "where date(AN.dia_habilitado) = ? "
+
+        val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")
+        val formattedDate = date.format(formatter)
+
+        val cursor = db.rawQuery(query, arrayOf(formattedDate))
+
+        val noSocios = mutableListOf<NoSocioEnabledDto>()
+
+        if (cursor.moveToFirst()) {
+            do {
+                val id = cursor.getInt(cursor.getColumnIndexOrThrow("id_noSocio"))
+                val nameNoSocio = cursor.getString(cursor.getColumnIndexOrThrow("nombre_nosocio"))
+                val lastName = cursor.getString(cursor.getColumnIndexOrThrow("apellido"))
+                val dniNoSocio = cursor.getString(cursor.getColumnIndexOrThrow("dni"))
+                val nameAct = cursor.getString(cursor.getColumnIndexOrThrow("nombre_act"))
+                val enabledDayStr = cursor.getString(cursor.getColumnIndexOrThrow("dia_habilitado"))
+                val enabledDay = LocalDate.parse(enabledDayStr, formatter)
+
+                val noSocio = NoSocioEnabledDto(id, nameNoSocio, lastName, dniNoSocio, nameAct, enabledDay)
+                noSocios.add(noSocio)
+            } while (cursor.moveToNext())
+        }
+        cursor.close()
+        return noSocios
     }
 }

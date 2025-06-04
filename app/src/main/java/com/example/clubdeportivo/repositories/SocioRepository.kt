@@ -112,6 +112,7 @@ class SocioRepository(context: Context) {
                 val socio = SocioExpirationDayDto(id, name, lastName, dniSocio, state, expirationDay)
                 socios.add(socio)
             } while (cursor.moveToNext())
+
         }
         cursor.close()
         return socios

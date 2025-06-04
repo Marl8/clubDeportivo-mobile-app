@@ -103,8 +103,8 @@ class ActividadController(private val actividadRepository: ActividadRepository,
                         ZoneId.of(
                         "America/Argentina/Buenos_Aires"))
 
-                    if(noSocio.idNoSocio != null){
-                        count = actividadRepository.findNoSocioQuotaAvailable(actividad.id, LocalDate.now())
+                    if(noSocio.idNoSocio != null && actividad.id != null){
+                        count = actividadRepository.findNoSocioQuotaAvailable(actividad.id, date)
                         success = actividadRepository.paymentDairy(actividad.id, noSocio.idNoSocio, date, amount)
                     }
                     if (success) {
@@ -122,5 +122,13 @@ class ActividadController(private val actividadRepository: ActividadRepository,
             }
         }
         return Pair(success, message)
+    }
+
+    fun getallActividades():List<Actividad>{
+        return actividadRepository.getAllActividades()
+    }
+
+    fun createActividad(act: Actividad): Boolean{
+        return actividadRepository.createActividad(act)
     }
 }

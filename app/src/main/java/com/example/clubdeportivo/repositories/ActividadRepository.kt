@@ -4,6 +4,7 @@ import android.content.ContentValues
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import com.example.clubdeportivo.entities.Actividad
+import com.example.clubdeportivo.entities.dto.SocioExpirationDayDto
 import com.example.clubdeportivo.helpers.DataBaseHelper
 import org.threeten.bp.LocalDate
 
@@ -57,6 +58,32 @@ class ActividadRepository(context: Context) {
         }
         cursor.close()
         return actividad
+    }
+
+    fun getAllActividades(): List<Actividad>{
+        val db: SQLiteDatabase = dbHelper.readableDatabase
+
+        val query= "SELECT * FROM actividades"
+        val cursor = db.rawQuery(query, arrayOf())
+
+        val actividades = mutableListOf<Actividad>()
+
+        if (cursor.moveToFirst()) {
+            do {
+                val id = cursor.getInt(cursor.getColumnIndexOrThrow("id_actividad"))
+                val name = cursor.getString(cursor.getColumnIndexOrThrow("nombre"))
+                val value = cursor.getDouble(cursor.getColumnIndexOrThrow("valor"))
+                val maxQuotaSocio = cursor.getInt(cursor.getColumnIndexOrThrow("max_cupo_socio"))
+                val maxQuotaNoSocio = cursor.getInt(cursor.getColumnIndexOrThrow("max_cupo_no_socio"))
+                val quotaSocioAvailable = cursor.getInt(cursor.getColumnIndexOrThrow("cupo_socio_disponible"))
+                val quotaNoSocioAvailable = cursor.getInt(cursor.getColumnIndexOrThrow("cupo_no_socio_disponible"))
+
+                val actividad = Actividad(id, name, value, maxQuotaSocio, maxQuotaNoSocio, quotaSocioAvailable, quotaNoSocioAvailable)
+                actividades.add(actividad)
+            } while (cursor.moveToNext())
+        }
+            cursor.close()
+            return actividades
     }
 
     fun updateActividad(actividad: Actividad): Boolean {
@@ -124,5 +151,22 @@ class ActividadRepository(context: Context) {
         }
         cursor.close()
         return count
+    }
+
+    fun createActividad(act: Actividad): Boolean{
+        val db: SQLiteDatabase = dbHelper.writableDatabase
+
+        val contentValues = ContentValues().apply {
+            put("nombre", act.name)
+            put("valor", act.value)
+            put("max_cupo_socio", act.maxQuotaSocio)
+            put("max_cupo_no_socio", act.maxQuotaNoSocio)
+            put("cupo_socio_disponible", act.quotaSocioAvailable)
+            put("cupo_no_socio_disponible", act.quotaNoSocioAvailable)
+        }
+
+        val result = db.insert("actividades", null, contentValues)
+        db.close()
+        return result != -1L
     }
 }

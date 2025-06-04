@@ -36,7 +36,7 @@ object ConfirmPaymentDialogUtils {
     ) {
         AlertDialog.Builder(activity)
             .setTitle("Confirme Datos")
-            .setMessage("Nombre del No Socio: ${name}\n\n" +
+            .setMessage("Nombre del Cliente: ${name}\n\n" +
                     "Nombre actividad: $actName\n\n")
             .setPositiveButton("Sí") { _, _ ->
                 onConfirmed(true)

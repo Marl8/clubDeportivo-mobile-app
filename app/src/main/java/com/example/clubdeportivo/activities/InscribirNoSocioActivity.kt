@@ -13,10 +13,12 @@ import com.example.clubdeportivo.controllers.NoSocioController
 import com.example.clubdeportivo.entities.NoSocio
 import com.example.clubdeportivo.repositories.NoSocioRepository
 import com.example.clubdeportivo.utils.ClearFormUtils
+import com.example.clubdeportivo.utils.UserMenuUtils
 import com.example.clubdeportivo.utils.UserSessionUtil
 import com.example.clubdeportivo.utils.backRedirect
 import com.example.clubdeportivo.utils.setupLogoutButton
 import com.google.android.material.button.MaterialButton
+
 
 class InscribirNoSocioActivity : AppCompatActivity() {
 
@@ -25,8 +27,9 @@ class InscribirNoSocioActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        setContentView(R.layout.activity_inscribir_no_socio)
+        setContentView(R.layout.drawer_inscribir_nosocios)
 
+        UserMenuUtils.setupDrawer(this)
         setupUI()
 
         noSocioController = NoSocioController(NoSocioRepository(this))

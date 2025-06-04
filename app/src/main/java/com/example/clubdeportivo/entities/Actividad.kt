@@ -1,7 +1,7 @@
 package com.example.clubdeportivo.entities
 
 data class Actividad (
-    val id: Int,
+    val id: Int?,
     val name: String,
     val value: Double,
     val maxQuotaSocio: Int,

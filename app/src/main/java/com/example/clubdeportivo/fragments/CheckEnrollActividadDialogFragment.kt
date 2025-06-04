@@ -10,7 +10,7 @@ import androidx.fragment.app.DialogFragment
 import com.example.clubdeportivo.R
 import com.google.android.material.button.MaterialButton
 
-class CheckEnrollActividadFragment: DialogFragment() {
+class CheckEnrollActividadDialogFragment: DialogFragment() {
 
     private var enrollMessage: String = ""
     private var enrollSuccess: Boolean = false
@@ -19,8 +19,8 @@ class CheckEnrollActividadFragment: DialogFragment() {
         private const val ENROLL_MESSAGE = "message"
         private const val ENROLL_SUCCESS = "success"
 
-        fun newInstance(message: String, success: Boolean): CheckEnrollActividadFragment {
-            val fragment = CheckEnrollActividadFragment()
+        fun newInstance(message: String, success: Boolean): CheckEnrollActividadDialogFragment {
+            val fragment = CheckEnrollActividadDialogFragment()
             val args = Bundle()
             args.putString(ENROLL_MESSAGE, message)
             args.putBoolean(ENROLL_SUCCESS,success)

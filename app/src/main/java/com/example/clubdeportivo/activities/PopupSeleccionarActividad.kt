@@ -11,11 +11,16 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.example.clubdeportivo.R
+import com.example.clubdeportivo.controllers.ActividadController
+import com.example.clubdeportivo.repositories.ActividadRepository
+import com.example.clubdeportivo.repositories.NoSocioRepository
+import com.example.clubdeportivo.repositories.SocioRepository
 import com.example.clubdeportivo.utils.ModalStyleUtils
 
 class PopupSeleccionarActividad : AppCompatActivity() {
 
     private var optionSelect: String = ""
+    private lateinit var actividadController: ActividadController
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -23,6 +28,11 @@ class PopupSeleccionarActividad : AppCompatActivity() {
         setContentView(R.layout.activity_popup_seleccionar_actividad)
 
         ModalStyleUtils.setUI(this)
+
+        actividadController = ActividadController(
+            ActividadRepository(this),
+            SocioRepository(this), NoSocioRepository(this)
+        )
         setupActivitiesRadioGroup()
 
         optionSelect = intent.getStringExtra("option").orEmpty()
@@ -41,14 +51,16 @@ class PopupSeleccionarActividad : AppCompatActivity() {
     }
 
     private fun setupActivitiesRadioGroup(){
-        val activities = resources.getStringArray(R.array.activities)
+        //val activities = resources.getStringArray(R.array.activities)
+        val activities = actividadController.getallActividades()
         val radioGroup: RadioGroup = findViewById(R.id.radioGroupActivities)
 
         // Crear RadioButtons con íds
-        for ((index, activity) in activities.withIndex()) {
+        for (activity in activities) {
+            val activityId = activity.id ?: continue  // salta si es null
             val radioButton = RadioButton(this).apply {
-                id = index // ID único basado en índice
-                text = activity
+                id = activity.id
+                text = activity.name
                 layoutParams = RadioGroup.LayoutParams(
                     RadioGroup.LayoutParams.MATCH_PARENT,
                     RadioGroup.LayoutParams.WRAP_CONTENT

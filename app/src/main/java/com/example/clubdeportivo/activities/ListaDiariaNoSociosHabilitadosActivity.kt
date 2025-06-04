@@ -10,9 +10,9 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.clubdeportivo.R
-import com.example.clubdeportivo.controllers.SocioController
-import com.example.clubdeportivo.entities.dto.SocioExpirationDayDto
-import com.example.clubdeportivo.repositories.SocioRepository
+import com.example.clubdeportivo.controllers.NoSocioController
+import com.example.clubdeportivo.entities.dto.NoSocioEnabledDto
+import com.example.clubdeportivo.repositories.NoSocioRepository
 import com.example.clubdeportivo.utils.StateSocioDialogUtils
 import com.example.clubdeportivo.utils.UserMenuUtils
 import com.example.clubdeportivo.utils.UserSessionUtil
@@ -22,39 +22,32 @@ import com.jakewharton.threetenabp.AndroidThreeTen
 import org.threeten.bp.LocalDate
 import org.threeten.bp.ZoneId
 
-class ListaVencimientosActivity : AppCompatActivity() {
+class ListaDiariaNoSociosHabilitadosActivity : AppCompatActivity() {
 
-    private lateinit var socioController: SocioController
-    private lateinit var socios: MutableList<SocioExpirationDayDto>
+    private lateinit var noSocioController: NoSocioController
+    private lateinit var noSocios: List<NoSocioEnabledDto>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        setContentView(R.layout.drawer_list_vencimientos)
+        setContentView(R.layout.drawer_list_nosocios_habilitados)
 
         UserMenuUtils.setupDrawer(this)
         AndroidThreeTen.init(this)
         setupUI()
 
-        socioController = SocioController(SocioRepository(this))
-        socios = socioController.listSociosByExpiationDay(
+        noSocioController = NoSocioController(NoSocioRepository(this))
+        noSocios = noSocioController.getListNoSociosDayEnabled(
             LocalDate.now(
                 ZoneId.of(
-            "America/Argentina/Buenos_Aires")))
+                    "America/Argentina/Buenos_Aires")))
+
 
         // Configurar RecyclerView
-        val rvMorosos: RecyclerView = findViewById(R.id.rvMorosos)
-        rvMorosos.layoutManager = LinearLayoutManager(this)
+        val rvNoSocios: RecyclerView = findViewById(R.id.rvNoSocios)
+        rvNoSocios.layoutManager = LinearLayoutManager(this)
 
-        /**
-         * Adapter
-         *
-         * Adapter: Convierte los datos en elementos visuales
-         *
-         * RecyclerView: Muestra los elementos en pantalla
-         * */
-
-        rvMorosos.adapter = object : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+        rvNoSocios.adapter = object : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
             // 1. onCreateViewHolder - Infla el layout de cada ítem
             override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
@@ -65,20 +58,24 @@ class ListaVencimientosActivity : AppCompatActivity() {
             // 2. onBindViewHolder - Asigna los datos a las vistas
             override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
 
-                if(socios.isNotEmpty()) {
-                    val socio = socios[position]
+                if(noSocios.isNotEmpty()) {
+                    val noSocio = noSocios[position]
 
                     holder.itemView.apply {
                         findViewById<TextView>(R.id.txtNombre).text =
-                            "${socio.name} ${socio.lastName}"
-                        findViewById<TextView>(R.id.txtDni).text = "DNI: ${socio.dni}"
+                            "${noSocio.nameNoSocio} ${noSocio.lastName}"
+                        findViewById<TextView>(R.id.txtDni).text = "DNI: ${noSocio.dni}"
                         findViewById<TextView>(R.id.txtFech_vencimiento).text =
-                            "Vencimiento: ${socio.expirationDay}"
+                            "Día Habilitado: ${noSocio.enableDay}"
 
                         findViewById<ImageButton>(R.id.additionalInfo).setOnClickListener {
-                            StateSocioDialogUtils.showDialogSocioState(
+                            StateSocioDialogUtils.showDialogNoSociosEnabled(
                                 context = context,
-                                socio = socio
+                                noSocio = noSocio,
+                                position = position,
+                                socios = noSocios,
+                                notifyItemChanged = { pos -> notifyItemChanged(pos) },
+                                noSocioController = noSocioController
                             )
                         }
                     }
@@ -87,7 +84,7 @@ class ListaVencimientosActivity : AppCompatActivity() {
                         Toast.LENGTH_SHORT).show()
                 }
             }
-            override fun getItemCount(): Int = socios.size
+            override fun getItemCount(): Int = noSocios.size
         }
     }
 
@@ -107,8 +104,6 @@ class ListaVencimientosActivity : AppCompatActivity() {
 
         // Setea el titulo dinámicamente
         val title = findViewById<TextView>(R.id.title_socio)
-        title.text = "Lista de Vencimientos"
-
-        // Navigation Drawer
+        title.text = "Lista de No Socios Habilitados"
     }
 }
