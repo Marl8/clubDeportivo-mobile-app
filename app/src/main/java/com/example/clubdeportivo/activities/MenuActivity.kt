@@ -1,5 +1,6 @@
 package com.example.clubdeportivo.activities
 
+import android.app.ActivityOptions
 import android.content.Intent
 import android.os.Bundle
 import android.widget.ImageButton
@@ -49,34 +50,42 @@ class MenuActivity : AppCompatActivity() {
             showAptoFisicoPopup(isSocio)
         }
 
+        // ActivityOptions.makeCustomAnimation -> suaviza transiciones entre pantallas
         btnCarnet.setOnClickListener {
             val intent = Intent(this, CarnetActivity::class.java)
-            startActivity(intent)
+            val options = ActivityOptions.makeCustomAnimation(this, R.anim.slide_in_right, R.anim.slide_out_left)
+            startActivity(intent, options.toBundle())
+
         }
 
         btnActividad.setOnClickListener{
             val intent = Intent(this, InscribirActividadActivity::class.java)
-            startActivity(intent)
+            val options = ActivityOptions.makeCustomAnimation(this, R.anim.slide_in_right, R.anim.slide_out_left)
+            startActivity(intent, options.toBundle())
         }
 
         btnCuota.setOnClickListener{
             val intent = Intent(this, PagarCuotaActivity::class.java)
-            startActivity(intent)
+            val options = ActivityOptions.makeCustomAnimation(this, R.anim.slide_in_right, R.anim.slide_out_left)
+            startActivity(intent, options.toBundle())
         }
 
         btnPagoDiario.setOnClickListener{
             val intent = Intent(this, PagarActividadDiariaActivity::class.java)
-            startActivity(intent)
+            val options = ActivityOptions.makeCustomAnimation(this, R.anim.slide_in_right, R.anim.slide_out_left)
+            startActivity(intent, options.toBundle())
         }
 
         btnListaMorosos.setOnClickListener {
             val intent = Intent(this, ListaMorososActivity::class.java)
-            startActivity(intent)
+            val options = ActivityOptions.makeCustomAnimation(this, R.anim.slide_in_right, R.anim.slide_out_left)
+            startActivity(intent, options.toBundle())
         }
 
         btnListaVencimientos.setOnClickListener {
             val intent = Intent(this, ListaVencimientosActivity::class.java)
-            startActivity(intent)
+            val options = ActivityOptions.makeCustomAnimation(this, R.anim.slide_in_right, R.anim.slide_out_left)
+            startActivity(intent, options.toBundle())
         }
     }
 

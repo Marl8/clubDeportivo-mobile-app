@@ -42,8 +42,12 @@ class PopupSocioDialogFragment : DialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        dialog?.window?.setBackgroundDrawableResource(android.R.color.transparent)
         dialog?.setCanceledOnTouchOutside(false)
+
+        dialog?.window?.apply {
+            setBackgroundDrawableResource(android.R.color.transparent)
+            setDimAmount(0.9f) // Opacidad del fondo oscuro
+        }
 
         cuotaController = CuotaController(CuotaRepository(requireContext()), SocioRepository(requireContext()))
         socioController = SocioController(SocioRepository(requireContext()))

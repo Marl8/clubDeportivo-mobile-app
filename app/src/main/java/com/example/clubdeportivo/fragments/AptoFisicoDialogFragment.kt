@@ -1,5 +1,6 @@
 package com.example.clubdeportivo.fragments
 
+import android.app.ActivityOptions
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -72,7 +73,9 @@ class AptoFisicoDialogFragment : DialogFragment() {
         btnCancel.setOnClickListener {
             dismiss() // Cerrar el diálogo
             val intent = Intent(requireContext(), MenuActivity::class.java)
-            startActivity(intent)
+            val options = ActivityOptions.makeCustomAnimation(requireContext(),
+                R.anim.slide_in_right, R.anim.slide_out_left)
+            startActivity(intent, options.toBundle())
             requireActivity().finish()
         }
     }

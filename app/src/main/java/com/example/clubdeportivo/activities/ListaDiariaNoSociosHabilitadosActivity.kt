@@ -47,6 +47,12 @@ class ListaDiariaNoSociosHabilitadosActivity : AppCompatActivity() {
         val rvNoSocios: RecyclerView = findViewById(R.id.rvNoSocios)
         rvNoSocios.layoutManager = LinearLayoutManager(this)
 
+        if(noSocios.isEmpty()) {
+            Toast.makeText(
+                this, "No hay no socios habilitados en el día",
+                Toast.LENGTH_SHORT
+            ).show()
+        }
         rvNoSocios.adapter = object : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
             // 1. onCreateViewHolder - Infla el layout de cada ítem
@@ -60,7 +66,6 @@ class ListaDiariaNoSociosHabilitadosActivity : AppCompatActivity() {
 
                 if(noSocios.isNotEmpty()) {
                     val noSocio = noSocios[position]
-
                     holder.itemView.apply {
                         findViewById<TextView>(R.id.txtNombre).text =
                             "${noSocio.nameNoSocio} ${noSocio.lastName}"
@@ -74,9 +79,6 @@ class ListaDiariaNoSociosHabilitadosActivity : AppCompatActivity() {
                                 noSocio = noSocio)
                         }
                     }
-                }else {
-                    Toast.makeText(holder.itemView.context, "No hay socio con vencimientos en el día",
-                        Toast.LENGTH_SHORT).show()
                 }
             }
             override fun getItemCount(): Int = noSocios.size

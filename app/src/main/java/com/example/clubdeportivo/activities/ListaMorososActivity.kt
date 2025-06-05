@@ -56,6 +56,10 @@ class ListaMorososActivity : AppCompatActivity() {
          * RecyclerView: Muestra los elementos en pantalla
          * */
 
+        if(socios.isEmpty()) {
+            Toast.makeText(this, "No hay socio con vencimientos en el día",
+                Toast.LENGTH_SHORT).show()
+        }
         rvMorosos.adapter = object : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
             // 1. onCreateViewHolder - Infla el layout de cada ítem
@@ -88,9 +92,6 @@ class ListaMorososActivity : AppCompatActivity() {
                             )
                         }
                     }
-                }else {
-                    Toast.makeText(holder.itemView.context, "No hay socio con vencimientos en el día",
-                        Toast.LENGTH_SHORT).show()
                 }
             }
             override fun getItemCount(): Int = socios.size

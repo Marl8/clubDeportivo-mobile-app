@@ -23,7 +23,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:gravity="center"
-        android:text="Enter your email to sign up for this up"
+        android:text="Ingresa tu username para acceder en esta aplicación."
         android:textSize="14dp" />
 
     <EditText

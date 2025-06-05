@@ -29,7 +29,7 @@ object ModalStyleUtils {
 
             activity.window.setLayout((width * 0.8).toInt(), (height * 0.65).toInt())
         }
-
+        activity.window.setDimAmount(1f)
         activity.setFinishOnTouchOutside(true)
     }
 

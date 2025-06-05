@@ -1,15 +1,15 @@
 package com.example.clubdeportivo.entities
 
 data class Usuario(
-    val idUsuario: Int,
+    val idUsuario: Int?,
     val username: String,
-    val password: String,
-    val rol: String,
-    override val name: String,
-    override val lastName: String,
-    override val dni: String,
-    override val email: String,
-    override val phone: String
+    var password: String,
+    var rol: String,
+    override var name: String,
+    override var lastName: String,
+    override var dni: String,
+    override var email: String,
+    override var phone: String
 ) : Persona(name, lastName, dni, email, phone){
 
     override fun equals(other: Any?): Boolean {

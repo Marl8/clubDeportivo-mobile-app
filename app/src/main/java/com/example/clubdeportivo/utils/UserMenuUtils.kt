@@ -1,6 +1,7 @@
 package com.example.clubdeportivo.utils
 
 import android.app.Activity
+import android.app.ActivityOptions
 import android.content.Context
 import android.content.Intent
 import android.widget.ImageButton
@@ -10,6 +11,7 @@ import androidx.drawerlayout.widget.DrawerLayout
 import com.example.clubdeportivo.R
 import com.example.clubdeportivo.activities.BuscarClienteActivity
 import com.example.clubdeportivo.activities.ListaDiariaNoSociosHabilitadosActivity
+import com.example.clubdeportivo.activities.MiUsuarioActivity
 import com.example.clubdeportivo.activities.NuevaActividadActivity
 import com.google.android.material.navigation.NavigationView
 
@@ -35,20 +37,26 @@ object UserMenuUtils {
             val handled: Boolean = when (menuItem.itemId) {
                 R.id.nav_search -> {
                     val intent = Intent(activity, BuscarClienteActivity::class.java)
-                    activity.startActivity(intent)
+                    val options = ActivityOptions.makeCustomAnimation(activity, R.anim.slide_in_right, R.anim.slide_out_left)
+                    activity.startActivity(intent, options.toBundle())
                     true
                 }
                 R.id.nav_new_actividad -> {
                     val intent = Intent(activity, NuevaActividadActivity::class.java)
-                    activity.startActivity(intent)
+                    val options = ActivityOptions.makeCustomAnimation(activity, R.anim.slide_in_right, R.anim.slide_out_left)
+                    activity.startActivity(intent, options.toBundle())
                     true
                 }
                 R.id.nav_settings -> {
+                    val intent = Intent(activity, MiUsuarioActivity::class.java)
+                    val options = ActivityOptions.makeCustomAnimation(activity, R.anim.slide_in_right, R.anim.slide_out_left)
+                    activity.startActivity(intent, options.toBundle())
                     true
                 }
                 R.id.nav_day_enabled ->{
                     val intent = Intent(activity, ListaDiariaNoSociosHabilitadosActivity::class.java)
-                    activity.startActivity(intent)
+                    val options = ActivityOptions.makeCustomAnimation(activity, R.anim.slide_in_right, R.anim.slide_out_left)
+                    activity.startActivity(intent, options.toBundle())
                     true
                 }
                 else -> false

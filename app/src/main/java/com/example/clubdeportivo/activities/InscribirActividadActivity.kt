@@ -108,6 +108,7 @@ class InscribirActividadActivity: AppCompatActivity() {
                         val (successEnroll, messageEnroll) = actividadController.enrollNoSocioActividad(optionSelect.lowercase(), dni)
                         message = messageEnroll
                         success = successEnroll
+                        txtDni.text.clear()
                         showEnrollDialog(message, success)
                     }else {
                         showConfirmDialog()

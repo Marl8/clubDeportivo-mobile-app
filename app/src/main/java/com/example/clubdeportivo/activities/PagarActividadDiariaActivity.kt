@@ -1,5 +1,6 @@
 package com.example.clubdeportivo.activities
 
+import android.app.ActivityOptions
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
@@ -78,6 +79,7 @@ class PagarActividadDiariaActivity: AppCompatActivity() {
                 ConfirmPaymentDialogUtils.showDairyPaymentDialog(this, noSocio, optionSelect, amount) { confirmed ->
                     if (confirmed) {
                         val (successEnroll, messageEnroll) = actividadController.paymentDiaryActividad(optionSelect.lowercase(), dni, amount)
+                        txtDni.text.clear()
                         showEnrollDialog(messageEnroll, successEnroll)
                     } else {
                         // Acción si el usuario cancela
@@ -113,7 +115,8 @@ class PagarActividadDiariaActivity: AppCompatActivity() {
         val button: Button = findViewById(R.id.btnSelectActivity)
         button.setOnClickListener{
             val intent = Intent(this, PopupSeleccionarActividad::class.java)
-            startActivity(intent)
+            val options = ActivityOptions.makeCustomAnimation(this, R.anim.slide_in_right, R.anim.slide_out_left)
+            startActivity(intent, options.toBundle())
         }
     }
 
