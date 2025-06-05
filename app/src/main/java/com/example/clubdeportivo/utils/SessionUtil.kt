@@ -10,6 +10,7 @@ import android.widget.ImageButton
 import com.example.clubdeportivo.R
 import com.example.clubdeportivo.activities.LoginActivity
 import com.example.clubdeportivo.activities.MenuActivity
+import androidx.core.content.edit
 
 fun setupLogoutButton(activity: Activity, button: ImageButton){
     button.setOnClickListener {
@@ -20,7 +21,7 @@ fun setupLogoutButton(activity: Activity, button: ImageButton){
             .setPositiveButton("Sí") { _, _ ->
             // Borrar sesión
             val prefs = activity.getSharedPreferences("user_prefs", Activity.MODE_PRIVATE)
-            prefs.edit().clear().apply()
+            prefs.edit() { clear() }
 
             // Redirigir al login
             val intent = Intent(activity, LoginActivity::class.java)
