@@ -2,6 +2,9 @@ package com.example.clubdeportivo.repositories
 
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
+import com.example.clubdeportivo.entities.Socio
+import com.example.clubdeportivo.entities.Usuario
+import com.example.clubdeportivo.entities.dto.UsuarioDto
 import com.example.clubdeportivo.helpers.DataBaseHelper
 import com.example.clubdeportivo.utils.SecurityUtils
 
@@ -20,5 +23,27 @@ class UsuarioRepository(private val context: Context) {
         cursor.close()
         db.close()
         return isLogged
+    }
+
+    fun findUsuarioByUsername(username: String): UsuarioDto?{
+        val db: SQLiteDatabase = dbHelper.readableDatabase
+        val query: String = "SELECT us.id, us.nombre AS nombre_user, us.apellido, us.dni, r.Nombre AS nombre_rol " +
+                "FROM usuarios As us " +
+                "INNER JOIN roles As r ON us.fk_rol = r.id_rol " +
+                " WHERE username = ?"
+        val cursor = db.rawQuery(query, arrayOf(username))
+
+        var user: UsuarioDto? = null
+        if (cursor.moveToFirst()) {
+            val id = cursor.getInt(cursor.getColumnIndexOrThrow("id"))
+            val name = cursor.getString(cursor.getColumnIndexOrThrow("nombre_user"))
+            val lastName = cursor.getString(cursor.getColumnIndexOrThrow("apellido"))
+            val dni = cursor.getString(cursor.getColumnIndexOrThrow("dni"))
+            val rolName = cursor.getString(cursor.getColumnIndexOrThrow("nombre_rol"))
+
+            user = UsuarioDto(id, name, lastName, dni, rolName)
+        }
+        cursor.close()
+        return user
     }
 }

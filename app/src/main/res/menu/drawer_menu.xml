@@ -3,8 +3,8 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_settings"
-            android:icon="@drawable/ic_user_icon"
-            android:title="Configuración"/>
+            android:icon="@drawable/ic_settings_menu_icon"
+            android:title="Mi Perfil"/>
     </group>
 
     <item android:title="Gestón de Clientes" >
