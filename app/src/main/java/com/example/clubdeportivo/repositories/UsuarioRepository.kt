@@ -2,8 +2,6 @@ package com.example.clubdeportivo.repositories
 
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
-import com.example.clubdeportivo.entities.Socio
-import com.example.clubdeportivo.entities.Usuario
 import com.example.clubdeportivo.entities.dto.UsuarioDto
 import com.example.clubdeportivo.helpers.DataBaseHelper
 import com.example.clubdeportivo.utils.SecurityUtils
