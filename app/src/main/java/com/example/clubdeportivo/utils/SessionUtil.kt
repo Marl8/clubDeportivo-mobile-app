@@ -1,12 +1,12 @@
-package com.example.clubdeportivo.utils;
+package com.example.clubdeportivo.utils
 
-import android.app.Activity;
+import android.app.Activity
 import android.app.ActivityOptions
-import android.app.AlertDialog;
+import android.app.AlertDialog
 import android.content.Intent
 import android.os.Handler
 import android.os.Looper
-import android.widget.ImageButton;
+import android.widget.ImageButton
 import com.example.clubdeportivo.R
 import com.example.clubdeportivo.activities.LoginActivity
 import com.example.clubdeportivo.activities.MenuActivity
