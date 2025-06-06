@@ -148,7 +148,7 @@ class InscribirActividadActivity: AppCompatActivity() {
     }
 
     private fun showConfirmDialog(){
-        ConfirmPaymentDialogUtils.showEnrollActividadDialog(this, name, optionSelect) { confirmed ->
+        ConfirmDialogUtils.showEnrollActividadDialog(this, name, optionSelect) { confirmed ->
             if (confirmed) {
                 isConfirm = confirmed
                 Toast.makeText(this, "Datos confirmados.", Toast.LENGTH_SHORT).show()

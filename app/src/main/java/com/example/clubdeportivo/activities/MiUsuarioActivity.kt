@@ -11,6 +11,7 @@ import com.example.clubdeportivo.R
 import com.example.clubdeportivo.controllers.UsuarioController
 import com.example.clubdeportivo.entities.Usuario
 import com.example.clubdeportivo.repositories.UsuarioRepository
+import com.example.clubdeportivo.utils.ConfirmDialogUtils
 import com.example.clubdeportivo.utils.SecurityUtils
 import com.example.clubdeportivo.utils.UserMenuUtils
 import com.example.clubdeportivo.utils.UserSessionUtil
@@ -23,6 +24,7 @@ class MiUsuarioActivity : AppCompatActivity() {
     private lateinit var usuarioController: UsuarioController
     private var username: String = ""
     private var success = false
+    private var isConfirm = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -73,13 +75,19 @@ class MiUsuarioActivity : AppCompatActivity() {
                     Usuario(user.idUsuario, username, passwordHash, it1.rol, name, lastname, dni,
                         email, phone)
                 }
-                success = userEdit?.let { us -> usuarioController.updateUsuario(us) } == true
-                if(success){
-                    Toast.makeText(this, "Usuario modificado con éxito", Toast.LENGTH_SHORT).show()
-                }else{
-                    Toast.makeText(this, "Ocurrió un error en la operación", Toast.LENGTH_SHORT).show()
+                showConfirmDialog(userEdit) { confirmed ->
+                    if (confirmed) {
+                        val success = userEdit?.let { us -> usuarioController.updateUsuario(us) } == true
+                        if(success) {
+                            Toast.makeText(this, "Usuario modificado con éxito", Toast.LENGTH_SHORT).show()
+                        } else {
+                            Toast.makeText(this, "Ocurrió un error en la operación", Toast.LENGTH_SHORT).show()
+                        }
+                    } else {
+                        Toast.makeText(this, "Operación cancelada", Toast.LENGTH_SHORT).show()
+                    }
                 }
-            }else{
+            } else {
                 Toast.makeText(this, "Debe completar todos los campos.", Toast.LENGTH_SHORT).show()
             }
         }
@@ -103,5 +111,11 @@ class MiUsuarioActivity : AppCompatActivity() {
         // Setea el titulo dinámicamente
         val title = findViewById<TextView>(R.id.title_socio)
         title.text = "Mi Usuario"
+    }
+
+    private fun showConfirmDialog(userEdit: Usuario?, onConfirmed: (Boolean) -> Unit) {
+        ConfirmDialogUtils.showUpdateUsuarioDialog(this) { confirmed ->
+            onConfirmed(confirmed)
+        }
     }
 }

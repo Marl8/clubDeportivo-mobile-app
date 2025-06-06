@@ -76,7 +76,7 @@ class PagarActividadDiariaActivity: AppCompatActivity() {
             if(optionSelect.isNotEmpty() && dni.isNotEmpty() && amount != 0.0) {
                 val noSocio: NoSocio? = noSocioController.getNoSocio(dni)
 
-                ConfirmPaymentDialogUtils.showDairyPaymentDialog(this, noSocio, optionSelect, amount) { confirmed ->
+                ConfirmDialogUtils.showDairyPaymentDialog(this, noSocio, optionSelect, amount) { confirmed ->
                     if (confirmed) {
                         val (successEnroll, messageEnroll) = actividadController.paymentDiaryActividad(optionSelect.lowercase(), dni, amount)
                         txtDni.text.clear()

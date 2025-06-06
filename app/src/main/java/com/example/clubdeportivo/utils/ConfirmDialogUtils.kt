@@ -4,7 +4,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.example.clubdeportivo.entities.NoSocio
 
-object ConfirmPaymentDialogUtils {
+object ConfirmDialogUtils {
 
     fun showDairyPaymentDialog(
         activity: AppCompatActivity,
@@ -38,6 +38,23 @@ object ConfirmPaymentDialogUtils {
             .setTitle("Confirme Datos")
             .setMessage("Nombre del Cliente: ${name}\n\n" +
                     "Nombre actividad: $actName\n\n")
+            .setPositiveButton("Sí") { _, _ ->
+                onConfirmed(true)
+            }
+            .setNegativeButton("No") { _, _ ->
+                onConfirmed(false)
+            }
+            .create()
+            .show()
+    }
+
+    fun showUpdateUsuarioDialog(
+        activity: AppCompatActivity,
+        onConfirmed: (Boolean) -> Unit
+    ) {
+        AlertDialog.Builder(activity)
+            .setTitle("Confirme Actualización")
+            .setMessage("Su usuario será modificado. ¿Desea continuar?")
             .setPositiveButton("Sí") { _, _ ->
                 onConfirmed(true)
             }

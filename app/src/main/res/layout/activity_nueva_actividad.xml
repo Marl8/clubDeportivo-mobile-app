@@ -106,14 +106,16 @@
                 android:layout_marginEnd="16dp"
                 android:autofillHints="name"
                 android:ems="10"
-                android:inputType="text"
+                android:inputType="textCapWords|textPersonName"
                 android:textColor="@color/white"
                 android:fontFamily="sans-serif-light"
                 android:padding="10dp"
                 android:background="@drawable/form_input"
                 android:layout_marginTop="5dp"
                 android:hint="Name"
-                android:textColorHint="#80FFFFFF" />
+                android:textColorHint="#80FFFFFF"
+                android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ áéíóúÁÉÍÓÚñÑ"
+                />
 
             <EditText
                 android:id="@+id/value_act"

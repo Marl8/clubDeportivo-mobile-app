@@ -106,19 +106,13 @@ class BuscarClienteActivity : AppCompatActivity() {
                 if (isSocio) {
                     val socio = socioController.getSocio(dni)
                     withContext(Dispatchers.Main) {
-                        socio?.let {
-                            showSocio(it)
-                        } ?: run {
-                            showNotFound(dni)
+                        socio?.let { showSocio(it) } ?: run { showNotFound(dni)
                         }
                     }
                 } else {
                     val noSocio = noSocioController.getNoSocio(dni)
                     withContext(Dispatchers.Main) {
-                        noSocio?.let {
-                            showNoSocio(it)
-                        } ?: run {
-                            showNotFound(dni)
+                        noSocio?.let { showNoSocio(it) } ?: run { showNotFound(dni)
                         }
                     }
                 }
