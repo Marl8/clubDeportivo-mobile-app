@@ -23,8 +23,6 @@ class MiUsuarioActivity : AppCompatActivity() {
 
     private lateinit var usuarioController: UsuarioController
     private var username: String = ""
-    private var success = false
-    private var isConfirm = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
