@@ -73,6 +73,14 @@ class MiUsuarioActivity : AppCompatActivity() {
                     Usuario(user.idUsuario, username, passwordHash, it1.rol, name, lastname, dni,
                         email, phone)
                 }
+
+                /**
+                 *  Llamada asicronica con una lambda
+                 * Utilizamos la forma simplificado de Kotlin
+                 * showConfirmDialog(userEdit) { confirmed -> ...} que es lo mismo que hacer
+                 * showConfirmDialog(userEdit, { confirmed -> ...})
+                 */
+
                 showConfirmDialog(userEdit) { confirmed ->
                     if (confirmed) {
                         val success = userEdit?.let { us -> usuarioController.updateUsuario(us) } == true
