@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.clubdeportivo.R
 import com.example.clubdeportivo.controllers.SocioController
 import com.example.clubdeportivo.entities.dto.SocioExpirationDayDto
+import com.example.clubdeportivo.repositories.NoSocioRepository
 import com.example.clubdeportivo.repositories.SocioRepository
 import com.example.clubdeportivo.utils.StateSocioDialogUtils
 import com.example.clubdeportivo.utils.UserMenuUtils
@@ -36,8 +37,8 @@ class ListaVencimientosActivity : AppCompatActivity() {
         AndroidThreeTen.init(this)
         setupUI()
 
-        socioController = SocioController(SocioRepository(this))
-        socios = socioController.listSociosByExpiationDay(
+        socioController = SocioController(SocioRepository(this), NoSocioRepository(this))
+        socios = socioController.getListSociosByExpiationDay(
             LocalDate.now(
                 ZoneId.of(
             "America/Argentina/Buenos_Aires")))

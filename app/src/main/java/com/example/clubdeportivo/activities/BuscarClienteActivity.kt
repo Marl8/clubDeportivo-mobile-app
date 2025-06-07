@@ -49,8 +49,8 @@ class BuscarClienteActivity : AppCompatActivity() {
         UserMenuUtils.setupDrawer(this)
         setUI()
 
-        socioController = SocioController(SocioRepository(this))
-        noSocioController = NoSocioController(NoSocioRepository(this))
+        socioController = SocioController(SocioRepository(this), NoSocioRepository(this))
+        noSocioController = NoSocioController(NoSocioRepository(this), SocioRepository(this))
         cardCliente = findViewById(R.id.card_cliente)
         txtId = findViewById(R.id.id_search)
         txtName = findViewById(R.id.name_search)

@@ -13,6 +13,7 @@ import com.example.clubdeportivo.R
 import com.example.clubdeportivo.controllers.NoSocioController
 import com.example.clubdeportivo.entities.dto.NoSocioEnabledDto
 import com.example.clubdeportivo.repositories.NoSocioRepository
+import com.example.clubdeportivo.repositories.SocioRepository
 import com.example.clubdeportivo.utils.StateSocioDialogUtils
 import com.example.clubdeportivo.utils.UserMenuUtils
 import com.example.clubdeportivo.utils.UserSessionUtil
@@ -36,7 +37,7 @@ class ListaDiariaNoSociosHabilitadosActivity : AppCompatActivity() {
         AndroidThreeTen.init(this)
         setupUI()
 
-        noSocioController = NoSocioController(NoSocioRepository(this))
+        noSocioController = NoSocioController(NoSocioRepository(this), SocioRepository(this))
         noSocios = noSocioController.getListNoSociosDayEnabled(
             LocalDate.now(
                 ZoneId.of(

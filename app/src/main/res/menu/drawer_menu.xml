@@ -16,11 +16,11 @@
                     android:title="Buscar Cliente"/>
                 <item
                     android:id="@+id/nav_new_actividad"
-                    android:icon="@drawable/ic_nosocios_menu_icon"
+                    android:icon="@drawable/ic_exercise_menu_icon"
                     android:title="Agregar Nueva Actividad"/>
                 <item
                     android:id="@+id/nav_day_enabled"
-                    android:icon="@drawable/ic_list_menu_icon"
+                    android:icon="@drawable/ic_list_alt_menu_icon"
                     android:title="Lista Diaria No Socios Habilitados"/>
             </group>
         </menu>

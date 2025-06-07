@@ -14,6 +14,7 @@ import com.example.clubdeportivo.R
 import com.example.clubdeportivo.controllers.SocioController
 import com.example.clubdeportivo.entities.Socio
 import com.example.clubdeportivo.fragments.PopupSocioDialogFragment
+import com.example.clubdeportivo.repositories.NoSocioRepository
 import com.example.clubdeportivo.repositories.SocioRepository
 import com.example.clubdeportivo.utils.ClearFormUtils
 import com.example.clubdeportivo.utils.UserMenuUtils
@@ -39,7 +40,7 @@ class PagarCuotaActivity : AppCompatActivity() {
         setupUI()
         setupDropdwons()
 
-        socioController = SocioController(SocioRepository(this))
+        socioController = SocioController(SocioRepository(this), NoSocioRepository(this))
         val btnSend: MaterialButton = findViewById(R.id.send)
         val txtDni: EditText = findViewById(R.id.dniInput)
         val txtAmount: EditText = findViewById(R.id.amount)

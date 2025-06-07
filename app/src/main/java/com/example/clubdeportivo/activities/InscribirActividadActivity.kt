@@ -56,8 +56,8 @@ class InscribirActividadActivity: AppCompatActivity() {
 
         actividadController = ActividadController(ActividadRepository(this),
             SocioRepository(this), NoSocioRepository(this))
-        socioController = SocioController(SocioRepository(this))
-        noSocioController = NoSocioController(NoSocioRepository(this))
+        socioController = SocioController(SocioRepository(this), NoSocioRepository(this))
+        noSocioController = NoSocioController(NoSocioRepository(this), SocioRepository(this))
         val txtDni: EditText = findViewById(R.id.dniInput)
         val btnSelectActividad: Button = findViewById(R.id.btnSelectActivity)
         val radioGroup: RadioGroup = findViewById(R.id.radioGroupClient)

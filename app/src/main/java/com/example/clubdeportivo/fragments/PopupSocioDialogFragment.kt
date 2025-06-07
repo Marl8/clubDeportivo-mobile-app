@@ -11,6 +11,7 @@ import com.example.clubdeportivo.controllers.CuotaController
 import com.example.clubdeportivo.controllers.SocioController
 import com.example.clubdeportivo.entities.Socio
 import com.example.clubdeportivo.repositories.CuotaRepository
+import com.example.clubdeportivo.repositories.NoSocioRepository
 import com.example.clubdeportivo.repositories.SocioRepository
 import com.example.clubdeportivo.utils.ModalStyleUtils
 import com.google.android.material.button.MaterialButton
@@ -50,7 +51,7 @@ class PopupSocioDialogFragment : DialogFragment() {
         }
 
         cuotaController = CuotaController(CuotaRepository(requireContext()), SocioRepository(requireContext()))
-        socioController = SocioController(SocioRepository(requireContext()))
+        socioController = SocioController(SocioRepository(requireContext()), NoSocioRepository(requireContext()))
 
         val btnConfirm: MaterialButton = view.findViewById(R.id.confirm)
         val btnCancel: MaterialButton = view.findViewById(R.id.cancel)

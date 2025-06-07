@@ -21,6 +21,7 @@ import com.google.android.material.button.MaterialButton
 import androidx.core.graphics.createBitmap
 import com.example.clubdeportivo.controllers.SocioController
 import com.example.clubdeportivo.entities.Socio
+import com.example.clubdeportivo.repositories.NoSocioRepository
 import com.example.clubdeportivo.repositories.SocioRepository
 import com.example.clubdeportivo.utils.UserMenuUtils
 import java.io.File
@@ -38,7 +39,7 @@ class CarnetActivity : AppCompatActivity() {
         UserMenuUtils.setupDrawer(this)
         setUI()
 
-        socioController = SocioController(SocioRepository(this))
+        socioController = SocioController(SocioRepository(this), NoSocioRepository(this))
         val txtDniSocio: EditText = findViewById(R.id.dniCliente)
         val btnSearch: MaterialButton = findViewById(R.id.search)
         val btnCarnet: MaterialButton = findViewById(R.id.btnCarnet)
