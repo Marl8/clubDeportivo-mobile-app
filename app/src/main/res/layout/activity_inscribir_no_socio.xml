@@ -214,6 +214,14 @@
                 android:visibility="gone"
                 android:padding="16dp">
 
+                <ImageView
+                    android:id="@+id/payment_icon"
+                    android:layout_width="125dp"
+                    android:layout_height="125dp"
+                    android:layout_marginBottom="10dp"
+                    android:contentDescription="payment_icon_success"
+                    app:srcCompat="@drawable/ic_check_ok_icon" />
+
                 <include layout="@layout/component_seach" />
 
                 <com.google.android.material.button.MaterialButton
@@ -225,7 +233,7 @@
                     android:text="Aceptar"
                     android:textSize="18sp"
                     android:includeFontPadding="false"
-                    android:layout_marginTop="50dp"
+                    android:layout_marginTop="20dp"
                     android:layout_gravity="center_horizontal|top"
                     style="@style/Widget.AppCompat.Button"/>
             </LinearLayout>
