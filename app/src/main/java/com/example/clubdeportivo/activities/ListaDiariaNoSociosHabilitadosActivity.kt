@@ -14,6 +14,7 @@ import com.example.clubdeportivo.controllers.NoSocioController
 import com.example.clubdeportivo.entities.dto.NoSocioEnabledDto
 import com.example.clubdeportivo.repositories.NoSocioRepository
 import com.example.clubdeportivo.repositories.SocioRepository
+import com.example.clubdeportivo.utils.GenericRecyclerAdapterUtil
 import com.example.clubdeportivo.utils.StateSocioDialogUtils
 import com.example.clubdeportivo.utils.UserMenuUtils
 import com.example.clubdeportivo.utils.UserSessionUtil
@@ -54,36 +55,26 @@ class ListaDiariaNoSociosHabilitadosActivity : AppCompatActivity() {
                 Toast.LENGTH_SHORT
             ).show()
         }
-        rvNoSocios.adapter = object : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
-            // 1. onCreateViewHolder - Infla el layout de cada ítem
-            override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-                val view = layoutInflater.inflate(R.layout.component_list_clientes, parent, false)
-                return object : RecyclerView.ViewHolder(view){}
-            }
-
-            // 2. onBindViewHolder - Asigna los datos a las vistas
-            override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-
-                if(noSocios.isNotEmpty()) {
-                    val noSocio = noSocios[position]
-                    holder.itemView.apply {
-                        findViewById<TextView>(R.id.txtNombre).text =
-                            "${noSocio.nameNoSocio} ${noSocio.lastName}"
-                        findViewById<TextView>(R.id.txtDni).text = "DNI: ${noSocio.dni}"
-                        findViewById<TextView>(R.id.txtFech_vencimiento).text =
-                            "Día Habilitado: ${noSocio.enableDay}"
-
-                        findViewById<ImageButton>(R.id.additionalInfo).setOnClickListener {
-                            StateSocioDialogUtils.showDialogNoSociosEnabled(
-                                context = context,
-                                noSocio = noSocio)
-                        }
+        rvNoSocios.adapter = GenericRecyclerAdapterUtil.createAdapter(
+            items = noSocios,
+            layoutResId = R.layout.component_list_clientes,
+            onBindView = { itemView, noSocio, position ->
+                itemView.apply {
+                    findViewById<TextView>(R.id.txtNombre).text =
+                        "${noSocio.nameNoSocio} ${noSocio.lastName}"
+                    findViewById<TextView>(R.id.txtDni).text = "DNI: ${noSocio.dni}"
+                    findViewById<TextView>(R.id.txtFech_vencimiento).text =
+                        "Día Habilitado: ${noSocio.enableDay}"
+                    findViewById<ImageButton>(R.id.additionalInfo).setOnClickListener {
+                        StateSocioDialogUtils.showDialogNoSociosEnabled(
+                            context = context,
+                            noSocio = noSocio
+                        )
                     }
                 }
             }
-            override fun getItemCount(): Int = noSocios.size
-        }
+        )
     }
 
     private fun setupUI(){
