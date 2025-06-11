@@ -1,7 +1,6 @@
 package com.example.clubdeportivo.activities
 
 import android.os.Bundle
-import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.TextView
 import android.widget.Toast
