@@ -58,7 +58,7 @@ class ListaDiariaNoSociosHabilitadosActivity : AppCompatActivity() {
         rvNoSocios.adapter = GenericRecyclerAdapterUtil.createAdapter(
             items = noSocios,
             layoutResId = R.layout.component_list_clientes,
-            onBindView = { itemView, noSocio, position ->
+            onBindView = { itemView, noSocio, _ ->
                 itemView.apply {
                     findViewById<TextView>(R.id.txtNombre).text =
                         "${noSocio.nameNoSocio} ${noSocio.lastName}"

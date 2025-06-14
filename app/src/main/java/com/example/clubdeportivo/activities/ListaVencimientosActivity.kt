@@ -63,7 +63,7 @@ class ListaVencimientosActivity : AppCompatActivity() {
         rvPaymentDay.adapter = GenericRecyclerAdapterUtil.createAdapter(
             items = socios,
             layoutResId = R.layout.component_list_clientes,
-            onBindView = { itemView, socio, position ->
+            onBindView = { itemView, socio, _ ->
                 itemView.apply {
                     findViewById<TextView>(R.id.txtNombre).text = "${socio.name} ${socio.lastName}"
                     findViewById<TextView>(R.id.txtDni).text = "DNI: ${socio.dni}"
