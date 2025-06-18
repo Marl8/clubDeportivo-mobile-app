@@ -97,6 +97,7 @@ class BuscarClienteActivity : AppCompatActivity() {
         }
     }
 
+    // Hace una llamada asíncrona usando corutinas
     @OptIn(DelicateCoroutinesApi::class)
     private fun findClient(dni: String, radioGroupClient: RadioGroup) {
         val isSocio = radioGroupClient.checkedRadioButtonId == R.id.radioButtonSocio
