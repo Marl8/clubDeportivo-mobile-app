@@ -61,7 +61,7 @@ class NuevaActividadActivity : AppCompatActivity() {
                 success = actividadController.createActividad(actividad)
                 if(success) {
                     ClearFormUtils.clearForm(formLayout)
-                    Toast.makeText(this, "Inscripción exitosa", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "Actividad guardada con éxito.", Toast.LENGTH_SHORT).show()
                 } else {
                     Toast.makeText(this, "Error no ha podido completarse la operación.",
                         Toast.LENGTH_SHORT).show()
