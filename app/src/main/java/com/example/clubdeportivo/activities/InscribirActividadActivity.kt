@@ -29,6 +29,7 @@ class InscribirActividadActivity: AppCompatActivity() {
     private var client: String = ""
     private var name: String = ""
     private var isConfirm: Boolean = false
+    private lateinit var btnSend: MaterialButton
     private lateinit var actividadController: ActividadController
     private lateinit var socioController: SocioController
     private lateinit var noSocioController: NoSocioController
@@ -61,7 +62,7 @@ class InscribirActividadActivity: AppCompatActivity() {
         val txtDni: EditText = findViewById(R.id.dniInput)
         val btnSelectActividad: Button = findViewById(R.id.btnSelectActivity)
         val radioGroup: RadioGroup = findViewById(R.id.radioGroupClient)
-        val btnSend: MaterialButton = findViewById(R.id.send)
+        btnSend = findViewById(R.id.send)
 
         var success: Boolean
         var message: String
@@ -151,6 +152,7 @@ class InscribirActividadActivity: AppCompatActivity() {
         ConfirmDialogUtils.showEnrollActividadDialog(this, name, optionSelect) { confirmed ->
             if (confirmed) {
                 isConfirm = confirmed
+                btnSend.text = "Confirmar"
                 Toast.makeText(this, "Datos confirmados.", Toast.LENGTH_SHORT).show()
             } else {
                 // Acción si el usuario cancela
