@@ -1,6 +1,6 @@
 <h1 align="center"> Club Deportivo App </h1>
 </br>
-<p align="center"> Proyecto App Club Deportivo para la materia Desarrollo de Aplicaciones Móviles - IFTS Nº 29 - 1º Cuatrimestre 2025.</p>
+<p align="center"> Proyecto App Club Deportivo para la materia Desarrollo de Aplicaciones para Dispositivos - IFTS Nº 29 - 1º Cuatrimestre 2025.</p>
 <p align="center"> La aplicación fue desarrollada en Android Studio, utilizando Kotlin como lenguaje y SqlLite como motor de base de datos.</p>
 
 </br> </br>
